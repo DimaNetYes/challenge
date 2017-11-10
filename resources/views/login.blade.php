@@ -33,6 +33,13 @@
 
 <body>
 
+<style>
+    body {
+        background-image: url("http://blog.gravity-lifestyle.com/wp-content/uploads/2017/03/challenge.jpg");
+        background-size: 100%;
+    }
+</style>
+
 <div class="container">
 
     <form class="form-signin">

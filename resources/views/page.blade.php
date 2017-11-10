@@ -33,6 +33,12 @@
 
 <body>
 
+<style>
+    body {
+        background-image: url("http://simpleeconomist.com/wp-content/uploads/2013/03/challenge.jpg");
+        background-size: 100%;
+    }
+</style>
 <div class="site-wrapper">
 
     <div class="site-wrapper-inner">
@@ -41,7 +47,7 @@
 
             <div class="masthead clearfix">
                 <div class="inner">
-                    <h3 class="masthead-brand">Challenges</h3>
+                    <h3 class="masthead-brand">Challenges ahead</h3>
                     <nav>
                         <ul class="nav masthead-nav">
                             <li class="active"><a href="#">Home</a></li>
