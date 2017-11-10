@@ -8,8 +8,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $message = 'Hello World!!!!';
-        return view('page')->with('message', $message);
+           return view('page');
     }
 
     public function login()

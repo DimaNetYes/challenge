@@ -34,5 +34,9 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-
+    'google' => [
+        'client_id' => '620245015954-ogijgrcuudfpo71k87tertn8jk7fmndu.apps.googleusercontent.com',
+        'client_secret' => 'mKmaMhFa0DQf7lv8BFiFGPas',
+        'redirect' => 'http://localhost/auth/google/callback',
+    ],
 ];
