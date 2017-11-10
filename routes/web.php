@@ -15,7 +15,7 @@
 Route::get('/', 'IndexController@Index');
 
 
-Route::get('/login', 'IndexController@auth');
+Route::get('login', 'IndexController@login');
 Route::get('auth/google', 'GoogleController@redirectToProvider') -> name ('google.login');
 Route::get('auth/google/callback', 'GoogleController@handleProviderCallback');
 Auth::routes();

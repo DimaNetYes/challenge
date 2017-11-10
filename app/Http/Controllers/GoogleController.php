@@ -30,8 +30,9 @@ class GoogleController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('google')->user();
-//        dd($user);
-        // $user->token;
+        $user = Socialite::driver('google')->stateless()->user();
+        dd($user);
+         $user->token;
+        return $user->name;
     }
 }
