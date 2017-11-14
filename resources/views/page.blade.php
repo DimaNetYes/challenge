@@ -21,7 +21,8 @@
     <link href={{'css/cover.css'}} rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <!--[if lt IE 9]>
+    <script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -35,7 +36,7 @@
 
 <style>
     body {
-        background-image: url("http://simpleeconomist.com/wp-content/uploads/2013/03/challenge.jpg");
+        background-image: url("http://aceofgeeks.net/wp/wp-content/uploads/2014/08/LOGO_ON-AIR_Quest-color.jpg");
         background-size: 100%;
     }
 </style>
@@ -60,7 +61,8 @@
 
             <div class="inner cover">
                 <h1 class="cover-heading">Cover your page.</h1>
-                <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
+                <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download,
+                    edit the text, and add your own fullscreen background photo to make it your own.</p>
                 <p class="lead">
                     <a href="#" class="btn btn-lg btn-default">Learn more</a>
                 </p>
@@ -68,7 +70,8 @@
 
             <div class="mastfoot">
                 <div class="inner">
-                    <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+                    <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a
+                                href="https://twitter.com/mdo">@mdo</a>.</p>
                 </div>
             </div>
 

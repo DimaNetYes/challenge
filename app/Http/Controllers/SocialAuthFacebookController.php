@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use Faker\Provider\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Socialite;
 
 
@@ -25,7 +28,24 @@ class SocialAuthFacebookController extends Controller
      */
     public function callback()
     {
-        $user = Socialite::driver('facebook')->stateless()->user();
-        dd($user);
+        $SocialUser = Socialite::driver('facebook')->stateless()->user();
+//        dd($SocialUser);
+
+        $data = [
+            'social_id' => $SocialUser->getID(),
+            'name' => $SocialUser->name,
+            'email' => $SocialUser->getEmail()
+        ];
+//        dd($data);
+        $user = User::where('social_id', $data['social_id'])->first();
+        if(is_null($user)){
+            $user = new User($data);
+            $user -> save();
+        }
+//        return $this->redirect();
+
+        Auth::login($user,true);
+
+
     }
 }
