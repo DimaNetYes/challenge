@@ -32,7 +32,5 @@ class GoogleController extends Controller
     {
         $user = Socialite::driver('google')->stateless()->user();
         dd($user);
-         $user->token;
-        return $user->name;
     }
 }
