@@ -21,3 +21,9 @@ Route::get('auth/google/callback', 'GoogleController@handleProviderCallback');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//--------------------------my--------------------------
+Route::get('create', 'quest\CreateQuest@add');
+Route::get('view', 'quest\ViewQuest@view');
+
+//Route::get('/', ['as' => 'admin/create', 'uses' => 'CreateQuest@add']);
