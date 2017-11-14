@@ -1,0 +1,32 @@
+body {
+    background-image: url("http://simpleeconomist.com/wp-content/uploads/2013/03/challenge.jpg");
+    background-size: 100%;
+}
+
+article {
+    padding: 20px;
+    width: 300px;
+    height: 161px;
+    background-color: white;
+    background: url(http://testlaravel/resources/views/quest/quest.jpg) no-repeat;
+    background-size: cover;
+    opacity: 0.5;
+    color: white;
+   }
+p.description {
+    visibility: hidden;
+}
+p.start {
+      visibility: hidden;
+  }
+article:hover {
+    opacity: 1;
+}
+
+article:hover p.description {
+    visibility: visible;
+   }
+
+article:hover p.start {
+    visibility: visible;
+}

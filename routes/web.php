@@ -28,3 +28,9 @@ Route::get('/redirect', 'SocialAuthFacebookController@redirect');
 Route::get('/callback', 'SocialAuthFacebookController@callback');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//--------------------------my--------------------------
+Route::get('create', 'quest\CreateQuest@add');
+Route::get('view', 'quest\ViewQuest@view');
+
+//Route::get('/', ['as' => 'admin/create', 'uses' => 'CreateQuest@add']);
