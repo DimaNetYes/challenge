@@ -38,14 +38,11 @@ class SocialAuthFacebookController extends Controller
         ];
 //        dd($data);
         $user = User::where('social_id', $data['social_id'])->first();
-        if(is_null($user)){
+        if (is_null($user)) {
             $user = new User($data);
-            $user -> save();
+            $user->save();
         }
 //        return $this->redirect();
-
-        Auth::login($user,true);
-
-
+        Auth::login($user, true);
     }
 }
