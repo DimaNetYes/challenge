@@ -1,5 +1,18 @@
 @extends('layouts.app')
+<body>
+<style>
+    body {
+        background-image: url("http://blog.gravity-lifestyle.com/wp-content/uploads/2017/03/challenge.jpg");
+        background-size: 100%;
+    }
 
+    .container {
+        opacity: 0.7; /* Значение прозрачности */
+        filter: alpha(Opacity=70); /* Прозрачность в IE */
+    }
+
+</style>
+</body>
 @section('content')
 <div class="container">
     <div class="row">
@@ -20,6 +33,20 @@
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('nickname') ? ' has-error' : '' }}">
+                            <label for="nickname" class="col-md-4 control-label">NickName</label>
+
+                            <div class="col-md-6">
+                                <input id="nickname" type="text" class="form-control" name="nickname" value="{{ old('nickname') }}" required autofocus>
+
+                                @if ($errors->has('nickname'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('nickname') }}</strong>
                                     </span>
                                 @endif
                             </div>
