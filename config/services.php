@@ -37,7 +37,7 @@ return [
     'google' => [
         'client_id' => '620245015954-ogijgrcuudfpo71k87tertn8jk7fmndu.apps.googleusercontent.com',
         'client_secret' => 'mKmaMhFa0DQf7lv8BFiFGPas',
-        'redirect' => 'http://localhost/challenge.loc/public/auth/google/callback',
+        'redirect' => 'http://localhost/quest/challenge/public/auth/google/callback',
     ],
     'facebook' => [
         'client_id' => '186555511901697',
