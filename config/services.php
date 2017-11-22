@@ -30,24 +30,20 @@ return [
     ],
 
     'stripe' => [
-        'model' => App\User::class,
+        'model' => App\Models\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+
     'google' => [
-        'client_id' => '620245015954-ogijgrcuudfpo71k87tertn8jk7fmndu.apps.googleusercontent.com',
-        'client_secret' => 'mKmaMhFa0DQf7lv8BFiFGPas',
-        'redirect' => 'http://localhost/challenge.loc/public/auth/google/callback',
+        'client_id' => '11374064133-7e2ue6meuldi9u2b0eodjssfnussg4ka.apps.googleusercontent.com',
+        'client_secret' => 'if43fpi0KZBI9Rv7r8mWE10E',
+        'redirect' => 'http://quest/public/google/callback',
     ],
+
     'facebook' => [
         'client_id' => '186555511901697',
         'client_secret' => '52f3c5c57c8380d5798a3a0e5c31db4f',
         'redirect' => 'http://challenge.loc/callback',
     ],
-//    'vkontakte' => [
-//        'client_id' => env('50OenfULuhUOwgToFmp6'),
-//        'client_secret' => env('9c1ac1049c1ac1049c1ac104b69c4540dc99c1a9c1ac104c61003e35548e0c45b3d002b'),
-//        'redirect' => env('http://challenge.loc/callback/vk'),
-//    ],
 ];
-
