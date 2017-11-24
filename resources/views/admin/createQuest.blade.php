@@ -1,5 +1,5 @@
 @extends('header')
-<link href="http://quest/resources/views/Admin/css/styles.css" rel="stylesheet">
+<link href={{ asset('css/stylesCQ.css') }} rel="stylesheet">
 </head>
 <body>
 <div class="container">

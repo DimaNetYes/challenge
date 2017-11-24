@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: SAnchik
- * Date: 10.11.2017
- * Time: 14:34
- */
 
 
 namespace App\Http\Controllers;
@@ -52,6 +46,6 @@ class GoogleController extends Controller
         }
 
         Auth::login($user, true);
-        return redirect()->back();
+        return redirect('/');
     }
 }

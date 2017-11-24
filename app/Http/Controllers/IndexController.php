@@ -8,11 +8,11 @@ class IndexController extends Controller
 {
     public function index()
     {
-           return view('page');
+           return view('Start.start');
     }
 
     public function login()
     {
-        return view('login');
+        return view('auth.login');
     }
 }

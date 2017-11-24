@@ -21,7 +21,8 @@ class AdminQuestController extends Controller
 
         $quest = Quest::create($data);
         $quest->save();
-        return print_r($quest, true);
+       // $id=$quest->id;
+       return redirect()->route('createTask', [$quest]);
 
     }
 }
