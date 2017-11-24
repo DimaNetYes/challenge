@@ -9,11 +9,11 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use Faker\Provider\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Socialite;
+use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
 {
@@ -35,22 +35,23 @@ class GoogleController extends Controller
     public function handleProviderCallback()
     {
         $SocialUser = Socialite::driver('google')->stateless()->user();
-//        dd($SocialUser);
+
         $data = [
             'social_id' => $SocialUser->id,
             'name' => $SocialUser->name,
             'email' => $SocialUser->email,
             'avatar' => $SocialUser->avatar_original,
-            'nickname' =>  $SocialUser->nickname,
-            'gender'=>$SocialUser->user['gender']
+            'nickname' => $SocialUser->nickname,
+            'gender' => $SocialUser->user['gender']
         ];
-//        dd ($data);
+
         $user = User::where('social_id', $data['social_id'])->first();
         if (is_null($user)) {
-            $user = new User($data);
+            $user = User::create($data);
             $user->save();
         }
-//        return $this->redirect();
+
         Auth::login($user, true);
+        return redirect()->back();
     }
 }
