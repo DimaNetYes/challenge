@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
+body {
+    background: no-repeat center/100% url("http://aceofgeeks.net/wp/wp-content/uploads/2014/08/LOGO_ON-AIR_Quest-color.jpg");
+    min-height: 100%;
+}
+
+nav{
+    width: 95%;}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+a, p.lead>a{ text-decoration: none;
+    outline: none;
+    display: inline-block;
+    padding: 20px 30px;
+    margin: 10px 20px;
+    position: relative;
+    color: white;
+    border: 1px solid rgba(255,255,255,.4);
+    background: none;
+    font-weight: 300;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;}
+
+.cover-container{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100%;
+}
+
+.cover {
+    width: 95%;
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+}
+
+.cover h1 {
+    text-align: center;
+}
+
+p.lead {
+    width: 100%;
+    text-align: center;
+}
+
+p.footer {
+    width: 100%;
+    text-align: center;
+    color: #3d6983;
+    }

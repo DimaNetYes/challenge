@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent;
 
 class Quest extends Model
 {
@@ -19,5 +18,11 @@ class Quest extends Model
 
     );
 
-
+    /**
+     * Получить задания к квесту
+     */
+    public function allTasks()
+    {
+        return $this->hasMany('App\Models\Task', 'idQuest');
+    }
 }
