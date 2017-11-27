@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\DB;
 
 class AdminQuestController extends Controller
 {
+
+    // Открытие страницы с квестами
+    protected function show(){
+        $quests = Quest::all();
+        return view('Admin.viewQuests', ['quests' => $quests]);
+    }
+
+    // Открытие формы для создания квеста
+
     protected function add()
     {
         return view('Admin.createQuest');
@@ -21,8 +30,8 @@ class AdminQuestController extends Controller
 
         $quest = Quest::create($data);
         $quest->save();
-       // $id=$quest->id;
-       return redirect()->route('createTask', [$quest]);
-
+        return redirect()->action(
+            'Admin\AdminTaskController@viewTasks', ['idQuest' => $quest]
+        );
     }
 }
