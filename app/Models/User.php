@@ -27,5 +27,12 @@ class User extends Authenticatable
 
     ];
 
+    public function isAdmin() //1 - возвращает, если админ (указано в таблице поле role = 1
+    {
+        if ($this->role == 1) {
+            return true; // поле role в таблице users
+        }
+        return false;
+    }
 
 }
