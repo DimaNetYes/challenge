@@ -36,25 +36,6 @@ Route::group(['prefix' => 'users', 'middleware' => ['web']], function () {
     Route::get('/more/quest', ['uses' => 'User\UsersQuestController@more', 'as' => 'more']);
 });
 
-
-
-                                          //Админка
-
-Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth']], function () {
-    //просмотр существующего списка квестов:
-    Route::get('show/quest/', ['uses' => 'Admin\AdminQuestController@show', 'as' => 'showQuests']);
-   //переадресация к форме добавления нового квеста:
-    Route::get('/add/quest', ['uses' => 'Admin\AdminQuestController@add', 'as' => 'admin_add_quest']);
-    //после нажатия кнопки - добавление нового квеста в БД и переадресация на страницу заданий квеста:
-    Route::post('/create/quest', ['uses' => 'Admin\AdminQuestController@create', 'as' => 'post']);
-    //просмотр заданий для созданного квеста + кнопка добавления нового задания:
-    Route::get('viewTask/{idQuest}', ['uses' => 'Admin\AdminTaskController@viewTasks', 'as' => 'viewTask'])->where('idQuest','[0-9]+');
-    //роут на форму создания нового задания для квеста:
-    Route::post('createTask/{id}', ['uses' => 'Admin\AdminTaskController@add', 'as' => 'createTask'])->where('id','[0-9]+');
-    //??????
-    Route::post('/create/task/{id}', ['uses' => 'Admin\AdminTaskController@create', 'as' => 'postTask'])->where('id','[0-9]+');
-});
-
                                            //для залогиненного пользователя
 
 Route::group(['prefix' => 'users', 'middleware' => ['web', 'auth']], function () {
