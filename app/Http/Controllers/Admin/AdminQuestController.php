@@ -12,8 +12,9 @@ class AdminQuestController extends Controller
 {
 
     // Открытие страницы с квестами
-    protected function edit(Request $request){
-        $id=$request->input('id');
+    protected function edit(Request $request)
+    {
+        $id = $request->input('id');
         $quest = Quest::find($id);
         return view('Admin.editQuests', ['quest' => $quest]);
     }
@@ -28,14 +29,30 @@ class AdminQuestController extends Controller
         $quest->date = $data['date'];
         $quest->time = $data['time'];
 
-         $quest->save();
+        $quest->save();
         return redirect()->action(
             'Admin\AdminQuestController@show'
         );
     }
 
+     // Удаление квеста
+    protected function delete(Request $request)
+    {
+        $id = $request->input('id');
+        $quest = Quest::find($id);
+        $quest->delete();
+
+        return redirect()->action(
+            'Admin\AdminQuestController@show'
+        );
+    }
+
+
+
+
     // Открытие страницы с квестами
-    protected function show(){
+    protected function show()
+    {
         $quests = Quest::all();
         return view('Admin.viewQuests', ['quests' => $quests]);
     }

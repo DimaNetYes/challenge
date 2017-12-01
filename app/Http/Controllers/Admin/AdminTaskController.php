@@ -22,6 +22,15 @@ class AdminTaskController extends Controller
         return view('Admin.viewTasks')->with(['tasks' => $tasks, 'idQuest' => $idQuest]);
     }
 
+    //просмотр  существующих заданий для квеста с админки со страницы списка квестов
+    protected function adminViewTasks(Request $request)
+    {
+        $idQuest = $request->input('id');
+        $tasks = Quest::find($idQuest)->allTasks;
+        return view('Admin.adminViewTasks')->with(['tasks' => $tasks, 'idQuest' => $idQuest]);
+    }
+
+
     //переадресация на форму добавления нового задания
     protected function add($idQuest)
     {

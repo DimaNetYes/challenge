@@ -44,7 +44,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'admin']], fu
     Route::get('show/quest/', ['uses' => 'Admin\AdminQuestController@show', 'as' => 'showQuests']);
     //редактирование квеста:
     Route::get('edit/quest/{id?}', ['uses' => 'Admin\AdminQuestController@edit', 'as' => 'editQuest'])->where('id','[0-9]+');
-    //после нажатия кнопки - обновление квеста:
+    //просмотр заданий для квеста со страницы с квестами:
+    Route::get('viewTask/quest/{id?}', ['uses' => 'Admin\AdminTaskController@adminViewTasks', 'as' => 'viewTasksAdmin'])->where('id','[0-9]+');
+    //удаление квеста:
+    Route::get('delete/quest/{id?}', ['uses' => 'Admin\AdminQuestController@delete', 'as' => 'deleteQuest'])->where('id','[0-9]+');
+    //обновление квеста:
     Route::post('/update/Quest/{id?}', ['uses' => 'Admin\AdminQuestController@update', 'as' => 'edit']);
     //переадресация к форме добавления нового квеста:
     Route::get('/add/quest', ['uses' => 'Admin\AdminQuestController@add', 'as' => 'admin_add_quest']);
