@@ -10,13 +10,32 @@ use Illuminate\Support\Facades\DB;
 
 class AdminQuestController extends Controller
 {
-
     // Открытие страницы с квестами
-    protected function edit(Request $request)
+    protected function show()
     {
-        $id = $request->input('id');
+        $quests = Quest::all();
+        return view('Admin.Quest.viewQuests', ['quests' => $quests]);
+    }
+
+    // Открытие формы для создания квеста
+    protected function add()
+    {
+        return view('Admin.Quest.createQuest');
+    }
+
+    protected function create()
+    {
+        $data = Input::all();
+        $quest = Quest::create($data);
+        $quest->save();
+        return redirect()->action(  'Admin\AdminQuestController@show');
+    }
+
+// редактирование квестов
+    protected function edit($id)
+    {
         $quest = Quest::find($id);
-        return view('Admin.editQuests', ['quest' => $quest]);
+        return view('Admin.Quest.editQuests', ['quest' => $quest]);
     }
 
     // Обновление квеста
@@ -28,49 +47,18 @@ class AdminQuestController extends Controller
         $quest->description = $data['description'];
         $quest->date = $data['date'];
         $quest->time = $data['time'];
-
         $quest->save();
-        return redirect()->action(
-            'Admin\AdminQuestController@show'
-        );
+        return redirect()->action('Admin\AdminQuestController@show');
     }
 
-     // Удаление квеста
-    protected function delete(Request $request)
+    // Удаление квеста
+    protected function delete($id)
     {
-        $id = $request->input('id');
         $quest = Quest::find($id);
         $quest->delete();
 
-        return redirect()->action(
-            'Admin\AdminQuestController@show'
-        );
+        return redirect()->action('Admin\AdminQuestController@show');
     }
 
 
-
-
-    // Открытие страницы с квестами
-    protected function show()
-    {
-        $quests = Quest::all();
-        return view('Admin.viewQuests', ['quests' => $quests]);
-    }
-
-    // Открытие формы для создания квеста
-
-    protected function add()
-    {
-        return view('Admin.createQuest');
-    }
-
-    protected function create()
-    {
-        $data = Input::all();
-        $quest = Quest::create($data);
-        $quest->save();
-        return redirect()->action(
-            'Admin\AdminTaskController@viewTasks', ['idQuest' => $quest]
-        );
-    }
 }

@@ -1,0 +1,52 @@
+@extends('layouts.dashboard')
+@section('style')
+    {!!HTML::style('css/Quests/AdminViewQuests.css')!!}
+    {!!HTML::style('css/table.css')!!}
+@stop
+@section('content')
+
+    <header></header>
+    <div class="row">
+        <nav>
+            <a href="{{route('showUsers')}}">Users</a>
+            <a href="{{route('showQuests')}}">Quests</a>
+            <a href="{{route('showTasks')}}">Tasks</a>
+        </nav>
+
+        <main>
+            <h1>Список квестов</h1>
+            <?php
+
+            echo Form::open(array('url' => route('admin_add_quest'), 'method' => 'get', 'role' => 'form', 'class' => 'form-vertical'));
+            echo '<button type="submit" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-plus"></span></button>';
+            echo Form::close();
+
+            echo "<table>";
+            echo "<tr><th>id</th><th>name</th><th>description</th><th>date</th><th>time</th></tr>";
+            foreach ($quests as $key => $value) {
+                echo "<tr>";
+                echo "<td> " . $value->id . " </td>";
+                echo "<td> " . $value->name . " </td>";
+                echo "<td> " . $value->description . " </td>";
+                echo "<td> " . $value->date . " </td>";
+                echo "<td> " . $value->time . " </td>";
+                echo "<td> ";
+                echo Form::open(array('url' => route('editQuest',  $value->id), 'method' => 'get', 'role' => 'form', 'class' => 'form-vertical'));
+                echo '<button type="submit" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></button>';
+                echo Form::close();
+                echo Form::open(array('url' => route('deleteQuest',  $value->id), 'method' => 'get', 'role' => 'form', 'class' => 'form-vertical'));
+                echo '<button type="submit" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-trash"></span></button>';
+                echo Form::close();
+                echo Form::open(array('url' => route('showTasksByQuest', $value->id), 'method' => 'get', 'role' => 'form', 'class' => 'form-vertical'));
+                echo '<button type="submit" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-th-list"></span></button>';
+                echo Form::close();
+                echo " </td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+            ?>
+        </main>
+    </div>
+    <footer></footer>
+
+@stop
