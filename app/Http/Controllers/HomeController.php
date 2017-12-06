@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Closure;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-       return view('home');
+       return view('Start.home');
 
+    }
+
+    public function start()
+    {
+        return view('Start.start');
+    }
+
+    public function login()
+    {
+        return view('auth.login');
     }
 }

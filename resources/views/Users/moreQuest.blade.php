@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('style')
     {!!HTML::style('css/User/userMoreQuests.css')!!}
-    {!!HTML::style('css/User/headerNav.css')!!}
+    {!!HTML::style('css/UserGeneral/headerNav.css')!!}
 @stop
 @section('content')
 
@@ -24,7 +24,7 @@
         <p>
             <?php
             echo Form::open(array('url' => route('play', ['id' => $q->id]), 'method' => 'get', 'role' => 'form', 'class' => 'form-vertical'));
-            echo '<button type="submit" class="btn btn-link">Учавствовать</button>';
+            echo '<button type="submit" class="btn btn-link"><span>Учавствовать</span></button>';
             echo Form::close();
             ?>
         </p>
