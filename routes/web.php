@@ -25,6 +25,14 @@ Route::get('/callback', 'Auth.SocialAuthFacebookController@callback');
 
 Auth::routes();
 
+
+
+Route::get('contact-form', 'Contacts\ContactsController@cf');
+Route::post('contact-form', 'Contacts\ContactsController@cfp');
+
+
+
+
 //Страницы без авторизации
 
 
@@ -81,8 +89,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'admin']], fu
     //просмотр существующего списка пользователей:
      Route::get('show/users/', ['uses' => 'Admin\AdminUsersController@show', 'as' => 'showUsers']);
     //назначение админа:
-      Route::get('edit/users/{id?}', ['uses' => 'Admin\AdminUsersController@admin', 'as' => 'isAdmin'])->where('id','[0-9]+');
-
+      Route::get('edit/users/{id?}', ['uses' => 'Admin\AdminUsersController@admin', 'as' => 'isAdmin'])->where('id','[0-9]+');  //назначение админа:
 
     //КОМАНДЫ
     //просмотр существующего списка команд:
@@ -108,6 +115,7 @@ Route::group(['prefix' => 'users', 'middleware' => ['web', 'auth']], function ()
     Route::get('play/{id?}/', ['uses' => 'Users\UsersQuestController@play', 'as' => 'play']);
     //планируемый маршрут при выборе user-ом квеста на выполнение(надо делать)
     Route::post('ok/{idQuest?}/{idTeam?}', ['uses' => 'Users\UsersQuestController@ok', 'as' => 'ok']);
+
 
 });
 
