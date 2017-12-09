@@ -28,7 +28,7 @@ Auth::routes();
 
 
 Route::get('contact-form', 'Contacts\ContactsController@cf');
-Route::post('contact-form', 'Contacts\ContactsController@cfp');
+Route::post('contact-form', 'Contacts\ContactsController@cfp')->name('contacts');
 
 
 
