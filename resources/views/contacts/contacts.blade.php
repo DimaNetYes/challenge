@@ -1,17 +1,34 @@
 @extends('layouts.dashboard')
 @section('style')
-    <script src="{{ asset('assets/js/respond-1.1.0.min.js') }}"></script>
-    <script src="{{ asset('assets/js/html5shiv.js') }}"></script>
-    <script src="{{ asset('assets/js/html5element.js') }}"></script>
+    {!!HTML::style('css/User/userContact.css')!!}
 @stop
 
 
 @section('content')
+    <header>
+        @include('Admin.nav');
+    </header>
 
-    {{ Form::open(array('url' => 'contact-form')) }}
-    {{ Form::email('email') }}
-    {{ Form::textarea('message') }}
-    {{ Form::submit('send') }}
-    {{ Form::close() }}
+    <h1>ОБРАТНАЯ СВЯЗЬ</h1>
 
+    <div class="contact_info">
+
+        <div class="detail">
+            <h4>О нас</h4>
+            <p>г. Харьков пл. Свободы</p>
+
+            <h4>Связаться с нами</h4>
+            <p>+38 066 0085535</p>
+
+            <h4>Email us</h4>
+            <p>realwindrunner@gmail.com</p>
+        </div>
+
+        {{ Form::open(array('url' => 'contact-form')) }}
+        {{ Form::email('email') }}
+        {{ Form::textarea('message') }}
+        {{ Form::submit('send') }}
+        {{ Form::close() }}
+
+    </div>
 @stop

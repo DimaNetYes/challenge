@@ -72,7 +72,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'admin']], fu
     //редактирование задания
     Route::get('edit/tasks/{id?}', ['uses' => 'Admin\AdminTaskController@edit', 'as' => 'editTask'])->where('id', '[0-9]+');
     //обновление задания в таблице после редактирования
-    Route::post('update/tasks/{id}', ['uses' => 'Admin\AdminTaskController@update', 'as' => 'updateTask']);
+    Route::post('update/tasks/{id}', ['uses' => 'Admin\AdminTaskController@updateTask', 'as' => 'updateTask']);
     //удаление задания:
     Route::get('delete/tasks/{id?}', ['uses' => 'Admin\AdminTaskController@delete', 'as' => 'deleteTask'])->where('id', '[0-9]+');
 
@@ -83,7 +83,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'admin']], fu
     //редактирование любого задания:
     Route::get('edit/task/{id?}', ['uses' => 'Admin\AdminTaskController@editTask', 'as' => 'editOneTask'])->where('id', '[0-9]+');
     //обновление задания в таблице после редактирования
-    Route::post('update/task/{id}', ['uses' => 'Admin\AdminTaskController@updateTask', 'as' => 'updateOneTask']);
+    Route::post('update/task/{id?}', ['uses' => 'Admin\AdminTaskController@update', 'as' => 'updateOneTask']);
 
     //ПОЛЬЗОВАТЕЛИ
     //просмотр существующего списка пользователей:
@@ -99,7 +99,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'admin']], fu
     //удаление команды:
     Route::get('delete/team/{id?}', ['uses' => 'Admin\AdminTeamsController@delete', 'as' => 'deleteTeam'])->where('id', '[0-9]+');
     //обновление команды в таблице после редактирования
-    Route::post('update/task/{id}', ['uses' => 'Admin\AdminTeamsController@update', 'as' => 'updateTeam']);
+    Route::post('update/team/{id}', ['uses' => 'Admin\AdminTeamsController@update', 'as' => 'updateTeam']);
     //роут на форму создания новой команды:
     Route::get('addTeam/', ['uses' => 'Admin\AdminTeamsController@add', 'as' => 'createTeam'])->where('id', '[0-9]+');
     //занесение команды в таблицу
