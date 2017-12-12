@@ -16,55 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `TQs`
---
-
-DROP TABLE IF EXISTS `TQs`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `TQs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idTeams` int(11) NOT NULL,
-  `idQuest` int(11) NOT NULL,
-  `status` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `TQs`
---
-
-LOCK TABLES `TQs` WRITE;
-/*!40000 ALTER TABLE `TQs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `TQs` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `UTs`
---
-
-DROP TABLE IF EXISTS `UTs`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `UTs` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `idUsers` int(11) NOT NULL,
-  `idTeams` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `UTs`
---
-
-LOCK TABLES `UTs` WRITE;
-/*!40000 ALTER TABLE `UTs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `UTs` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `executeTasks`
 --
 
@@ -128,8 +79,11 @@ CREATE TABLE `quests` (
   `description` varchar(255) DEFAULT NULL,
   `date` date DEFAULT NULL,
   `time` time DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `fullDescription` text,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,7 +92,7 @@ CREATE TABLE `quests` (
 
 LOCK TABLES `quests` WRITE;
 /*!40000 ALTER TABLE `quests` DISABLE KEYS */;
-INSERT INTO `quests` VALUES (1,'Викторина','Один или несколько вопросов, разгадав которые, участники получают подсказку.','2017-12-03','12:00:00'),(2,'Детективная история','В вашем офисе произошло чудовищное ограбление...','2017-11-22','10:00:00'),(3,'Викторина','Один или несколько вопросов, разгадав которые, участники получают подсказку.','2017-12-03','12:00:00'),(4,'Детективная история','В вашем офисе произошло чудовищное ограбление...','2017-11-22','10:00:00'),(5,'Викторина','Один или несколько вопросов, разгадав которые, участники получают подсказку.','2017-12-03','12:00:00'),(6,'Детективная история','В вашем офисе произошло чудовищное ограбление...','2017-11-22','10:00:00');
+INSERT INTO `quests` VALUES (1,'Логический','Отвечать на вопросы','2017-12-12','12:00:00','2017-12-12 07:59:02','2017-12-12 07:53:02','fullDescription'),(2,'Аркада','Бегать и выполнять задания','2017-12-31','23:59:00','2017-12-12 08:01:29','2017-12-12 08:01:29','full Бегать и выполнять задания'),(3,'Детектив','Выполнять задания на дедукцию','2018-01-01','08:00:00','2017-12-12 08:03:08','2017-12-12 08:03:08','full Выполнять задания на дедукцию');
 /*!40000 ALTER TABLE `quests` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,10 +137,12 @@ CREATE TABLE `tasks` (
   `description` varchar(200) DEFAULT NULL,
   `duration` time DEFAULT NULL,
   `weight` float DEFAULT NULL,
-  `QR` int(11) NOT NULL,
+  `QR` varchar(50) DEFAULT NULL,
   `dependency` varchar(20) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -195,6 +151,7 @@ CREATE TABLE `tasks` (
 
 LOCK TABLES `tasks` WRITE;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
+INSERT INTO `tasks` VALUES (1,1,'Задание 1','Задание 1 для квеста 1','00:01:00',10,'GnfakDD6',NULL,'2017-12-12 08:25:59','2017-12-12 08:15:05'),(3,1,'Задание 2','Задание 2 для квеста 1','00:00:00',10,'yGHdZe8K',NULL,'2017-12-12 08:20:40','2017-12-12 08:20:40'),(4,1,'Задание 3','Задание 3 для квеста 1','00:00:00',20,'7KfKtG2k',NULL,'2017-12-12 08:22:22','2017-12-12 08:22:22'),(5,2,'Задание 1','Задание 1 для квеста 2','00:05:00',10,'hQseHibR',NULL,'2017-12-12 08:25:06','2017-12-12 08:25:06'),(6,2,'Задание 2','Задание 2 для квеста 2','00:00:00',20,'9hkri3fF',NULL,'2017-12-12 08:25:25','2017-12-12 08:25:25');
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,8 +165,10 @@ DROP TABLE IF EXISTS `teams`;
 CREATE TABLE `teams` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(60) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,7 +177,36 @@ CREATE TABLE `teams` (
 
 LOCK TABLES `teams` WRITE;
 /*!40000 ALTER TABLE `teams` DISABLE KEYS */;
+INSERT INTO `teams` VALUES (1,'red','2017-12-09 19:34:58',NULL),(2,'blue',NULL,NULL),(5,'green','2017-12-06 04:00:15','2017-12-06 04:00:15');
 /*!40000 ALTER TABLE `teams` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `userTeamQuests`
+--
+
+DROP TABLE IF EXISTS `userTeamQuests`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `userTeamQuests` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `idQuest` int(11) DEFAULT NULL,
+  `idTeam` int(11) DEFAULT NULL,
+  `idUser` int(11) DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `status` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `userTeamQuests`
+--
+
+LOCK TABLES `userTeamQuests` WRITE;
+/*!40000 ALTER TABLE `userTeamQuests` DISABLE KEYS */;
+/*!40000 ALTER TABLE `userTeamQuests` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -235,14 +223,15 @@ CREATE TABLE `users` (
   `age` int(11) DEFAULT NULL,
   `gender` varchar(10) DEFAULT NULL,
   `email` varchar(60) DEFAULT NULL,
-  `role` int(11) NOT NULL DEFAULT '1',
+  `role` int(11) DEFAULT '0',
   `remember_token` varchar(100) DEFAULT NULL,
   `social_id` varchar(100) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `avatar` varchar(100) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -251,7 +240,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Екатерина Волкова',NULL,NULL,'female','volkova5005@gmail.com',1,'YYUqJgDg5ljaCdmITBxaEDIJEJXO3l4E5lAVDKZPjERNJ24HT1HkagN5CLLR','105259858962447148727','2017-11-16 19:59:22','2017-11-16 19:59:22','https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg');
+INSERT INTO `users` VALUES (1,'Екатерина Волкова',NULL,NULL,'female','volkova5005@gmail.com',0,'wENvkVOAEFhg6a2LEhhELkiMFiNLQL1WvC6YbYM1UZWaI1rbMr0JP7824TT3','105259858962447148727','2017-11-16 19:59:22','2017-11-16 19:59:22','https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg',NULL),(5,'Kate','Kate',22,'f','Kate@gmail.com',1,'eYIOEX3z1lmJAexIzhi0vMm0u3branplBNW5ww6j6FeLOj02FGx49KAHUYm9',NULL,'2017-11-19 20:42:42','2017-11-19 20:42:42',NULL,'$2y$10$YZ7eeofGGJMcEoL6adveHuqQN/obsOSs3rZVYQ6mD0GyqDKKr8Boy');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -264,4 +253,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-11-19 23:51:44
+-- Dump completed on 2017-12-12 12:33:48
