@@ -141,8 +141,9 @@ CREATE TABLE `tasks` (
   `dependency` varchar(20) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
+  `orderBy` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -151,7 +152,7 @@ CREATE TABLE `tasks` (
 
 LOCK TABLES `tasks` WRITE;
 /*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
-INSERT INTO `tasks` VALUES (1,1,'Задание 1','Задание 1 для квеста 1','00:01:00',10,'GnfakDD6',NULL,'2017-12-12 08:25:59','2017-12-12 08:15:05'),(3,1,'Задание 2','Задание 2 для квеста 1','00:00:00',10,'yGHdZe8K',NULL,'2017-12-12 08:20:40','2017-12-12 08:20:40'),(4,1,'Задание 3','Задание 3 для квеста 1','00:00:00',20,'7KfKtG2k',NULL,'2017-12-12 08:22:22','2017-12-12 08:22:22'),(5,2,'Задание 1','Задание 1 для квеста 2','00:05:00',10,'hQseHibR',NULL,'2017-12-12 08:25:06','2017-12-12 08:25:06'),(6,2,'Задание 2','Задание 2 для квеста 2','00:00:00',20,'9hkri3fF',NULL,'2017-12-12 08:25:25','2017-12-12 08:25:25');
+INSERT INTO `tasks` VALUES (1,1,'Задание 1','Задание 1 для квеста 1',NULL,NULL,'7EiSEsy3',NULL,'2017-12-14 07:51:31','2017-12-14 07:50:54',1),(2,1,'Задание 2','Задание 2 для квеста 1',NULL,NULL,'iatzKTab',NULL,'2017-12-14 07:51:31','2017-12-14 07:51:10',2),(3,2,'Задание 2','Задание 2 для квеста 2',NULL,NULL,'AfDzyEbA',NULL,'2017-12-14 08:46:03','2017-12-14 07:51:55',1),(4,2,'Задание 1','Задание 1 для квеста 2',NULL,NULL,'Tr2dsEh4',NULL,'2017-12-14 08:46:03','2017-12-14 07:52:09',2);
 /*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -197,7 +198,7 @@ CREATE TABLE `userTeamQuests` (
   `created_at` timestamp NULL DEFAULT NULL,
   `status` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -206,6 +207,7 @@ CREATE TABLE `userTeamQuests` (
 
 LOCK TABLES `userTeamQuests` WRITE;
 /*!40000 ALTER TABLE `userTeamQuests` DISABLE KEYS */;
+INSERT INTO `userTeamQuests` VALUES (1,1,1,5,'2017-12-12 08:40:13','2017-12-12 08:40:13',0),(2,2,1,5,'2017-12-12 09:03:13','2017-12-12 09:03:13',1),(3,2,2,5,'2017-12-12 13:44:48','2017-12-12 13:44:48',2);
 /*!40000 ALTER TABLE `userTeamQuests` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -253,4 +255,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-12-12 12:33:48
+-- Dump completed on 2017-12-14 12:52:12
