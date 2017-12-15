@@ -56,7 +56,7 @@
                                 <div class="text-center">Длительность</div>
                                 <div class="text-center">Вес</div>
                             </div>
-                            @foreach(json_decode($tasks[$key]) as $t)
+                            @foreach(json_decode($tasks[$key]) as $k => $t)
                                 <div class="row">
                                     <div class="text-center">{!! $t->name !!}</div>
                                     <div class="text-center">{!! $t->description !!}</div>
