@@ -27,8 +27,7 @@ class UsersQuestController extends Controller
 
     protected function play($id)
     {
-          //  dd(count(UserTeamQuest::all()->where('idQuest', '=', $id)->where('idUser', '=', (Auth::user()->id))));
-            if (count((UserTeamQuest::all()->where('idQuest', '=', $id)->where('idUser', '=', (Auth::user()->id)))) == 0) {
+            if (count(UserTeamQuest::all()->where('idQuest', '=', $id)->where('idUser', '=', (Auth::user()->id))) == 0) {
             $team = Team::all();
             return view('Users.usersTeamsQuest')->with(['idQuest' => $id, 'team' => $team]);
 
@@ -62,6 +61,7 @@ class UsersQuestController extends Controller
         foreach ($quests as $key => $value) {
             if (((Quest::find($value->id))->status) == 0) {
                 $questLast[] .= Quest::find($value->id);
+                
             } elseif (((Quest::find($value->id))->status) == 1) {
                 $questGeneral[] .= Quest::find($value->id);
             } else {
