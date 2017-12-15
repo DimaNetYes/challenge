@@ -30,7 +30,6 @@ class UsersQuestController extends Controller
             if (count(UserTeamQuest::all()->where('idQuest', '=', $id)->where('idUser', '=', (Auth::user()->id))) == 0) {
             $team = Team::all();
             return view('Users.usersTeamsQuest')->with(['idQuest' => $id, 'team' => $team]);
-
         } else {
             return redirect()->action('Users\UsersQuestController@view');
         }
