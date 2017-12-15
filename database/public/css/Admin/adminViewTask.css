@@ -1,0 +1,9 @@
+table div.description {
+    max-width: 200px;
+    width: 200px;
+}
+
+table div.name {
+    max-width: 100px;
+    width: 100px;
+}
