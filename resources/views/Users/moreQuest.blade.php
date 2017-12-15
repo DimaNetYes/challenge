@@ -34,6 +34,7 @@
 
                 <p>
                     <button class="btn btn-link"><a href="{{route('play', ['id'=>$q->id])}}">Play</a></button>
+                    <button class="btn btn-link"><a href="{{route('user_view_quest')}}">Назад</a></button>
                 </p>
 
             </div>
