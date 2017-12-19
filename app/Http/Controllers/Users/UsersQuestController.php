@@ -59,6 +59,7 @@ class UsersQuestController extends Controller
         $tasksLast = array();
         $status = "";
         $teamGeneral = "";
+        $teamFuture = array();
 
         foreach ($quests as $key => $value) {
             $idQuest = $value->idQuest;
@@ -69,6 +70,11 @@ class UsersQuestController extends Controller
 
             if ($status == 2) {
                 $questFuture[] .= $quest;
+                $array = UserTeamQuest::all()->where('idUser', '=', $idUser)->where('idQuest', '=', $idQuest);
+                foreach ($array as $k => $v) {
+                    $teamId = $v->idTeam;
+                    $teamFuture[] .= Team::find($teamId)->name;
+                }
             } elseif ($status == 0) {
                 $questLast[] .= $quest;
                 $tasksLast[] .= Quest::find($idQuest)->allTasks;
@@ -77,12 +83,20 @@ class UsersQuestController extends Controller
                 $tasksGeneral[] .= Quest::find($idQuest)->allTasks;
                 $array = UserTeamQuest::all()->where('idUser', '=', $idUser)->where('idQuest', '=', $idQuest);
                 foreach ($array as $k => $v) {
-                    $teamGeneral = $v->idTeam;
+                    $teamId = $v->idTeam;
+                    $teamGeneral = Team::find($teamId)->name;
                 }
             }
 
         }
         return view('Users.usersQuestProfile')->with(['questGeneral' => $questGeneral, 'questFuture' => $questFuture,
-            'questLast' => $questLast, 'teamGeneral' => $teamGeneral, 'tasksGeneral' => $tasksGeneral, 'tasksLast' => $tasksLast]);
+            'questLast' => $questLast, 'teamGeneral' => $teamGeneral,'teamFuture' => $teamFuture, 'tasksGeneral' => $tasksGeneral,
+            'tasksLast' => $tasksLast]);
+    }
+
+
+
+    protected function playQuest($idQuest){
+        return view('Users.usersQuestPlay');
     }
 }
