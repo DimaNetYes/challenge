@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent;
 
 class UsersQuestController extends Controller
 {
@@ -27,7 +28,7 @@ class UsersQuestController extends Controller
 
     protected function play($id)
     {
-            if (count(UserTeamQuest::all()->where('idQuest', '=', $id)->where('idUser', '=', (Auth::user()->id))) == 0) {
+        if (count(UserTeamQuest::all()->where('idQuest', '=', $id)->where('idUser', '=', (Auth::user()->id))) == 0) {
             $team = Team::all();
             return view('Users.usersTeamsQuest')->with(['idQuest' => $id, 'team' => $team]);
         } else {
@@ -54,26 +55,47 @@ class UsersQuestController extends Controller
         $questFuture = array();
         $questLast = array();
         $tasksGeneral = array();
-        $tasksFuture = array();
         $tasksLast = array();
+        $status = "";
+        $teamGeneral = "";
+        $teamFuture = array();
 
         foreach ($quests as $key => $value) {
-            if (((Quest::find($value->id))->status) == 0) {
-                $questLast[] .= Quest::find($value->id);
-                
-            } elseif (((Quest::find($value->id))->status) == 1) {
-                $questGeneral[] .= Quest::find($value->id);
-            } else {
-                $questFuture[] .= Quest::find($value->id);
+            $idQuest = $value->idQuest;
+            $quest = Quest::where('id', '=', $idQuest)->get();
+            foreach ($quest as $v) {
+                $status = $v->status;
             }
-        }
-        /* foreach ($quests as $key => $value) {
-             $idQuest = $value['idQuest'];
 
-             $status[] .= (Quest::where('id', '=', $idQuest)->get())[0]->status;
-             $quest[] .= Quest::find($idQuest);
-             $tasks[] .= Task::where('idQuest', '=', $idQuest)->get();
-         }*/
-        return view('Users.usersQuestProfile')->with(['quests' => $quest, 'tasks' => $tasks, 'status' => $status]);
+            if ($status == 2) {
+                $questFuture[] .= $quest;
+                $array = UserTeamQuest::all()->where('idUser', '=', $idUser)->where('idQuest', '=', $idQuest);
+                foreach ($array as $k => $v) {
+                    $teamId = $v->idTeam;
+                    $teamFuture[] .= Team::find($teamId)->name;
+                }
+            } elseif ($status == 0) {
+                $questLast[] .= $quest;
+                $tasksLast[] .= Quest::find($idQuest)->allTasks;
+            } elseif ($status == 1) {
+                $questGeneral[] .= $quest;
+                $tasksGeneral[] .= Quest::find($idQuest)->allTasks;
+                $array = UserTeamQuest::all()->where('idUser', '=', $idUser)->where('idQuest', '=', $idQuest);
+                foreach ($array as $k => $v) {
+                    $teamId = $v->idTeam;
+                    $teamGeneral = Team::find($teamId)->name;
+                }
+            }
+
+        }
+        return view('Users.usersQuestProfile')->with(['questGeneral' => $questGeneral, 'questFuture' => $questFuture,
+            'questLast' => $questLast, 'teamGeneral' => $teamGeneral,'teamFuture' => $teamFuture, 'tasksGeneral' => $tasksGeneral,
+            'tasksLast' => $tasksLast]);
+    }
+
+
+
+    protected function playQuest($idQuest){
+        return view('Users.usersQuestPlay');
     }
 }
