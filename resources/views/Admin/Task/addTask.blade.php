@@ -1,7 +1,6 @@
 @extends('layouts.dashboard')
 @section('style')
-    {!!HTML::style('css/Tasks/AddTask.css')!!}
-    {!!HTML::style('css/AdminGeneral/forms.css')!!}
+       {!!HTML::style('css/AdminGeneral/forms.css')!!}
 @stop
 
 @section('content')
@@ -20,10 +19,7 @@
     echo "<br>";
     echo Form::label('weight', 'Вес задачи:') . Form::number('weight');
     echo "<br>";
-    echo Form::label('QR', 'Текст для QR-кода:') . Form::text('QR');
-    echo "<br>";
-    echo Form::submit('Добавить');
-    //echo Form::hidden('idQuest', $idQuest);
+    echo Form::submit('Add');
     Form::close();
 
     ?>

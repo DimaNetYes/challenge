@@ -1,7 +1,6 @@
 @extends('layouts.dashboard')
 @section('style')
-    {!!HTML::style('css/Quests/CreateQuest.css')!!}
-    {!!HTML::style('css/AdminGeneral/forms.css')!!}
+       {!!HTML::style('css/AdminGeneral/forms.css')!!}
 @stop
 @section('content')
 
@@ -15,12 +14,14 @@
     echo "<br>";
     echo Form::label('description', 'Описание') . Form::text('description');
     echo "<br>";
+    echo Form::label('fullDescription', 'Полное описание') . Form::text('fullDescription');
+    echo "<br>";
     echo Form::label('date', 'Дата проведения:') . Form::date('date');
     echo "<br>";
     echo Form::label('time', 'Время начала:') . Form::time('time');
     echo "<br>";
 
-    echo Form::submit('Добавить');
+    echo Form::submit('Add');
 
     echo  Form::close();
 

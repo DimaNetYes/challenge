@@ -9,9 +9,8 @@
         <nav>
             <ul class="nav masthead-nav">
                 <li class="active"><a href="">Home</a></li>
-                <li><a href="/public/admin/show/quest/">Admin</a></li>
                 <li><a href="/public/login">Login</a></li>
-                <li><a href="">Contacts</a></li>
+                <li><a href="contact-form">Contacts</a></li>
             </ul>
         </nav>
     </header>
