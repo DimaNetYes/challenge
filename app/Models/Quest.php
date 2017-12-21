@@ -8,15 +8,10 @@ class Quest extends Model
 {
     protected $table = 'quests';
 
-    protected $fillable = [
-        'name', 'description', 'fullDescription', 'date', 'time', 'status'
-    ];
+    public $timestamps = false;
 
-
-    protected $guarded = array(
-        'id', 'created_at', 'updated_at'
-
-    );
+    protected $fillable = ['name', 'description', 'fullDescription', 'date', 'time', 'status'];
+    protected $guarded = ['id'];
 
     /**
      * Получить задания к квесту
@@ -25,4 +20,14 @@ class Quest extends Model
     {
         return $this->hasMany('App\Models\Task', 'idQuest');
     }
+
+
+    /**
+     * Получить все записи к квесту из тиблицы QTU
+     */
+    public function allQTU()
+    {
+        return $this->hasMany('App\Models\UserTeamQuest', 'idQuest');
+    }
+
 }

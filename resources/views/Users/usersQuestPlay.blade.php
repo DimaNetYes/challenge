@@ -19,20 +19,30 @@
             <p></p>
             <p></p>
             <p></p>
-            <button class="btn btn-link link"><a href="" onclick="openbox('idTQ'); return false">Текущий
-                    квест</a>
-            </button>
-            <button class="btn btn-link link"><a href="" onclick="openbox('idFQ'); return false">Грядущие квесты</a>
-            </button>
-            <button class="btn btn-link link"><a href="" onclick="openbox('idLQ'); return false">Архив</a>
-            </button>
-        </aside>
+
+            <button class="btn btn-link link"><a href="{{route('userProfile')}}" >Назад</a></button>
+             </aside>
 
         <section class="section">
-
             <div id="section_inner">
 
+                <div class="column">
+                        <div class="row">
+                        <div class="text-center">Название</div>
+                        <div class="text-center">Описание</div>
+                        <div class="text-center">Длительность</div>
+                        <div class="text-center">Вес</div>
+                    </div>
+                                                <div class="row">
+                                    <div class="text-center">{!! $task->name !!}</div>
+                                    <div class="text-center">{!! $task->description !!}</div>
+                                    <div class="text-center">{!! $task->duration !!}</div>
+                                    <div class="text-center">{!! $task->weight !!}</div>
+                                </div>
 
+
+
+                </div>
 
             </div> <!-- div section inner-->
         </section>

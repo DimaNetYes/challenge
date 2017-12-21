@@ -50,6 +50,7 @@ class AdminQuestController extends Controller
         $quest->date = $data['date'];
         $quest->time = $data['time'];
         $quest->status = $data['status'];
+
         $quest->save();
         return redirect()->action('Admin\AdminQuestController@show');
     }
