@@ -31,6 +31,7 @@
             echo "<td class='description'> <div >" . $value->fullDescription . "</div> </td>";
             echo "<td class='date'> <div>" . $value->date . "</div> </td>";
             echo "<td> <div>" . $value->time . "</div> </td>";
+            echo "<td class='description'> <div >" . $value->status . "</div> </td>";
             echo "<td> ";
             ?>
             <submit class="btn btn-default btn-sm"><a href="{{route('editQuest', $value->id)}}"
