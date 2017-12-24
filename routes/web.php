@@ -106,7 +106,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'admin']], fu
     Route::get('addTeam/', ['uses' => 'Admin\AdminTeamsController@add', 'as' => 'createTeam'])->where('id', '[0-9]+');
     //занесение команды в таблицу
     Route::post('create/team/', ['uses' => 'Admin\AdminTeamsController@create', 'as' => 'postTeam'])->where('id', '[0-9]+');
-});
+
+    //QR-код
+    //
+    Route::get('printQR/{idTask?}', ['uses' => 'Admin\AdminQRController@print', 'as' => 'printQR']);
+    });
 
 
 
@@ -120,5 +124,7 @@ Route::group(['prefix' => 'users', 'middleware' => ['web', 'auth']], function ()
    /* Route::get('tasks/', ['uses' => 'Users\UsersQuestController@showTasksFromQuest', 'as' => 'showTasksForQuest']);*/
     Route::get('profile/', ['uses' => 'Users\UsersQuestController@userProfile', 'as' => 'userProfile']);
     Route::get('playQuest/{idQuest?}', ['uses' => 'Users\UsersQuestController@playQuest', 'as' => 'playQuest']);
+    //
+    Route::get('qr/{qr?}/{idTask?}', ['uses' => 'Users\UsersQuestController@qrInput', 'as' => 'inputQR']);
 });
 
