@@ -237,6 +237,7 @@ return [
 
         'Form' => 'Collective\Html\FormFacade',
         'HTML' => 'Collective\Html\HtmlFacade',
+        'Location' => Stevebauman\Location\Facades\Location::class,
     ],
 
 ];
