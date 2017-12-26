@@ -8,19 +8,17 @@ class Task extends Model
 {
     protected $table = 'tasks';
 
-    protected $fillable = [
-        'idQuest', 'name', 'description', 'duration', 'weight', 'QR', 'dependancy','id', 'created_at', 'updated_at'
-    ];
+    public $timestamps = false;
 
+    protected $fillable = ['idQuest', 'name', 'description', 'duration', 'weight', 'QR', 'dependancy','id', 'orderBy'];
+    protected $guarded = ['id'];
 
-    protected $guarded = array(
-
-
-    );
-
+    /**
+     * Получить квест к которому относится задание
+     */
     public function quest()
     {
-        return $this->belongsTo('App\Models\Quest');
+        return $this->belongsTo('App\Models\Quest', 'idQuest');
     }
 
 }

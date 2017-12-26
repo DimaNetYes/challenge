@@ -25,8 +25,15 @@ Route::get('/callback', 'Auth.SocialAuthFacebookController@callback');
 
 Auth::routes();
 
-//Страницы без авторизации
 
+
+Route::get('contact-form', 'Contacts\ContactsController@cf');
+Route::post('contact-form', 'Contacts\ContactsController@cfp')->name('contacts');
+
+
+
+
+//Страницы без авторизации
 
 Route::group(['prefix' => 'users', 'middleware' => ['web']], function () {
     //страничка с квестами (надо сделать только с доступными квестами)
@@ -64,9 +71,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'admin']], fu
     //редактирование задания
     Route::get('edit/tasks/{id?}', ['uses' => 'Admin\AdminTaskController@edit', 'as' => 'editTask'])->where('id', '[0-9]+');
     //обновление задания в таблице после редактирования
-    Route::post('update/tasks/{id}', ['uses' => 'Admin\AdminTaskController@update', 'as' => 'updateTask']);
+    Route::post('update/tasks/{id}', ['uses' => 'Admin\AdminTaskController@updateTask', 'as' => 'updateTask']);
     //удаление задания:
     Route::get('delete/tasks/{id?}', ['uses' => 'Admin\AdminTaskController@delete', 'as' => 'deleteTask'])->where('id', '[0-9]+');
+    //сортировка:
+    Route::get('order/tasks/{id?}/{sign?}/{idQuest?}', ['uses' => 'Admin\AdminTaskController@order', 'as' => 'orderTask'])->where('id', '[0-9]+');
+
 
     //*просмотр всех существующих заданий:
     Route::get('show/all/tasks/', ['uses' => 'Admin\AdminTaskController@show', 'as' => 'showTasks']);
@@ -75,14 +85,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'admin']], fu
     //редактирование любого задания:
     Route::get('edit/task/{id?}', ['uses' => 'Admin\AdminTaskController@editTask', 'as' => 'editOneTask'])->where('id', '[0-9]+');
     //обновление задания в таблице после редактирования
-    Route::post('update/task/{id}', ['uses' => 'Admin\AdminTaskController@updateTask', 'as' => 'updateOneTask']);
+    Route::post('update/task/{id?}', ['uses' => 'Admin\AdminTaskController@update', 'as' => 'updateOneTask']);
 
     //ПОЛЬЗОВАТЕЛИ
     //просмотр существующего списка пользователей:
      Route::get('show/users/', ['uses' => 'Admin\AdminUsersController@show', 'as' => 'showUsers']);
     //назначение админа:
-      Route::get('edit/users/{id?}', ['uses' => 'Admin\AdminUsersController@admin', 'as' => 'isAdmin'])->where('id','[0-9]+');
-
+      Route::get('edit/users/{id?}', ['uses' => 'Admin\AdminUsersController@admin', 'as' => 'isAdmin'])->where('id','[0-9]+');  //назначение админа:
 
     //КОМАНДЫ
     //просмотр существующего списка команд:
@@ -92,12 +101,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'admin']], fu
     //удаление команды:
     Route::get('delete/team/{id?}', ['uses' => 'Admin\AdminTeamsController@delete', 'as' => 'deleteTeam'])->where('id', '[0-9]+');
     //обновление команды в таблице после редактирования
-    Route::post('update/task/{id}', ['uses' => 'Admin\AdminTeamsController@update', 'as' => 'updateTeam']);
+    Route::post('update/team/{id}', ['uses' => 'Admin\AdminTeamsController@update', 'as' => 'updateTeam']);
     //роут на форму создания новой команды:
     Route::get('addTeam/', ['uses' => 'Admin\AdminTeamsController@add', 'as' => 'createTeam'])->where('id', '[0-9]+');
     //занесение команды в таблицу
     Route::post('create/team/', ['uses' => 'Admin\AdminTeamsController@create', 'as' => 'postTeam'])->where('id', '[0-9]+');
-});
+
+    //QR-код
+    //
+    Route::get('printQR/{idTask?}', ['uses' => 'Admin\AdminQRController@print', 'as' => 'printQR']);
+    });
 
 
 
@@ -108,6 +121,10 @@ Route::group(['prefix' => 'users', 'middleware' => ['web', 'auth']], function ()
     Route::get('play/{id?}/', ['uses' => 'Users\UsersQuestController@play', 'as' => 'play']);
     //планируемый маршрут при выборе user-ом квеста на выполнение(надо делать)
     Route::post('ok/{idQuest?}/{idTeam?}', ['uses' => 'Users\UsersQuestController@ok', 'as' => 'ok']);
-
+   /* Route::get('tasks/', ['uses' => 'Users\UsersQuestController@showTasksFromQuest', 'as' => 'showTasksForQuest']);*/
+    Route::get('profile/', ['uses' => 'Users\UsersQuestController@userProfile', 'as' => 'userProfile']);
+    Route::get('playQuest/{idQuest?}', ['uses' => 'Users\UsersQuestController@playQuest', 'as' => 'playQuest']);
+    //
+    Route::get('qr/{qr?}/{idTask?}', ['uses' => 'Users\UsersQuestController@qrInput', 'as' => 'inputQR']);
 });
 

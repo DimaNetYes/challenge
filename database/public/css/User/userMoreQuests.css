@@ -1,0 +1,67 @@
+body {
+    width: 100%;
+    background: black;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: flex-start;
+    width: 95%;
+    margin: 0 auto;
+}
+div.row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+div.column1, div.column2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-between;
+    color:white;
+    width: 50%;
+    min-height: 500px;
+}
+
+div.column1 {
+    background: url("http://quest/public/img/kvest.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.column2 div>h1 {
+    width:  auto;
+    max-width:170px;
+    height: 30px;
+    background-color: #c48866;
+    color: white;
+    margin: 10px 0 5px 15px;
+    font-size: 20px;
+  }
+.column2 div>p {
+    width: 95%;
+    margin:0 auto;
+    height: 50px;
+    max-height: 50px;
+    background-color: white;
+    color: black;
+    font-size: 20px;
+}
+
+div.description{
+    height: 150px;
+}
+
+div.description p{
+    height: 150px;
+}
+
+button a:hover {
+    background-color: white;
+    color: #22156c;
+    text-decoration: none
+}
