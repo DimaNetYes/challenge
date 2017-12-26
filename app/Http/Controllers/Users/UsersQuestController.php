@@ -119,10 +119,13 @@ class UsersQuestController extends Controller
             foreach ($userTeamQuest as $v) {
                 $statusQuest = $v->statusQuest;
                 $idTeam = $v->idTeam;
+<<<<<<< HEAD
             }
             $UTQ = UserTeamQuest::ofWhereWhere('idQuest', $idQuest, 'idTeam', $idTeam);
             foreach( $UTQ as $u){
                 $idUTQ[] .= $u -> id;
+=======
+>>>>>>> ac775c387306bf0ec8fc3e0752c8174ca46da5bd
             }
 
             if ($statusQuest == 0) {               // если квест активен для команды

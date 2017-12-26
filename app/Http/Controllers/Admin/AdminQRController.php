@@ -25,8 +25,13 @@ class AdminQRController extends Controller
     protected function print($idTask)
     {
         $qr1 = Task::find($idTask)->QR;
+<<<<<<< HEAD
         $qr = 'http://quest/public/users/qr/' . $qr1 . '/' . $idTask;
      //   dd($qr);
+=======
+        $qr = 'http://quest.challenge.php1.a-level.com.ua/public/users/qr/' . $qr1 . '/' . $idTask;
+        dd($qr);
+>>>>>>> ac775c387306bf0ec8fc3e0752c8174ca46da5bd
         return view('Admin.QR.print')->with(['qr' => $qr]);
     }
 
