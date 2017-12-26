@@ -116,7 +116,7 @@ class UsersQuestController extends Controller
             foreach ($userTeamQuest as $v) {
                 $idUTQ = $v->id;
                 $statusQuest = $v->statusQuest;
-                $idTeam = $v -> idTeam;
+                $idTeam = $v->idTeam;
             }
 
             if ($statusQuest == 0) {               // если квест активен для команды
@@ -136,13 +136,13 @@ class UsersQuestController extends Controller
                         $exTask->idUserTeamQuest = $idUTQ;
                         $exTask->status = 0;
                         $exTask->save();
-                        return view('Users.usersQuestPlay')->with(['task' => $value]); //выводим страничку с этим заданием
+                        return view('Users.usersQuestPlay')->with(['task' => $value, 'ok' => $ok]); //выводим страничку с этим заданием
                     } elseif ((count($et) != 0) && ($value->orderBy == $max)) {// если запись уже есть и она последняя
 
                         if ($etStatus == 0) { //но не выполнена
-                            return view('Users.usersQuestPlay')->with(['task' => $value]);//выводим страничку с этим заданием
+                            return view('Users.usersQuestPlay')->with(['task' => $value, 'ok' => $ok]);//выводим страничку с этим заданием
                         } elseif ($etStatus == 1) { //и выполнена
-                            $all = UserTeamQuest::ofWhereWhere('idTeam', $idTeam , 'idQuest', $idQuest);
+                            $all = UserTeamQuest::ofWhereWhere('idTeam', $idTeam, 'idQuest', $idQuest);
                             foreach ($all as $v) {
                                 $v->statusQuest = 1;
                                 $v->save();
@@ -152,7 +152,7 @@ class UsersQuestController extends Controller
 
                     } elseif ((count($et) != 0) && ($value->orderBy != $max)) { // запись о задании есть в табл. executeTask и оно не последнее
                         if ($etStatus == 0) { //и не выполнено
-                            return view('Users.usersQuestPlay')->with(['task' => $value]);
+                            return view('Users.usersQuestPlay')->with(['task' => $value, 'ok' => $ok]);
                         } else { // выполнено - переходим к другой итерации
                             continue;
                         }
@@ -174,20 +174,19 @@ class UsersQuestController extends Controller
         $qrCode = Task::find($idTask)->QR;
         $idQuest = Task::find($idTask)->idQuest;
         $idUser = Auth::user()->id;
-        $utq = UserTeamQuest::all()->where('idQuest', '=', $idQuest)->where('idUser', '=', $idUser);
+        $utq = UserTeamQuest::ofWhereWhere('idQuest', $idQuest, 'idUser', $idUser);
         foreach ($utq as $value) {
             $idUTQ = $value->id;
         }
         if ($qr == $qrCode) {
-            $execTask = ExecuteTask::all()->where('idTasks', '=', $idTask)->where('idUserTeamQuest', '=', $idUTQ);
+            $execTask = ExecuteTask::ofWhereWhere('idTasks', $idTask, 'idUserTeamQuest', $idUTQ);
             if (count($execTask) > 0) {
-                //   dd(count($execTask));
                 foreach ($execTask as $value) {
                     $value->status = 1;
                     $value->save();
                 }
 
-                return redirect()->action('Users\UsersQuestController@playQuest', ['idQuest' => $idQuest]);
+                return redirect()->action('Users\UsersQuestController@playQuest', ['idQuest' => $idQuest, 'ok' => 1]);
             }
         }
         return redirect()->route('start');
