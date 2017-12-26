@@ -123,12 +123,8 @@ Route::group(['prefix' => 'users', 'middleware' => ['web', 'auth']], function ()
     Route::post('ok/{idQuest?}/{idTeam?}', ['uses' => 'Users\UsersQuestController@ok', 'as' => 'ok']);
    /* Route::get('tasks/', ['uses' => 'Users\UsersQuestController@showTasksFromQuest', 'as' => 'showTasksForQuest']);*/
     Route::get('profile/', ['uses' => 'Users\UsersQuestController@userProfile', 'as' => 'userProfile']);
-<<<<<<< HEAD
     Route::get('playQuest/{idQuest}/{ok?}', ['uses' => 'Users\UsersQuestController@playQuest', 'as' => 'playQuest']);
     Route::get('editTeam/{id?}', ['uses' => 'Users\UsersQuestController@editTeam', 'as' => 'editTeam']);
-=======
-    Route::get('playQuest/{idQuest?}/{ok?}', ['uses' => 'Users\UsersQuestController@playQuest', 'as' => 'playQuest']);
->>>>>>> ac775c387306bf0ec8fc3e0752c8174ca46da5bd
     //
     Route::get('qr/{qr?}/{idTask?}', ['uses' => 'Users\UsersQuestController@qrInput', 'as' => 'inputQR']);
 });
