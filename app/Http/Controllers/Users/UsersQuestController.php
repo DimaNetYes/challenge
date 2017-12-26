@@ -177,14 +177,29 @@ class UsersQuestController extends Controller
 
     protected function qrInput($qr, $idTask)
     {
-        $idUTQ = "";
+        $idUTQ = array();
         $qrCode = Task::find($idTask)->QR;
         $idQuest = Task::find($idTask)->idQuest;
         $idUser = Auth::user()->id;
-        $utq = UserTeamQuest::ofWhereWhere('idQuest', $idQuest, 'idUser', $idUser);
-        foreach ($utq as $value) {
-            $idUTQ = $value->id;
+        $idTeam = "";
+
+
+        $userTeamQuest = UserTeamQuest::ofWhereWhere('idQuest', $idQuest, 'idUser', $idUser);
+        foreach ($userTeamQuest as $v) {
+                $idTeam = $v->idTeam;
         }
+
+        $UTQ = UserTeamQuest::ofWhereWhere('idQuest', $idQuest, 'idTeam', $idTeam);
+        foreach( $UTQ as $u){
+            $idUTQ[] .= $u -> id;
+        }
+
+
+
+     //   $utq = UserTeamQuest::ofWhereWhere('idQuest', $idQuest, 'idUser', $idUser);
+    //    foreach ($utq as $value) {
+       //     $idUTQ = $value->id;
+      //  }
         if ($qr == $qrCode) {
             $execTask = ExecuteTask::ofWhereWhere('idTasks', $idTask, 'idUserTeamQuest', $idUTQ);
             if (count($execTask) > 0) {

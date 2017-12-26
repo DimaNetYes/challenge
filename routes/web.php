@@ -17,11 +17,11 @@ Route::get('/', ['uses' => 'IndexController@start', 'as' => 'start']);
 Route::get('/home', ['uses' => 'HomeController@index', 'as' => 'home']);
 Route::get('public/login', ['uses' => 'IndexController@login', 'as' => 'login']);
 
-Route::get('google', ['uses' => 'Auth.GoogleController@redirectToProvider', 'as' => 'google']);
-Route::get('google/callback', 'Auth.GoogleController@handleProviderCallback');
+Route::get('google', ['uses' => 'Auth\GoogleController@redirectToProvider', 'as' => 'google']);
+Route::get('google/callback', 'Auth\GoogleController@handleProviderCallback');
 
-Route::get('/redirect', ['uses' => 'Auth.SocialAuthFacebookController@redirect', 'as' => 'facebook']);
-Route::get('/callback', 'Auth.SocialAuthFacebookController@callback');
+Route::get('/redirect', ['uses' => 'Auth\SocialAuthFacebookController@redirect', 'as' => 'facebook']);
+Route::get('/callback', 'Auth\SocialAuthFacebookController@callback');
 
 Auth::routes();
 
