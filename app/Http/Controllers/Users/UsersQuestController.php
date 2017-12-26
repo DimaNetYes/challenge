@@ -102,7 +102,7 @@ class UsersQuestController extends Controller
     }
 
 
-    protected function playQuest($idQuest)
+    protected function playQuest($idQuest, $ok = 0)
     {
         $etStatus = "";
         $statusQuest = "";
