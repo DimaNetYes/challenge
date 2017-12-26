@@ -35,7 +35,7 @@ class UsersQuestController extends Controller
 
     protected function play($id)
     {
-        if (count(UserTeamQuest::all()->where('idQuest', '=', $id)->where('idUser', '=', (Auth::user()->id))) == 0) {
+        if (count(UserTeamQuest::ofWhereWhere('idQuest', $id, 'idUser', (Auth::user()->id))) == 0) {
             $team = Team::all();
             return view('Users.usersTeamsQuest')->with(['idQuest' => $id, 'team' => $team]);
 
@@ -44,13 +44,16 @@ class UsersQuestController extends Controller
         }
     }
 
+    protected function editTeam($id)
+    {
+        $team = Team::all();
+        return view('Users.usersTeamsQuest')->with(['idQuest' => $id, 'team' => $team]);
+    }
+
     protected function ok($id)
     {
         $d = Input::all();
-        $data['idTeam'] = $d['input'];
-        $data['idUser'] = Auth::user()->id;
-        $data['idQuest'] = $id;
-        $ok = UserTeamQuest::create($data);
+        $ok = UserTeamQuest::updateOrCreate(['idUser' => Auth::user()->id, 'idQuest' => $id], ['idTeam' => $d['input']]);
         $ok->save();
         return redirect()->action('Users\UsersQuestController@userProfile');
     }
@@ -77,7 +80,7 @@ class UsersQuestController extends Controller
 
             if ($status == 2) {
                 $questFuture[] .= $quest;
-                $array = UserTeamQuest::all()->where('idUser', '=', $idUser)->where('idQuest', '=', $idQuest);
+                $array = UserTeamQuest::ofWhereWhere('idUser', $idUser, 'idQuest', $idQuest);
                 foreach ($array as $k => $v) {
                     $teamId = $v->idTeam;
                     $teamFuture[] .= Team::find($teamId)->name;
@@ -88,7 +91,7 @@ class UsersQuestController extends Controller
             } elseif ($status == 1) {
                 $questGeneral[] .= $quest;
                 $tasksGeneral[] .= Quest::find($idQuest)->allTasks;
-                $array = UserTeamQuest::all()->where('idUser', '=', $idUser)->where('idQuest', '=', $idQuest);
+                $array = UserTeamQuest::ofWhereWhere('idUser', $idUser, 'idQuest', $idQuest);
                 foreach ($array as $k => $v) {
                     $teamId = $v->idTeam;
                     $teamGeneral = Team::find($teamId)->name;
@@ -106,7 +109,7 @@ class UsersQuestController extends Controller
     {
         $etStatus = "";
         $statusQuest = "";
-        $idUTQ = "";
+        $idUTQ = array();
         $idTeam = "";
         $idUser = Auth::user()->id;
         $status = Quest::find($idQuest)->status;
@@ -114,9 +117,12 @@ class UsersQuestController extends Controller
         if ($status == 1) {                         // проверка текущий квест или нет
             $userTeamQuest = UserTeamQuest::ofWhereWhere('idQuest', $idQuest, 'idUser', $idUser);
             foreach ($userTeamQuest as $v) {
-                $idUTQ = $v->id;
                 $statusQuest = $v->statusQuest;
                 $idTeam = $v->idTeam;
+            }
+            $UTQ = UserTeamQuest::ofWhereWhere('idQuest', $idQuest, 'idTeam', $idTeam);
+            foreach( $UTQ as $u){
+                $idUTQ[] .= $u -> id;
             }
 
             if ($statusQuest == 0) {               // если квест активен для команды
@@ -126,6 +132,7 @@ class UsersQuestController extends Controller
                 foreach ($tasks as $key => $value) {
                     //поиск текущей задачи в таблице executeTasks
                     $et = ExecuteTask::ofWhereWhere('idTasks', $value->id, 'idUserTeamQuest', $idUTQ);
+
                     foreach ($et as $v) {
                         $etStatus = $v->status;
                     }
