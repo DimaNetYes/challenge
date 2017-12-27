@@ -207,8 +207,8 @@ class UsersQuestController extends Controller
                     $value->status = 1;
                     $value->save();
                 }
-
-                return redirect()->action('Users\UsersQuestController@playQuest', ['idQuest' => $idQuest, 'ok' => 1]);
+                return redirect('https://quest.challenge.php.a-level.com.ua/');
+              //  return redirect()->action('Users\UsersQuestController@playQuest', ['idQuest' => $idQuest, 'ok' => 1]);
             }
         }
         return redirect()->route('start');

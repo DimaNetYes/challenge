@@ -110,6 +110,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'admin']], fu
     //QR-код
     //
     Route::get('printQR/{idTask?}', ['uses' => 'Admin\AdminQRController@print', 'as' => 'printQR']);
+
+    // Результат квеста просчёт
+    Route::get('result/', ['uses' => 'Admin\AdminQuestController@result', 'as' => 'resultQuest']);
+    // Результат квеста вывод
+    Route::get('result/show/', ['uses' => 'Admin\AdminQuestController@showResult', 'as' => 'showResult']);
     });
 
 
