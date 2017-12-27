@@ -5,6 +5,6 @@
         @if (Auth::check())
         <?php echo '<li><a href="/public/users/profile" class="a1">Profile</a></li>'; ?>
         @endif
-        <li><a href="#" class="a1">Contacts</a></li>
+        <li><a href="/public/contact-form" class="a1">Contacts</a></li>
     </ul>
 </nav>
