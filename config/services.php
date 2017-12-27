@@ -38,7 +38,7 @@ return [
     'google' => [
         'client_id' => '11374064133-7e2ue6meuldi9u2b0eodjssfnussg4ka.apps.googleusercontent.com',
         'client_secret' => 'if43fpi0KZBI9Rv7r8mWE10E',
-        'redirect' => 'http://quest/public/google/callback',
+        'redirect' => 'http://quest.challenge.php1.a-level.com.ua/public/google/callback',
     ],
 
     'facebook' => [

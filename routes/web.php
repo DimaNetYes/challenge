@@ -17,11 +17,11 @@ Route::get('/', ['uses' => 'IndexController@start', 'as' => 'start']);
 Route::get('/home', ['uses' => 'HomeController@index', 'as' => 'home']);
 Route::get('public/login', ['uses' => 'IndexController@login', 'as' => 'login']);
 
-Route::get('google', ['uses' => 'Auth.GoogleController@redirectToProvider', 'as' => 'google']);
-Route::get('google/callback', 'Auth.GoogleController@handleProviderCallback');
+Route::get('google', ['uses' => 'Auth\GoogleController@redirectToProvider', 'as' => 'google']);
+Route::get('google/callback', 'Auth\GoogleController@handleProviderCallback');
 
-Route::get('/redirect', ['uses' => 'Auth.SocialAuthFacebookController@redirect', 'as' => 'facebook']);
-Route::get('/callback', 'Auth.SocialAuthFacebookController@callback');
+Route::get('/redirect', ['uses' => 'Auth\SocialAuthFacebookController@redirect', 'as' => 'facebook']);
+Route::get('/callback', 'Auth\SocialAuthFacebookController@callback');
 
 Auth::routes();
 
@@ -122,7 +122,8 @@ Route::group(['prefix' => 'users', 'middleware' => ['web', 'auth']], function ()
     Route::post('ok/{idQuest?}/{idTeam?}', ['uses' => 'Users\UsersQuestController@ok', 'as' => 'ok']);
    /* Route::get('tasks/', ['uses' => 'Users\UsersQuestController@showTasksFromQuest', 'as' => 'showTasksForQuest']);*/
     Route::get('profile/', ['uses' => 'Users\UsersQuestController@userProfile', 'as' => 'userProfile']);
-    Route::get('playQuest/{idQuest?}/{ok?}', ['uses' => 'Users\UsersQuestController@playQuest', 'as' => 'playQuest']);
+    Route::get('playQuest/{idQuest}/{ok?}', ['uses' => 'Users\UsersQuestController@playQuest', 'as' => 'playQuest']);
+    Route::get('editTeam/{id?}', ['uses' => 'Users\UsersQuestController@editTeam', 'as' => 'editTeam']);
     //
     Route::get('qr/{qr?}/{idTask?}', ['uses' => 'Users\UsersQuestController@qrInput', 'as' => 'inputQR']);
 });
