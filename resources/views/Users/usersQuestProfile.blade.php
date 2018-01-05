@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('style')
-    {!!HTML::style('css/User/userProfile.css')!!}
-    {!!HTML::style('css/UserGeneral/headerNav.css')!!}
+    {{HTML::style('css/User/userProfile.css')}}
+    {{HTML::style('css/UserGeneral/headerNav.css')}}
 @stop
 @section('content')
 
@@ -42,19 +42,18 @@
                         <div></div>
                     </div>
                     @foreach($questGeneral as $key => $q)
-                        @foreach(json_decode($q) as $k => $v)
-                            <div class="row quest">
-                                <div class="text-center">{!! $v->name !!}</div>
-                                <div class="text-center">{!! $v->date !!}</div>
-                                <div class="text-center">{!! $v->time !!}</div>
-                                <div class="text-center">{!! $teamGeneral !!}</div>
-                                <div>
-                                    <button class="btn btn-link"><a href="{{route('playQuest', ['idQuest'=>$v->id])}}"
-                                                                    class="glyphicon glyphicon-play"></a>
-                                    </button>
-                                </div>
+                        <div class="row quest">
+                            <div class="text-center">{!! json_decode($q)->name !!}</div>
+                            <div class="text-center">{!! json_decode($q)->date !!}</div>
+                            <div class="text-center">{!! json_decode($q)->time !!}</div>
+                            <div class="text-center">{!! $teamGeneral !!}</div>
+                            <div>
+                                <button class="btn btn-link"><a
+                                            href="{{route('playQuest', ['idQuest'=> json_decode($q)->id])}}"
+                                            class="glyphicon glyphicon-play"></a>
+                                </button>
                             </div>
-                        @endforeach
+                        </div>
                     @endforeach
                 </div>
 
@@ -68,18 +67,18 @@
                         <div></div>
                     </div>
                     @foreach($questFuture as $key => $q)
-                        @foreach(json_decode($q) as $k => $v)
-                            <div class="row quest">
-                                <div class="text-center">{!! $v->name !!}</div>
-                                <div class="text-center">{!! $v->date !!}</div>
-                                <div class="text-center">{!! $v->time !!}</div>
-                                <div class="text-center">{!! $teamFuture[$key] !!}</div>
-                                <div>
-                                    <button class="btn btn-link"><a href="{{route('editTeam', ['id'=>$v->id])}}" class="glyphicon glyphicon-pencil"></a>
-                                    </button>
-                                </div>
+                        <div class="row quest">
+                            <div class="text-center">{!! json_decode($q)->name !!}</div>
+                            <div class="text-center">{!! json_decode($q)->date !!}</div>
+                            <div class="text-center">{!! json_decode($q)->time !!}</div>
+                            <div class="text-center">{!! $teamFuture[$key] !!}</div>
+                            <div>
+                                <button class="btn btn-link"><a
+                                            href="{{route('editTeam', ['id'=>json_decode($q)->id])}}"
+                                            class="glyphicon glyphicon-pencil"></a>
+                                </button>
                             </div>
-                        @endforeach
+                        </div>
                     @endforeach
                 </div>
 
@@ -93,44 +92,42 @@
                         <div></div>
                     </div>
                     @foreach($questLast as $key => $q)
-                        @foreach(json_decode($q) as $k => $v)
-
-                            <div class="row quest">
-                                <div class="text-center">{!! $v->name !!}</div>
-                                <div class="text-center">{!! $v->date !!}</div>
-                                <div class="text-center">{!! $v->time !!}</div>
-                                <div class="text-center">{!! json_decode($teamGeneral) !!}</div>
-                                <div>
-                                    <button class="btn btn-link"><a href="" class="glyphicon glyphicon-th-list"
-                                                                    onclick="openbox('id{{$key}}'); return false"></a>
-                                    </button>
-                                </div>
+                        <div class="row quest">
+                            <div class="text-center">{!!json_decode($q)->name !!}</div>
+                            <div class="text-center">{!!json_decode($q)->date !!}</div>
+                            <div class="text-center">{!! json_decode($q)->time !!}</div>
+                            <div class="text-center">{!! $teamGeneral !!}</div>
+                            <div>
+                                <button class="btn btn-link"><a href="" class="glyphicon glyphicon-th-list"
+                                                                onclick="openbox('id{{$key}}'); return false"></a>
+                                </button>
                             </div>
+                        </div>
 
-                            <div class="column task" id="id{{$key}}">
-                                <div class="row">
-                                    <div class="text-center">Название</div>
-                                    <div class="text-center">Описание</div>
-                                    <div class="text-center">Длительность</div>
-                                    <div class="text-center">Вес</div>
-                                </div>
-                                @foreach($tasksLast as $kk => $task)
-                                    @if($kk == $key)
-                                        @foreach(json_decode($task) as $k2 => $t)
-
-                                            <div class="row">
-                                                <div class="text-center">{!! $t->name !!}</div>
-                                                <div class="text-center">{!! $t->description !!}</div>
-                                                <div class="text-center">{!! $t->duration !!}</div>
-                                                <div class="text-center">{!! $t->weight !!}</div>
-                                            </div>
-
-                                        @endforeach
-                                    @endif
-                                @endforeach
+                        <div class="column task" id="id{{$key}}">
+                            <div class="row">
+                                <div class="text-center">Название</div>
+                                <div class="text-center">Описание</div>
+                                <div class="text-center">Длительность</div>
+                                <div class="text-center">Вес</div>
                             </div>
+                            @foreach($tasksLast as $kk => $task)
+                                @if($kk == $key)
+                                    @foreach(json_decode($task) as $k => $t)
 
-                        @endforeach
+                                        <div class="row">
+                                            <div class="text-center">{!! $t->name !!}</div>
+                                            <div class="text-center">{!! $t->description !!}</div>
+                                            <div class="text-center">{!! $t->weight !!}</div>
+                                            <div></div>
+                                        </div>
+                                    @endforeach
+
+                                @endif
+                            @endforeach
+
+                        </div>
+
                     @endforeach
 
                 </div>

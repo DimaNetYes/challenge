@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\ExecuteTask;
 use App\Models\Result;
-use App\Models\UserTeamQuest;
+use App\Models\UserQuest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Quest;
 use App\Models\Task;
+use App\Models\Team;
+use App\Http\Controllers\Users;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 
@@ -78,22 +80,23 @@ class AdminQuestController extends Controller
         foreach ($quests as $quest) {
             // команды учавствующие в квесте
             $idQuest = $quest->id;
-            $questTeams = DB::table('userTeamQuests')->select('idTeam')->where('idQuest', $quest->id)->groupBy('idTeam')->get();
+            $questTeams = Quest::find($idQuest)->teams->unique();
             foreach ($questTeams as $k) {
-                $idTeams[] .= $k->idTeam;
+                $idTeams[] .= $k->id;
             }
 
-            foreach ($idTeams as $team) {                 // для каждой команды:
-                $idUTQ = array();                                 // участники каждой команды
+            foreach ($idTeams as $team) {                         // для каждой команды:
+                $idUser = array();                                 // участники каждой команды
                 $exTasks = array();
 
-                $userTeams = UserTeamQuest::ofWhereWhere('idQuest', $quest->id, 'idTeam', $team);
+                $userTeams = UserQuest::ofWhereWhere('idQuest', $idQuest, 'idTeam', $team);
                 foreach ($userTeams as $u) {
-                    $idUTQ[] .= $u->id;
+                    $idUser[] .= $u->id;
                 }
 
-                foreach ($idUTQ as $v) {                          // выполненные!!! задания для команды
-                    $exTask = ExecuteTask::ofWhereWhere('idUserTeamQuest', $v, 'status', 1);
+                foreach ($idUser as $v) {                          // выполненные!!! задания для команды
+                    $exTask = ExecuteTask::ofWhereWhere('idUserQuest', $v, 'status', 1);
+
                     foreach ($exTask as $e) {
                         $exTasks[] .= $e->id;
                     }
@@ -113,16 +116,16 @@ class AdminQuestController extends Controller
 
         }
 
-    $resultQuests = Result::where('idQuest', $idQuest)->get();
+        // $resultQuests = Result::where('idQuest', $idQuest)->get();
 
-        return view('Admin\Quest\resultQuest')->with(['results' => $resultQuests]);
-      //  return redirect()->action('Admin\AdminQuestController@showResult', ['idQuest' => $idQuest]);
+        // return view('Admin\Quest\resultQuest')->with(['results' => $resultQuests]);
+        return redirect()->action('Admin\AdminQuestController@showResult', ['idQuest' => $idQuest]);
     }
 
-    protected function showResult()
+    protected function showResult($idQuest)
     {
-
-        return view('Admin\Quest\resultQuest');
+        $resultQuests = Result::where('idQuest', $idQuest)->get();
+        return view('Admin\Quest\resultQuest')->with(['results' => $resultQuests]);
     }
 
 

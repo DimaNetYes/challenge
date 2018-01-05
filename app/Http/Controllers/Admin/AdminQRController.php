@@ -9,7 +9,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\ExecuteTask;
-use App\Models\UserTeamQuest;
+use App\Models\UserQuest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Quest;

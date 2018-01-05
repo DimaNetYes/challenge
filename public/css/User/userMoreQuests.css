@@ -4,12 +4,11 @@ html, body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     background: #f9f9f9 url(../../img/page-bg-1.jpg);
 }
-
 #main-container {
     min-height: 100%;
     margin-right: auto;
     margin-left: auto;
-    padding: 0px;
+    padding: 0;
 }
 @media only screen and (max-width: 767px) {
     #main-container {
@@ -20,13 +19,13 @@ html, body {
 }
 @media only screen and (min-width: 768px) and (max-width: 979px) {
     #main-container {
-        padding: 0px;
+        padding: 0;
         width: 724px;
     }
 }
 @media only screen and (min-width: 980px) and (max-width: 1199px) {
     #main-container {
-        padding: 0px;
+        padding: 0;
         width: 940px;
     }
 }
@@ -35,13 +34,12 @@ html, body {
         width: 1170px;
     }
 }
-
 #row {
     margin-bottom: 40px;
 }
 @media only screen and (max-width: 767px) {
     #row {
-        margin-left: 0px;
+        margin-left: 0;
         margin-right: -5px;
     }
 }
@@ -60,7 +58,6 @@ html, body {
         margin-left: -30px;
     }
 }
-
 .moreQuest {
     float: left;
 }
@@ -95,7 +92,6 @@ html, body {
         min-height: 1px;
     }
 }
-
 .moreQuestPicture {
     float: left;
     min-height: 1px;
@@ -127,7 +123,6 @@ html, body {
         margin-left: 30px;
     }
 }
-
 .thum {
     display: block;
     padding: 4px;
@@ -137,13 +132,11 @@ html, body {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.055);
     transition: all 0.2s ease-in-out;
 }
-
 img {
     height: auto;
     width: 100%;
     vertical-align: middle;
 }
-
 .moreQuestAbout {
     float: left;
     min-height: 1px;
@@ -175,7 +168,6 @@ img {
         margin-left: 30px;
     }
 }
-
 .moreQuestAbout h2 {
     text-shadow: 1px 1px 0 #fdfdfd, 2px 2px 0 rgba(81, 81, 81, 0.5), 0 0 1px #fdfdfd;
     font-family: "Oswald", sans-serif;
@@ -185,28 +177,24 @@ img {
     line-height: 40px;
     margin: 10px 0;
 }
-
 .lead-m {
     line-height: 28px;
     margin: 20px 0px 30px 0px;
     font-size: 21px;
     font-weight: 200;
 }
-
 .description {
     margin-bottom: 20px;
     margin: 0 0 10px;
     font-size: 12px;
     line-height: 18px;
 }
-
 .project-info {
-    margin: 0px 0px 40px 0px;
+    margin: 0 0 40px 0;
     padding: 0;
     display: block;
     list-style: none;
 }
-
 .project-info li {
     list-style: none;
     border-bottom: 1px dashed #a9a9a9;
@@ -215,7 +203,6 @@ img {
     display: list-item;
     text-align: -webkit-match-parent;
 }
-
 .project-info li h6 {
     display: inline;
     font-family: "Oswald", sans-serif;
@@ -228,7 +215,6 @@ img {
     text-rendering: optimizelegibility;
     margin-right: 5px;
 }
-
 .moreQuestAbout .pull-left{
     /*display: inline-block;*/
     float: left;
@@ -246,7 +232,6 @@ img {
     padding: 4px 14px;
     text-decoration: none;
 }
-
 .moreQuestAbout .pull-left:hover {
     background-image: linear-gradient(to bottom, #111111, #333555);
     background-repeat: repeat-x;
@@ -254,18 +239,15 @@ img {
     text-shadow: 5px -1px 0 rgba(0, 0, 0, 0.25);
     color: #ffffff;
 }
-
 .pull-right {
     float: right;
     text-decoration: none;
     cursor: pointer;
     color: #d8450b;
 }
-
 .pull-right:hover{
     color: #d8450b;
 }
-
 .icon-arrow-left {
     background-position: -240px -96px;
     margin-right: 3px;
@@ -279,10 +261,7 @@ img {
     background-repeat: no-repeat;
     font-style: italic;
 }
-
-
 /*HEADER STYLE*/
-
 .nav1 {
     width: 75%;
     margin-bottom: 60px;
@@ -295,18 +274,15 @@ img {
     overflow: visible;
     color: #777777;
 }
-
 .ul1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
     margin: 0px;
 }
-
 .ul1 li{
     list-style: none;
 }
-
 .a1 {
     text-decoration: none;
     outline: none;
