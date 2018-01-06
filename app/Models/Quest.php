@@ -31,6 +31,7 @@ class Quest extends Model
         return $this->belongsToMany('App\Models\Team', 'UserQuests' , 'idQuest', 'idTeam');
     }
 
+
     /**
      * Получить задания к квесту
      */

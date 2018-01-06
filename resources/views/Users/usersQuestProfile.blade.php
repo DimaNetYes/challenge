@@ -89,17 +89,21 @@
                         <div class="text-center">Дата</div>
                         <div class="text-center">Время</div>
                         <div class="text-center">Команда</div>
+                        <div class="text-center">Результат</div>
                         <div></div>
                     </div>
                     @foreach($questLast as $key => $q)
                         <div class="row quest">
-                            <div class="text-center">{!!json_decode($q)->name !!}</div>
-                            <div class="text-center">{!!json_decode($q)->date !!}</div>
+                            <div class="text-center">{!! json_decode($q)->name !!}</div>
+                            <div class="text-center">{!! json_decode($q)->date !!}</div>
                             <div class="text-center">{!! json_decode($q)->time !!}</div>
-                            <div class="text-center">{!! $teamGeneral !!}</div>
+                            <div class="text-center">{!! $teamLast[$key] !!}</div>
+                            <div class="text-center">{!! $result[$key] !!}</div>
                             <div>
                                 <button class="btn btn-link"><a href="" class="glyphicon glyphicon-th-list"
-                                                                onclick="openbox('id{{$key}}'); return false"></a>
+                                                                onclick="openboxt('id{{$key}}'); return false"></a>
+                                </button>
+                                <button class="btn btn-link"><a href="#" class="glyphicon glyphicon-map-marker"></a>
                                 </button>
                             </div>
                         </div>
@@ -108,8 +112,9 @@
                             <div class="row">
                                 <div class="text-center">Название</div>
                                 <div class="text-center">Описание</div>
-                                <div class="text-center">Длительность</div>
-                                <div class="text-center">Вес</div>
+                                <div class="text-center">Очки</div>
+                                <div class="text-center">Выполнение</div>
+
                             </div>
                             @foreach($tasksLast as $kk => $task)
                                 @if($kk == $key)
@@ -118,8 +123,12 @@
                                         <div class="row">
                                             <div class="text-center">{!! $t->name !!}</div>
                                             <div class="text-center">{!! $t->description !!}</div>
-                                            <div class="text-center">{!! $t->weight !!}</div>
-                                            <div></div>
+                                            <div class="text-center">{!! $t->weight*100 !!}</div>
+                                            @if($executeTask[$k])
+                                                <div><input type="checkbox" checked disabled></div>
+                                            @else
+                                                <div><input type="checkbox" disabled></div>
+                                            @endif
                                         </div>
                                     @endforeach
 
@@ -142,6 +151,22 @@
 
     <script type="text/javascript">
         function openbox(id) {
+            if (id == 'idTQ') {
+                document.getElementById('idTQ').style.display = 'block';
+                document.getElementById('idLQ').style.display = 'none';
+                document.getElementById('idFQ').style.display = 'none';
+            } else if (id == 'idLQ') {
+                document.getElementById('idLQ').style.display = 'block';
+                document.getElementById('idTQ').style.display = 'none';
+                document.getElementById('idFQ').style.display = 'none';
+            } else if (id == 'idFQ') {
+                document.getElementById('idFQ').style.display = 'block';
+                document.getElementById('idTQ').style.display = 'none';
+                document.getElementById('idLQ').style.display = 'none';
+            }
+        }
+
+        function openboxt(id) {
             display = document.getElementById(id).style.display;
             if (display == 'none') {
                 document.getElementById(id).style.display = 'block';
@@ -149,6 +174,7 @@
                 document.getElementById(id).style.display = 'none';
             }
         }
+
     </script>
 
 @stop

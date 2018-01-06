@@ -8,6 +8,7 @@ use App\Models\Quest;
 use App\Models\Team;
 use App\Models\Task;
 use App\Models\User;
+use App\Models\Result;
 use App\Models\UserQuest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -70,8 +71,13 @@ class UsersQuestController extends Controller
         $tasksGeneral = array();
         $tasksLast = array();
         $status = "";
+        $idTeam = "";
+        $exTask = "";
         $teamGeneral = "";
         $teamFuture = array();
+        $teamLast = array();
+        $result = array();
+        $execute = array();
 
         foreach ($questUser as $key => $value) {
             $idQuest = $value->id;
@@ -87,6 +93,29 @@ class UsersQuestController extends Controller
             } elseif ($status == 0) {
                 $questLast[] .= $value;
                 $tasksLast[] .= Quest::find($idQuest)->tasks;
+
+                $team = UserQuest::ofWhereWhere('idUser', $idUser, 'idQuest', $idQuest);
+                $idTeam = $team[0]->idTeam;
+                $teamLast[] .= Team::find($idTeam)->name;
+
+                $results = Result::ofWhereWhere('idQuest', $idQuest, 'idTeam', $idTeam);
+                $result[] .= $results[0]->result;
+
+                $t = Quest::find($idQuest)->tasks;
+                foreach($t as $v){
+                   $userQuest = UserQuest::ofWhereWhere('idTeam', $idTeam, 'idQuest', $idQuest);
+
+                   foreach($userQuest as $user){
+                       $exTask = ExecuteTask::ofWhereWhere('idUserQuest', $user, 'idTask', $v->id);
+                       if(count($exTask) == 0){continue;} else {break;}
+                   }
+
+                   if((count($exTask) == 0)||($exTask[0]->status == 0)) {
+                       $execute[] .= 0;
+                   } else{
+                       $execute[] .= 1;
+                   }
+                }
             } elseif ($status == 1) {
                 $questGeneral[] .= $value;
                 $tasksGeneral[] .= Quest::find($idQuest)->tasks;
@@ -98,9 +127,10 @@ class UsersQuestController extends Controller
             }
 
         }
+
         return view('Users.usersQuestProfile')->with(['questGeneral' => $questGeneral, 'questFuture' => $questFuture,
-            'questLast' => $questLast, 'teamGeneral' => $teamGeneral, 'teamFuture' => $teamFuture, 'tasksGeneral' => $tasksGeneral,
-            'tasksLast' => $tasksLast]);
+            'questLast' => $questLast, 'teamGeneral' => $teamGeneral, 'teamLast' => $teamLast, 'teamFuture' => $teamFuture, 'tasksGeneral' => $tasksGeneral,
+            'tasksLast' => $tasksLast, 'result' => $result, 'executeTask' => $execute]);
     }
 
 

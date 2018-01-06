@@ -3,8 +3,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MoreQuests</title>
-    {!!HTML::style('css/User/userMoreQuests.css')!!}
-    {{--    {!!HTML::style('css/UserGeneral/headerNav.css')!!}--}}
+    {{HTML::style('css/User/userMoreQuests.css')}}
+
 @stop
 @section('content')
     <header>
