@@ -23,13 +23,13 @@ use Illuminate\Support\Facades\DB;
 class UsersQuestController extends Controller
 {
 
-    public function view()
+    protected function view()
     {
         $quests = Quest::where('status', '>', 0)->get();
         return view('Users.viewQuests', ['quests' => $quests]);
     }
 
-    public function more($id)
+    protected function more($id)
     {
         $q = Quest::find($id);
         return view('Users.moreQuest')->with(['q' => $q]);
@@ -53,6 +53,14 @@ class UsersQuestController extends Controller
         return view('Users.usersTeamsQuest')->with(['idQuest' => $id, 'team' => $team]);
     }
 
+    protected function outQuest($idQuest)
+    {
+        $idUser = Auth::user()->id;
+        $userQuest = UserQuest::ofWhereWhere('idQuest', $idQuest, 'idUser', $idUser);
+        $userQuest[0]->delete();
+        return redirect()->action('Users\UsersQuestController@userProfile');
+    }
+
     protected function ok($id)
     {
         $d = Input::all();
@@ -60,6 +68,7 @@ class UsersQuestController extends Controller
         $ok->save();
         return redirect()->action('Users\UsersQuestController@userProfile');
     }
+
 
     protected function userProfile()
     {
@@ -77,48 +86,55 @@ class UsersQuestController extends Controller
         $teamFuture = array();
         $teamLast = array();
         $result = array();
-        $execute = array();
+        $executeTask = array();
 
-        foreach ($questUser as $key => $value) {
+        foreach ($questUser as $key => $value) {  // перебор по всем квестам
             $idQuest = $value->id;
             $status = $value->status;
 
-            if ($status == 2) {
-                $questFuture[] .= $value;
+            if ($status == 2) {                   // будущий
+                $questFuture[] = $value;          // массив будущих квестов
                 $array = User::find($idUser)->teams($idQuest)->get();
                 foreach ($array as $k => $v) {
                     $teamId = $v->id;
-                    $teamFuture[] .= Team::find($teamId)->name;
+                    $teamFuture[] = Team::find($teamId)->name;   // массив названий команд
                 }
-            } elseif ($status == 0) {
-                $questLast[] .= $value;
-                $tasksLast[] .= Quest::find($idQuest)->tasks;
+            } elseif ($status == 0) {             // прошедший
+                $questLast[] = $value;
+                $tasksLast[] = Quest::find($idQuest)->tasks; // массив прошедших квестов
 
                 $team = UserQuest::ofWhereWhere('idUser', $idUser, 'idQuest', $idQuest);
                 $idTeam = $team[0]->idTeam;
-                $teamLast[] .= Team::find($idTeam)->name;
+                $teamLast[] = Team::find($idTeam)->name;     // массив названий команд
 
                 $results = Result::ofWhereWhere('idQuest', $idQuest, 'idTeam', $idTeam);
-                $result[] .= $results[0]->result;
+                $result[] = $results[0]->result;
 
-                $t = Quest::find($idQuest)->tasks;
-                foreach($t as $v){
-                   $userQuest = UserQuest::ofWhereWhere('idTeam', $idTeam, 'idQuest', $idQuest);
+                $t = Quest::find($idQuest)->tasks; // задания для квеста прошедшего
+                if (count($t)) {
+                    $execute = array();
+                    foreach ($t as $v) {
+                        $userQuest = UserQuest::ofWhereWhere('idTeam', $idTeam, 'idQuest', $idQuest);
+                        foreach ($userQuest as $user) {
+                            $exTask = ExecuteTask::ofWhereWhere('idUserQuest', $user->id, 'idTask', $v->id);
+                            if (count($exTask) == 0) {
+                                continue;
+                            } else {
+                                break;
+                            }
+                        }
 
-                   foreach($userQuest as $user){
-                       $exTask = ExecuteTask::ofWhereWhere('idUserQuest', $user, 'idTask', $v->id);
-                       if(count($exTask) == 0){continue;} else {break;}
-                   }
-
-                   if((count($exTask) == 0)||($exTask[0]->status == 0)) {
-                       $execute[] .= 0;
-                   } else{
-                       $execute[] .= 1;
-                   }
+                        if ((count($exTask) == 0) || ($exTask[0]->status == 0)) {
+                            $execute[] .= 0;
+                        } else {
+                            $execute[] .= 1;
+                        }
+                    }
+                    $executeTask[] = $execute; // массив меток выполнения заданий
                 }
-            } elseif ($status == 1) {
-                $questGeneral[] .= $value;
-                $tasksGeneral[] .= Quest::find($idQuest)->tasks;
+            } elseif ($status == 1) {                              // текущий
+                $questGeneral[] = $value;                          // массив текущих квестов
+                $tasksGeneral[] = Quest::find($idQuest)->tasks;    // массив заданий
                 $array = User::find($idUser)->teams($idQuest)->get();
                 foreach ($array as $k => $v) {
                     $teamId = $v->id;
@@ -130,7 +146,7 @@ class UsersQuestController extends Controller
 
         return view('Users.usersQuestProfile')->with(['questGeneral' => $questGeneral, 'questFuture' => $questFuture,
             'questLast' => $questLast, 'teamGeneral' => $teamGeneral, 'teamLast' => $teamLast, 'teamFuture' => $teamFuture, 'tasksGeneral' => $tasksGeneral,
-            'tasksLast' => $tasksLast, 'result' => $result, 'executeTask' => $execute]);
+            'tasksLast' => $tasksLast, 'result' => $result, 'executeTask' => $executeTask]);
     }
 
 

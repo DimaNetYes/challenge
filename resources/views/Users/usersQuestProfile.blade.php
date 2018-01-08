@@ -77,6 +77,10 @@
                                             href="{{route('editTeam', ['id'=>json_decode($q)->id])}}"
                                             class="glyphicon glyphicon-pencil"></a>
                                 </button>
+                                <button class="btn btn-link"><a
+                                            href="{{route('outQuest', ['id'=>json_decode($q)->id])}}"
+                                            class="glyphicon glyphicon-remove-circle"></a>
+                                </button>
                             </div>
                         </div>
                     @endforeach
@@ -124,7 +128,7 @@
                                             <div class="text-center">{!! $t->name !!}</div>
                                             <div class="text-center">{!! $t->description !!}</div>
                                             <div class="text-center">{!! $t->weight*100 !!}</div>
-                                            @if($executeTask[$k])
+                                            @if($executeTask[$kk][$k])
                                                 <div><input type="checkbox" checked disabled></div>
                                             @else
                                                 <div><input type="checkbox" disabled></div>
