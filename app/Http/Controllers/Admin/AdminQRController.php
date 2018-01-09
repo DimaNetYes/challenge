@@ -9,7 +9,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\ExecuteTask;
-use App\Models\UserTeamQuest;
+use App\Models\UserQuest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Quest;
@@ -25,8 +25,10 @@ class AdminQRController extends Controller
     protected function print($idTask)
     {
         $qr1 = Task::find($idTask)->QR;
-        $qr = 'http://quest.challenge.php1.a-level.com.ua/public/users/qr/' . $qr1 . '/' . $idTask;
-     //   dd($qr);
+      //  $qr = 'http://quest.challenge.php1.a-level.com.ua/public/users/qr/' . $qr1 . '/' . $idTask;
+       $qr = 'http://quest/public/users/qr/' . $qr1 . '/' . $idTask;
+
+        dd($qr);
         return view('Admin.QR.print')->with(['qr' => $qr]);
     }
 

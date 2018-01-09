@@ -11,8 +11,7 @@ header a, nav a {
     text-decoration: none;
     outline: none;
     display: inline-block;
-    padding: 20px 30px;
-    margin: 10px 20px;
+    padding: 30px 30px;
     position: relative;
     border: 1px solid rgba(255, 255, 255, .4);
     background: none;
@@ -22,7 +21,7 @@ header a, nav a {
     letter-spacing: 2px;
 }
 
-nav {
+.leftNav {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -30,7 +29,6 @@ nav {
     align-items: center;
     color: black;
     width: 20%;
-
 }
 
 

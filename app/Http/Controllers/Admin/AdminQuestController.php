@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\ExecuteTask;
+use App\Models\Result;
+use App\Models\UserQuest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Quest;
 use App\Models\Task;
+use App\Models\Team;
+use App\Http\Controllers\Users;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 
@@ -65,5 +70,11 @@ class AdminQuestController extends Controller
         return redirect()->action('Admin\AdminQuestController@show');
     }
 
+    protected function finish($id){
+        $quest = Quest::find($id);
+        $quest->status = 0;
+        $quest -> save();
+        return redirect()->action('Admin\AdminQuestController@show');
+    }
 
 }
