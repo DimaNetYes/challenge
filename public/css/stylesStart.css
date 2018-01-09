@@ -4,14 +4,13 @@ html, body {
 }
 
 body {
-    background-image: url(../../public/img/start.jpg) ;
+    background: no-repeat center/100% url("http://aceofgeeks.net/wp/wp-content/uploads/2014/08/LOGO_ON-AIR_Quest-color.jpg");
     width: 100%;
     min-height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-size: 100%;
 }
 
 header, nav, footer, main {

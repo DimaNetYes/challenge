@@ -1,10 +1,5 @@
 @extends('layouts.dashboard')
 @section('style')
-<<<<<<< HEAD
-    {!!HTML::style('css/User/userViewQuests.css')!!}
-    {!!HTML::style('css/UserGeneral/headerNav.css')!!}
-
-=======
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quests</title>
@@ -12,7 +7,6 @@
     {{HTML::style('css/User/userViewQuests.css')}}
     {{HTML::script('js/uilang.js')}}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
->>>>>>> 3734eda5f07e8f990de0e8a9bd418fd106293899
 @stop
 @section('content')
 <header>

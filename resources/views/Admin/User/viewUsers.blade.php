@@ -1,20 +1,4 @@
-<<<<<<< HEAD
-@extends('layouts.dashboard')
-@section('style')
-    {!!HTML::style('css/AdminGeneral/tables.css')!!}
-    {!!HTML::style('css/AdminGeneral/adminBody.css')!!}
-    {!!HTML::style('css/AdminGeneral/adminNav.css')!!}
-
-    <link href="https://quest.challenge.php.a-level.com.ua/public/css/AdminGeneral/adminBody.css" rel="stylesheet">
-
-
-
-
-@stop
-=======
 @extends('layouts.adminLayouts')
->>>>>>> 3734eda5f07e8f990de0e8a9bd418fd106293899
-
 
 @section('content')
 
