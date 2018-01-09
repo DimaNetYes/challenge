@@ -150,7 +150,7 @@ class UsersQuestController extends Controller
     }
 
 
-    protected function playQuest($idQuest, $ok = 0)
+    protected function playQuest($idQuest)
     {
         $etStatus = "";
         $statusQuest = "";
@@ -216,7 +216,7 @@ class UsersQuestController extends Controller
                                 return redirect()->route('start');
                             }
                         } else {
-                            return view('Users.usersQuestPlay')->with(['task' => $value, 'ok' => $ok]);
+                            return view('Users.usersQuestPlay')->with(['task' => $value]);
                         }
                     } elseif (empty($eT)) {
                         $exTask = new ExecuteTask();// делаем новую запись в табл. executeTasks
@@ -224,7 +224,7 @@ class UsersQuestController extends Controller
                         $exTask->idUserQuest = $idUserQuestOne;
                         $exTask->status = 0;
                         $exTask->save();
-                        return view('Users.usersQuestPlay')->with(['task' => $value, 'ok' => $ok]); //выводим страничку с этим заданием
+                        return view('Users.usersQuestPlay')->with(['task' => $value]); //выводим страничку с этим заданием
 
                     }
                 }
@@ -255,19 +255,37 @@ class UsersQuestController extends Controller
         if ($qr == $qrCode) {
             foreach ($idUserQuest as $v) {
                 $execTask = ExecuteTask::ofWhereWhere('idTask', $idTask, 'idUserQuest', $v);
-                if(count($execTask)){break;} else {continue;}
+                if (count($execTask)) {
+                    $idTask = $execTask[0]->id;
+                    break;
+                } else {
+                    continue;
+                }
             }
 
-        if ($execTask[0]->status == 0) {
-            $execTask[0]->status = 1;
-            $execTask[0] -> save();
-        }  elseif(($execTask[0]->status)&&($execTask[0]->coordX != 0)&&($execTask[0]->coordY != 0))  {   // !!!!!!!!!!!!!заменить ok - 0
-            return redirect()->action('Users\UsersQuestController@playQuest', ['idQuest' => $idQuest, 'ok' => 1]);
-        }
+            if ($execTask[0]->status == 0) {
+                $execTask[0]->status = 1;
+                $execTask[0]->save();
+
+            } elseif (($execTask[0]->status) && ($execTask[0]->coordX != 0) && ($execTask[0]->coordY != 0)) {
+                return redirect()->action('Users\UsersQuestController@playQuest', ['idQuest' => $idQuest]);
+            }
         }
 
-        return redirect()->action('Users\UsersQuestController@playQuest', ['idQuest' => $idQuest, 'ok' => 1]);
-
+        return view('Users.usersLocation')->with(['idExecuteTask' => $idTask]);
     }
 
+
+
+
+    public function savePosition($id){
+        $data = Input::all();
+        $execTask = ExecuteTask::find($id);
+        $execTask->coordX =$data['coordX'];
+        $execTask->coordY =$data['coordY'];
+        $execTask->timestamp = date("Y-m-d H:i:s");
+       // dd(date("d.m.Y H:i:s"));
+        $execTask->save();
+        return redirect()->route('userProfile');
+    }
 }
