@@ -36,14 +36,14 @@ return [
     ],
 
     'google' => [
-        'client_id' => '11374064133-7e2ue6meuldi9u2b0eodjssfnussg4ka.apps.googleusercontent.com',
-        'client_secret' => 'if43fpi0KZBI9Rv7r8mWE10E',
-        'redirect' => 'http://quest.challenge.php1.a-level.com.ua/public/google/callback',
+        'client_id' => '620245015954-ogijgrcuudfpo71k87tertn8jk7fmndu.apps.googleusercontent.com',
+        'client_secret' => 'mKmaMhFa0DQf7lv8BFiFGPas',
+        'redirect' => 'https://quest.challenge.php.a-level.com.ua/public/google/callback',
     ],
 
     'facebook' => [
         'client_id' => '186555511901697',
         'client_secret' => '52f3c5c57c8380d5798a3a0e5c31db4f',
-        'redirect' => 'http://challenge.loc/callback',
+        'redirect' => 'https://challenge.loc/callback',
     ],
 ];

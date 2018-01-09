@@ -3,7 +3,14 @@
     {!!HTML::style('css/AdminGeneral/tables.css')!!}
     {!!HTML::style('css/AdminGeneral/adminBody.css')!!}
     {!!HTML::style('css/AdminGeneral/adminNav.css')!!}
+
+    <link href="https://quest.challenge.php.a-level.com.ua/public/css/AdminGeneral/adminBody.css" rel="stylesheet">
+
+
+
+
 @stop
+
 
 @section('content')
 

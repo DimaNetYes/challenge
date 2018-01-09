@@ -1,0 +1,22 @@
+<html>
+	<script>
+//	var x = document.getElementById("demo");
+	function getLocation() {
+		if (navigator.geolocation) {
+			navigator.geolocation.watchPosition(showPosition);
+		} else {
+			x.innerHTML = "Geolocation is not supported by this browser.";
+		}
+	}
+function showPosition(position) {
+	x.innerHTML = "Latitude: " + position.coords.latitude + 
+		"<br>Longitude: " + position.coords.longitude; 
+	a.href = 'https://www.google.com/maps?q=' + position.coords.latitude + ',' + position.coords.longitude;
+}
+getLocation()
+</script>
+<body>
+	<div id='x'></div>
+	<a href='#' id='a'>this place on google maps</a>
+</body>
+</html>

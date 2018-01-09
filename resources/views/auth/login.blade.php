@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+{{HTML::style('css/login.css', array(), true)}}
+
+
 @section('content')
 <div class="container">
     <div class="row">

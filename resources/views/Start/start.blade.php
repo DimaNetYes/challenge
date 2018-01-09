@@ -1,6 +1,11 @@
 @extends('layouts.dashboard')
 @section('style')
-    {!!HTML::style('css/stylesStart.css')!!}
+
+    {{--{!!HTML::style('css/stylesStart.css')!!}--}}
+    {{HTML::style('css/stylesStart.css', array(), true)}}
+    {{--<link href="{{ secure_asset('css/stylesStart.css') }}" rel="stylesheet">--}}
+    {{--<link href="https://quest.challenge.php.a-level.com.ua/public/css/stylesStart.css" rel="stylesheet">--}}
+
 @stop
 @section('content')
 
