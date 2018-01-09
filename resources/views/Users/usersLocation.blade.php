@@ -74,7 +74,7 @@
                 var latitude = position.coords.latitude;
                 var longitude = position.coords.longitude;
 
-                output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+             //   output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
                 coordX.value = longitude;
                 coordY.value = latitude;
 
@@ -87,10 +87,10 @@
 
             function error() {
                 output.innerHTML = "Unable to retrieve your location";
-                var coordX = document.getElementById("x");
-                var coordY = document.getElementById("y");
-                coordX.value = 30;
-                coordY.value = 30;
+             //   var coordX = document.getElementById("x");
+             //   var coordY = document.getElementById("y");
+             //   coordX.value = 30;
+             //   coordY.value = 30;
             }
 
             output.innerHTML = "<p>Locating…</p>";
