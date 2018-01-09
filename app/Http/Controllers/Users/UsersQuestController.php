@@ -254,22 +254,19 @@ class UsersQuestController extends Controller
 
         if ($qr == $qrCode) {
             foreach ($idUserQuest as $v) {
-                $eT = ExecuteTask::ofWhereWhere('idTask', $idTask, 'idUserQuest', $v);
-                if (count($eT) != 0) {
-                    $execTask = ExecuteTask::ofWhereWhere('idTask', $idTask, 'idUserQuest', $v);
-                }
+                $execTask = ExecuteTask::ofWhereWhere('idTask', $idTask, 'idUserQuest', $v);
+                if(count($execTask)){break;} else {continue;}
             }
 
-            if (count($execTask) > 0) {
-                foreach ($execTask as $value) {
-                    $value->status = 1;
-                    $value->save();
-                }
-                return redirect('https://quest.challenge.php.a-level.com.ua/');
-                //  return redirect()->action('Users\UsersQuestController@playQuest', ['idQuest' => $idQuest, 'ok' => 1]);
-            }
+        if ($execTask[0]->status == 0) {
+            $execTask[0]->status = 1;
+            $execTask[0] -> save();
+        }  elseif(($execTask[0]->status)&&($execTask[0]->coordX != 0)&&($execTask[0]->coordY != 0))  {   // !!!!!!!!!!!!!заменить ok - 0
+            return redirect()->action('Users\UsersQuestController@playQuest', ['idQuest' => $idQuest, 'ok' => 1]);
         }
-        return redirect()->route('start');
+        }
+
+        return redirect()->action('Users\UsersQuestController@playQuest', ['idQuest' => $idQuest, 'ok' => 1]);
 
     }
 
