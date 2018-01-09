@@ -28,10 +28,10 @@ CREATE TABLE `executeTasks` (
   `idUserQuest` int(11) NOT NULL,
   `coordX` double DEFAULT NULL,
   `coordY` double DEFAULT NULL,
-  `timestamp` timestamp NULL DEFAULT NULL,
+  `timestamp` datetime DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `executeTasks` (
 
 LOCK TABLES `executeTasks` WRITE;
 /*!40000 ALTER TABLE `executeTasks` DISABLE KEYS */;
-INSERT INTO `executeTasks` VALUES (1,3,1,NULL,NULL,NULL,1),(2,4,1,NULL,NULL,NULL,1);
+INSERT INTO `executeTasks` VALUES (1,3,1,30,30,'2018-01-09 17:44:24',1),(2,4,1,30,30,'2018-01-09 17:46:17',1),(3,1,1,NULL,NULL,NULL,0),(4,1,9,NULL,NULL,NULL,1);
 /*!40000 ALTER TABLE `executeTasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,7 @@ CREATE TABLE `results` (
   `result` int(11) DEFAULT '0',
   `position` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `results` (
 
 LOCK TABLES `results` WRITE;
 /*!40000 ALTER TABLE `results` DISABLE KEYS */;
-INSERT INTO `results` VALUES (1,2,2,100,0);
+INSERT INTO `results` VALUES (1,2,2,100,0),(2,1,1,40,0),(3,4,2,100,0),(4,2,1,80,0),(5,2,3,100,1),(6,3,2,0,0);
 /*!40000 ALTER TABLE `results` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,7 +194,7 @@ CREATE TABLE `userQuests` (
   `idUser` int(11) DEFAULT NULL,
   `statusQuest` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +203,7 @@ CREATE TABLE `userQuests` (
 
 LOCK TABLES `userQuests` WRITE;
 /*!40000 ALTER TABLE `userQuests` DISABLE KEYS */;
-INSERT INTO `userQuests` VALUES (1,2,2,5,1),(2,2,2,1,1),(3,1,2,5,0),(7,4,1,5,0),(8,3,1,5,0);
+INSERT INTO `userQuests` VALUES (1,2,2,5,0),(2,2,2,1,0),(9,1,1,5,1),(10,4,2,5,0),(11,3,2,5,0);
 /*!40000 ALTER TABLE `userQuests` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -251,4 +251,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-05 20:21:18
+-- Dump completed on 2018-01-09 20:01:30

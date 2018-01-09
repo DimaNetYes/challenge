@@ -13,11 +13,7 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.5.0",
         "simplesoftwareio/simple-qrcode": "~2",
-<<<<<<< HEAD
         "stevebauman/location": "2.0.*"
-=======
-        "stevebauman/location": "^2.0"
->>>>>>> ac775c387306bf0ec8fc3e0752c8174ca46da5bd
     },
 
     "require-dev": {
