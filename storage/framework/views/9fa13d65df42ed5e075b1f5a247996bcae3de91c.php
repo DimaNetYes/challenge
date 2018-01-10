@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
 
-    <?php echo e(HTML::style('../bootstrap/bootstrap/css/bootstrap.css')); ?>
+    <?php echo e(HTML::style('../bootstrap/bootstrap/css/bootstrap.css',array(), true)); ?>
 
     <?php echo $__env->yieldContent('style'); ?>
 </head>
 <body>
     <?php echo $__env->yieldContent('content'); ?>
-    <?php echo e(HTML::script('../bootstrap/bootstrap/js/bootstrap.js')); ?>
+    <?php echo e(HTML::script('../bootstrap/bootstrap/js/bootstrap.js',array(), true)); ?>
 
 
 </body>
