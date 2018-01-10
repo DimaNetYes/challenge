@@ -143,3 +143,7 @@ Route::group(['prefix' => 'users', 'middleware' => ['web', 'auth']], function ()
 });
 
 
+Route::get('maps', function(){
+    return view("/maps");
+});
+
