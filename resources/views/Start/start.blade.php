@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('style')
-       {{HTML::style('css/stylesStart.css')}}
+       {{HTML::style('css/stylesStart.css', array(), true)}}
 @stop
 @section('content')
 

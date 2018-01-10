@@ -2,10 +2,10 @@
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="UTF-8">
-    {{HTML::style('../bootstrap/bootstrap/css/bootstrap.css')}}
-    {{HTML::style('css/AdminGeneral/adminBody.css')}}
-    {{HTML::style('css/AdminGeneral/adminNav.css')}}
-    {{HTML::style('css/AdminGeneral/tables.css')}}
+    {{HTML::style('../bootstrap/bootstrap/css/bootstrap.css', array(), true}}
+    {{HTML::style('css/AdminGeneral/adminBody.css', array(), true)}}
+    {{HTML::style('css/AdminGeneral/adminNav.css', array(), true))}}
+    {{HTML::style('css/AdminGeneral/tables.css', array(), true))}}
     @yield('style')
 </head>
 <body>
@@ -19,7 +19,7 @@
 </div>
 <footer></footer>
 
-{{HTML::script('../bootstrap/bootstrap/js/bootstrap.js')}}
+{{HTML::script('../bootstrap/bootstrap/js/bootstrap.js'), array(), true}}
 
 </body>
 </html>
