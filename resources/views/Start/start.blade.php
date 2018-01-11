@@ -4,7 +4,7 @@
 @stop
 @section('content')
 
-
+<div class="content">
     <header>
         <nav>
             <ul class="nav masthead-nav">
@@ -24,7 +24,7 @@
     <footer>
         <p class="footer">C© 2017. Все права защищены</p>
     </footer>
-
+</div>
 
 
 @stop
