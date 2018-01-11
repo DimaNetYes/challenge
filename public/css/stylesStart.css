@@ -3,7 +3,7 @@ html, body {
     height: 100%;
 }
 
-body {
+div.content {
     background: black no-repeat center url("http://aceofgeeks.net/wp/wp-content/uploads/2014/08/LOGO_ON-AIR_Quest-color.jpg");
     background-size: cover;
     width: 100%;
@@ -84,8 +84,8 @@ p.footer {
 }
 
 
-@media (max-width: 500px) {
-    body {
+@media screen and (max-width: 500px) {
+    div.content {
         background: black no-repeat center url("http://aceofgeeks.net/wp/wp-content/uploads/2014/08/LOGO_ON-AIR_Quest-color.jpg");
         background-size: 160% 60%!important;
     }
