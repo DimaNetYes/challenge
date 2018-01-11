@@ -16,8 +16,8 @@
     <title>Quest Login</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css', array(), true) }}" rel="stylesheet">
+    <link href="{{ asset('css/login.css', array(), true) }}" rel="stylesheet">
 </head>
 <body>
 <div id="app">
@@ -80,6 +80,6 @@
 </div>
 
 <!-- Scripts -->
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js', array(), true) }}"></script>
 </body>
 </html>
