@@ -88,7 +88,7 @@ main section{
 main aside div{
     height:250px;
     width: 50%;
-    background: url("http://quest/public/img/user.png");
+    background: url("/public/img/user.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
