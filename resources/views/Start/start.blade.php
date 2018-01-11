@@ -1,10 +1,6 @@
 @extends('layouts.dashboard')
 @section('style')
-<<<<<<< HEAD
     {{HTML::style('css/stylesStart.css')}}
-=======
-       {{HTML::style('css/stylesStart.css', array(), true)}}
->>>>>>> 07ecce9c7b1430c73ba587b40a64bc7343a24e21
 @stop
 @section('content')
 

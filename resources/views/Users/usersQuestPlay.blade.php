@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('style')
-    {{HTML::style('css/User/userProfile.css', array(), true)}}
-    {{HTML::style('css/UserGeneral/headerNav.css', array(), true)}}
+    {{HTML::style('css/User/userProfile.css')}}
+    {{HTML::style('css/UserGeneral/headerNav.css')}}
 @stop
 @section('content')
 
