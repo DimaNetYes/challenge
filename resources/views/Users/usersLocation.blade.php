@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('style')
-    {{HTML::style('css/User/userProfile.css', array(), true)}}
-    {{HTML::style('css/UserGeneral/headerNav.css', array(), true)}}
+    {{HTML::style('css/User/userProfile.css')}}
+    {{HTML::style('css/UserGeneral/headerNav.css')}}
 @stop
 @section('content')
 
@@ -87,10 +87,10 @@
 
             function error() {
                 output.innerHTML = "Unable to retrieve your location";
-             //   var coordX = document.getElementById("x");
-             //   var coordY = document.getElementById("y");
-             //   coordX.value = 30;
-             //   coordY.value = 30;
+                var coordX = document.getElementById("x");
+                var coordY = document.getElementById("y");
+                coordX.value = 49.987670699999995;
+                coordY.value = 36.2330605;
             }
 
             output.innerHTML = "<p>Locating…</p>";

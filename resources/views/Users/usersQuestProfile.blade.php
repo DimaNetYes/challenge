@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('style')
-    {{HTML::style('css/User/userProfile.css', array(), true)}}
-    {{HTML::style('css/UserGeneral/headerNav.css', array(), true)}}
+    {{HTML::style('css/User/userProfile.css')}}
+    {{HTML::style('css/UserGeneral/headerNav.css')}}
 @stop
 @section('content')
 
@@ -107,7 +107,7 @@
                                 <button class="btn btn-link"><a href="" class="glyphicon glyphicon-th-list"
                                                                 onclick="openboxt('id{{$key}}'); return false"></a>
                                 </button>
-                                <button class="btn btn-link"><a href="#" class="glyphicon glyphicon-map-marker"></a>
+                                <button class="btn btn-link"><a href="{{route('maps', ['id'=>json_decode($q)->id])}}" class="glyphicon glyphicon-map-marker"></a>
                                 </button>
                             </div>
                         </div>

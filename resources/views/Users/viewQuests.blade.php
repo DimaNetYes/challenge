@@ -3,9 +3,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quests</title>
-    {{HTML::style('css/User/userViewQuests1.css', array(), true)}}
-    {{HTML::style('css/User/userViewQuests.css', array(), true)}}
-    {{HTML::script('js/uilang.js', array(), true)}}
+    {{HTML::style('css/User/userViewQuests1.css')}}
+    {{HTML::style('css/User/userViewQuests.css')}}
+    {{HTML::script('js/uilang.js')}}
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 @stop
 @section('content')
