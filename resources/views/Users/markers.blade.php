@@ -44,53 +44,89 @@
 
     </main>
 
+
     <footer></footer>
 
     <script type="text/javascript">
 
-       window.onload = function(){ initMap();};
 
-       var markers = [];
-       var map;
+        window.onload = function () {
+            initMap();
+        };
 
-       function initMap() {
+        var markers = [];
+        var flightPath;
+        var map;
+        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var labelIndex = 0;
+        var arr;
+        var infowindow;
 
-           var myLatLng = {lat: 49.987670699999995, lng: 36.2330605};
+        function initMap() {
+            var myLatLng = {lat: 49.987670699999995, lng: 36.2330605};
 
-           map = new google.maps.Map(document.getElementById('map'), {
-               zoom: 15,
-               center: myLatLng
-           });
-       }
-
-       function drop($coord) {
-       var a = "<? echo $coord ?>";
-       var b = JSON.parse(a);
-       clearMarkers();
-       for (var i = 0; i < b.length; i++) {
-       addMarkerWithTimeout(b[i], i * 300);
-       }
-       }
-
-       function addMarkerWithTimeout(position, timeout) {
-       window.setTimeout(function () {
-       markers.push(new google.maps.Marker({
-       position: {lat:position[0], lng: position[1]},
-       map: map,
-       animation: google.maps.Animation.DROP
-       }));
-       }, timeout);
-       }
-
-       function clearMarkers() {
-       for (var i = 0; i < markers.length; i++) {
-       markers[i].setMap(null);
-       }
-       markers = [];
-       }
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: myLatLng
+            });
+        }
 
 
-       function openbox(id) {
+        function drop($coord, $dateTime) {
+            var a = "<? echo $coord ?>";
+            var dt = "<? echo $dateTime ?>";
+            arr = dt.split(',');
+
+            var b = JSON.parse(a);
+            var pos = [];
+            for (var j = 0; j < b.length; j++) {
+                pos.push({lat: b[j][0], lng: b[j][1]});
+            }
+            clearMarkers();
+            for (var i = 0; i < b.length; i++) {
+                addMarkerWithTimeout(b[i], i * 300);
+            }
+            line(pos);
+        }
+
+
+        function addMarkerWithTimeout(position, timeout) {
+            window.setTimeout(function () {
+                markers.push(new google.maps.Marker({
+                    position: {lat: position[0], lng: position[1]},
+                    label: labels[labelIndex++ % labels.length],
+                    map: map,
+                    animation: google.maps.Animation.DROP
+                }));
+            }, timeout);
+        }
+
+
+        function line(position) {
+            window.setTimeout(function () {
+                flightPath = new google.maps.Polyline({
+                    path: position,
+                    geodesic: true,
+                    strokeColor: '#FF0000',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 2
+                });
+                flightPath.setMap(map);
+            }, 400);
+        }
+
+        function clearMarkers() {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+                flightPath.setMap(null);
+            }
+            markers = [];
+            flightPath = [];
+            labelIndex = 0;
+        }
+
+
+        function openbox(id) {
             if (id == 'idTQ') {
                 document.getElementById('idTQ').style.display = 'block';
                 document.getElementById('idLQ').style.display = 'none';
@@ -114,7 +150,6 @@
                 document.getElementById(id).style.display = 'none';
             }
         }
-
 
 
     </script>

@@ -301,7 +301,7 @@ class UsersQuestController extends Controller
         $userQuests = UserQuest::ofWhereWhere('idQuest', $idQuest, 'idTeam', $idTeam);
         foreach ($userQuests as $value) {
             $userQuest = $value->id;
-            $executeTask = ExecuteTask::ofWhereWhere('idUserQuest', $userQuest, 'status', 1);
+            $executeTask = ExecuteTask::ofWhereWhere('idUserQuest', $userQuest, 'status', 1)->sortBy('time');
             if(count($executeTask)) {
                 foreach ($executeTask as $v) {
                     $exTask[] = $v;
@@ -309,8 +309,13 @@ class UsersQuestController extends Controller
                 }
             }
         }
+        $datetime =array();
+        foreach ($exTask as $key => $value){
+            $datetime[$key] =  "[Дата: ".strval($value->date)."  Время: ".strval($value->time)."]";
+        }
+        $datetime = implode(',', $datetime);
+        $coord = json_encode($coord);
 
-       $coord = json_encode($coord);
-         return view('Users.markers')->with(['coord' => $coord, 'executeTask' => $exTask]);
+        return view('Users.markers')->with(['coord' => $coord, 'dateTime' => $datetime]);
     }
 }
