@@ -179,7 +179,7 @@ class UsersQuestController extends Controller
             foreach ($users as $u) {
                 $idUQ = UserQuest::ofWhereWhere('idQuest', $idQuest, 'idUser', $u->id);
                 foreach ($idUQ as $v) {
-                    $idUserQuest[] .= $v->id; // массив id UserQuest для всех пользователей
+                    $idUserQuest[] .= $v->id; // массив idUserQuest для всех участников квеста
                 }
             }
 
@@ -276,16 +276,41 @@ class UsersQuestController extends Controller
     }
 
 
-
-
-    public function savePosition($id){
+    public function savePosition($id)
+    {
         $data = Input::all();
         $execTask = ExecuteTask::find($id);
-        $execTask->coordX =$data['coordX'];
-        $execTask->coordY =$data['coordY'];
-        $execTask->timestamp = date("Y-m-d H:i:s");
-       // dd(date("d.m.Y H:i:s"));
+        $execTask->coordX = $data['coordX'];
+        $execTask->coordY = $data['coordY'];
+        $execTask->date = date("Y-m-d");
+        $execTask->time = date("H:i:s");
+        // dd(date("d.m.Y H:i:s"));
         $execTask->save();
         return redirect()->route('userProfile');
+    }
+
+    public function maps($idQuest)
+    {
+        $coord = array();
+        $exTask = array();
+        $coord = array();
+
+        $idUser = Auth::user()->id;
+        $team = User::find($idUser)->teams($idQuest)->get();
+        $idTeam = $team[0]->id;
+        $userQuests = UserQuest::ofWhereWhere('idQuest', $idQuest, 'idTeam', $idTeam);
+        foreach ($userQuests as $value) {
+            $userQuest = $value->id;
+            $executeTask = ExecuteTask::ofWhereWhere('idUserQuest', $userQuest, 'status', 1);
+            if(count($executeTask)) {
+                foreach ($executeTask as $v) {
+                    $exTask[] = $v;
+                    $coord[] = [$v->coordX, $v->coordY];
+                }
+            }
+        }
+
+       $coord = json_encode($coord);
+         return view('Users.markers')->with(['coord' => $coord, 'executeTask' => $exTask]);
     }
 }

@@ -108,7 +108,7 @@
                                 <button class="btn btn-link"><a href="" class="glyphicon glyphicon-th-list"
                                                                 onclick="openboxt('id<?php echo e($key); ?>'); return false"></a>
                                 </button>
-                                <button class="btn btn-link"><a href="#" class="glyphicon glyphicon-map-marker"></a>
+                                <button class="btn btn-link"><a href="<?php echo e(route('maps', ['id'=>json_decode($q)->id])); ?>" class="glyphicon glyphicon-map-marker"></a>
                                 </button>
                             </div>
                         </div>

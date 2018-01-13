@@ -87,10 +87,10 @@
 
             function error() {
                 output.innerHTML = "Unable to retrieve your location";
-             //   var coordX = document.getElementById("x");
-             //   var coordY = document.getElementById("y");
-             //   coordX.value = 30;
-             //   coordY.value = 30;
+                var coordX = document.getElementById("x");
+                var coordY = document.getElementById("y");
+                coordX.value = 49.987670699999995;
+                coordY.value = 36.2330605;
             }
 
             output.innerHTML = "<p>Locating…</p>";

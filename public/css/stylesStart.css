@@ -3,10 +3,11 @@ html, body {
     height: 100%;
 }
 
-body {
-    background: no-repeat center/100% url("http://aceofgeeks.net/wp/wp-content/uploads/2014/08/LOGO_ON-AIR_Quest-color.jpg");
+div.content {
+    background: black no-repeat center url("http://aceofgeeks.net/wp/wp-content/uploads/2014/08/LOGO_ON-AIR_Quest-color.jpg");
+    background-size: cover;
     width: 100%;
-    min-height: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -16,6 +17,24 @@ body {
 header, nav, footer, main {
     width: 100%;
 }
+
+header {
+    height: 10%;
+}
+main{
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+footer{
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
 
 ul {
     display: flex;
@@ -61,5 +80,13 @@ p.lead {
 p.footer {
     width: 100%;
     text-align: center;
-    color: #3d6983;
+    color: #ffffff;
+}
+
+
+@media screen and (max-width: 500px) {
+    div.content {
+        background: black no-repeat center url("http://aceofgeeks.net/wp/wp-content/uploads/2014/08/LOGO_ON-AIR_Quest-color.jpg");
+        background-size: 160% 60%!important;
+    }
 }

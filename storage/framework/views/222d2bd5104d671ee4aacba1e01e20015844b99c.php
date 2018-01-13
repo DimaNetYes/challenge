@@ -1,10 +1,10 @@
 <?php $__env->startSection('style'); ?>
-       <?php echo e(HTML::style('css/stylesStart.css', array(), true)); ?>
+    <?php echo e(HTML::style('css/stylesStart.css')); ?>
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
-
+<div class="content">
     <header>
         <nav>
             <ul class="nav masthead-nav">
@@ -16,9 +16,6 @@
     </header>
 
     <main class="cover">
-        <h1 class="cover-heading">Cover your page.</h1>
-        <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download,
-            edit the text, and add your own fullscreen background photo to make it your own.</p>
         <p class="lead button">
             <a href="users/view" class="btn btn-lg btn-default">GET STARTED</a>
         </p>
@@ -27,7 +24,7 @@
     <footer>
         <p class="footer">C© 2017. Все права защищены</p>
     </footer>
-
+</div>
 
 
 <?php $__env->stopSection(); ?>
