@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('style')
     {{HTML::style('css/User/userProfile.css')}}
-    {{HTML::style('css/UserGeneral/headerNav.css')}}
+    {{HTML::style('css/User/userProfile2.css')}}
 @stop
 @section('content')
 
@@ -10,28 +10,22 @@
     </header>
 
     <main>
-        <aside>
-            <div class="avatar"></div>
-            <p class="name">Имя: {{Auth::user()->name}}</p>
-            <p class="name">Возраст: {{Auth::user()->age}}</p>
-            <p class="name">Пол: {{Auth::user()->gender}}</p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <button class="btn btn-link link"><a href="" onclick="openbox('idTQ'); return false">Текущий
-                    квест</a>
-            </button>
-            <button class="btn btn-link link"><a href="" onclick="openbox('idFQ'); return false">Грядущие квесты</a>
-            </button>
-            <button class="btn btn-link link"><a href="" onclick="openbox('idLQ'); return false">Архив</a>
-            </button>
-        </aside>
-
-        <section class="section">
-
-            <div id="section_inner">
-
+        <div class="wrapper">
+            <div class="menu-container">
+                <div id="logo-container">
+                    <div id="logo-container-pict"></div>
+                </div>
+                <div class="menu-main-container">
+                    <ul class="menu">
+                        <li><a class="about"> {{Auth::user()->name}}  <span>Возраст:{{Auth::user()->age}} &nbsp; Пол:{{Auth::user()->gender}}</span></a></li>
+                        <li><a href="#" onclick="openbox('idTQ'); return false">Текущий Квест <span>Информация о квесте.</span></a></li>
+                        <li><a href="#" onclick="openbox('idFQ'); return false">Грядущий квест <span>Предстоящие квесты.</span></a></li>
+                        <li><a href="#" onclick="openbox('idLQ'); return false">Архив <span>Архив квестов.</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="container">
+                {{--<div id="main-header">Documentain</div>--}}
                 <div class="column" id="idTQ">
 
                     <div class="row">
@@ -144,11 +138,8 @@
                     @endforeach
 
                 </div>
-
-
-            </div> <!-- div section inner-->
-        </section>
-
+            </div>
+        </div>
     </main>
 
     <footer></footer>

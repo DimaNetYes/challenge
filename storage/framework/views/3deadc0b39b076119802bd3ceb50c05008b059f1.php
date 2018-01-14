@@ -1,7 +1,7 @@
 <?php $__env->startSection('style'); ?>
     <?php echo e(HTML::style('css/User/userProfile.css')); ?>
 
-    <?php echo e(HTML::style('css/UserGeneral/headerNav.css')); ?>
+    <?php echo e(HTML::style('css/User/userProfile2.css')); ?>
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
@@ -11,28 +11,22 @@
     </header>
 
     <main>
-        <aside>
-            <div class="avatar"></div>
-            <p class="name">Имя: <?php echo e(Auth::user()->name); ?></p>
-            <p class="name">Возраст: <?php echo e(Auth::user()->age); ?></p>
-            <p class="name">Пол: <?php echo e(Auth::user()->gender); ?></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <button class="btn btn-link link"><a href="" onclick="openbox('idTQ'); return false">Текущий
-                    квест</a>
-            </button>
-            <button class="btn btn-link link"><a href="" onclick="openbox('idFQ'); return false">Грядущие квесты</a>
-            </button>
-            <button class="btn btn-link link"><a href="" onclick="openbox('idLQ'); return false">Архив</a>
-            </button>
-        </aside>
-
-        <section class="section">
-
-            <div id="section_inner">
-
+        <div class="wrapper">
+            <div class="menu-container">
+                <div id="logo-container">
+                    <div id="logo-container-pict"></div>
+                </div>
+                <div class="menu-main-container">
+                    <ul class="menu">
+                        <li><a class="about"> <?php echo e(Auth::user()->name); ?>  <span>Возраст:<?php echo e(Auth::user()->age); ?> &nbsp; Пол:<?php echo e(Auth::user()->gender); ?></span></a></li>
+                        <li><a href="#" onclick="openbox('idTQ'); return false">Текущий Квест <span>Информация о квесте.</span></a></li>
+                        <li><a href="#" onclick="openbox('idFQ'); return false">Грядущий квест <span>Предстоящие квесты.</span></a></li>
+                        <li><a href="#" onclick="openbox('idLQ'); return false">Архив <span>Архив квестов.</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="container">
+                
                 <div class="column" id="idTQ">
 
                     <div class="row">
@@ -108,7 +102,7 @@
                                 <button class="btn btn-link"><a href="" class="glyphicon glyphicon-th-list"
                                                                 onclick="openboxt('id<?php echo e($key); ?>'); return false"></a>
                                 </button>
-                                <button class="btn btn-link"><a href="#" class="glyphicon glyphicon-map-marker"></a>
+                                <button class="btn btn-link"><a href="<?php echo e(route('maps', ['id'=>json_decode($q)->id])); ?>" class="glyphicon glyphicon-map-marker"></a>
                                 </button>
                             </div>
                         </div>
@@ -145,11 +139,8 @@
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                 </div>
-
-
-            </div> <!-- div section inner-->
-        </section>
-
+            </div>
+        </div>
     </main>
 
     <footer></footer>

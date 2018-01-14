@@ -31,12 +31,13 @@ header, main, footer{
     justify-content: space-between;
     align-items: center;
     border: 1px solid white;
+    background: white;
 }
 
 .row div {
     width: 25%;
     text-align: center;
-    color: white;
+    color: black;
     font-size: 18px;
 }
 
@@ -51,15 +52,15 @@ header, main, footer{
     height: 30px;
 }
 
-html, body {
-    width: 100%;
-    background: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px!important;
-}
+/*html, body {*/
+    /*width: 100%;*/
+    /*background: black;*/
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: space-between;*/
+    /*align-items: center;*/
+    /*font-size: 14px!important;*/
+/*}*/
 
 header, main, footer{
     width: 100%;
@@ -117,7 +118,7 @@ main aside div{
 .row div {
     width: 25%;
     text-align: center;
-    color: white;
+    color: black;
     font-size: 18px;
 }
 
