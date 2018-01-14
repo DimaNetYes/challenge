@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="<?php echo e(app()->getLocale()); ?>">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE QUEST</title>
     <meta charset="UTF-8">
     <?php echo e(HTML::style('../bootstrap/bootstrap/css/bootstrap.css')); ?>
 
