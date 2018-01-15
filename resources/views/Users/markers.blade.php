@@ -66,7 +66,7 @@
             var myLatLng = {lat: 49.987670699999995, lng: 36.2330605};
 
             map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 15,
+                zoom: 5,
                 center: myLatLng
             });
         }
@@ -100,6 +100,7 @@
                 }));
             }, timeout);
         }
+        
 
 
         function line(position) {
