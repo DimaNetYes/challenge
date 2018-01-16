@@ -148,3 +148,7 @@ Route::get('maps', function(){
     return view("/maps");
 });
 
+Route::get('test', function(){
+    return view('test');
+});
+
