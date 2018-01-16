@@ -144,17 +144,8 @@ Route::group(['prefix' => 'users', 'middleware' => ['web', 'auth']], function ()
     Route::get('maps/{idQuest?}', ['uses' => 'Users\UsersQuestController@maps', 'as' => 'maps']);
 
 
-
-
     Route::post('/selectTeam', ['uses' => 'Users\UsersQuestController@selectTeam', 'as' => 'selectTeam']);
 });
 
 
-Route::get('maps', function(){
-    return view("/maps");
-});
-
-Route::get('test', function(){
-    return view('test');
-});
 
