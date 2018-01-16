@@ -22,6 +22,7 @@ Route::get('google/callback', 'Auth\GoogleController@handleProviderCallback');
 
 Route::get('/redirect', ['uses' => 'Auth\SocialAuthFacebookController@redirect', 'as' => 'facebook']);
 Route::get('/callback', 'Auth\SocialAuthFacebookController@callback');
+Route::get('info/{idLink?}', ['uses'=>'HomeController@info', 'as' => 'info']);
 
 Auth::routes();
 
@@ -141,6 +142,11 @@ Route::group(['prefix' => 'users', 'middleware' => ['web', 'auth']], function ()
 
     Route::post('location/{id?}', ['uses' => 'Users\UsersQuestController@savePosition', 'as' => 'savePosition']);
     Route::get('maps/{idQuest?}', ['uses' => 'Users\UsersQuestController@maps', 'as' => 'maps']);
+
+
+
+
+    Route::post('/selectTeam', ['uses' => 'Users\UsersQuestController@selectTeam', 'as' => 'selectTeam']);
 });
 
 
