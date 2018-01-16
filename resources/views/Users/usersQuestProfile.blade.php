@@ -4,11 +4,9 @@
     {{HTML::style('css/User/userProfile2.css')}}
 @stop
 @section('content')
-
     <header>
         @include('Users.General.headerNav')
     </header>
-
     <main>
         <div class="wrapper">
             <div class="menu-container">
@@ -23,11 +21,11 @@
                         <li><a href="#" onclick="openbox('idLQ'); return false">Архив <span>Архив квестов.</span></a></li>
                     </ul>
                 </div>
+
             </div>
             <div id="container">
                 {{--<div id="main-header">Documentain</div>--}}
                 <div class="column" id="idTQ">
-
                     <div class="row">
                         <div class="text-center">Название</div>
                         <div class="text-center">Дата</div>
@@ -50,8 +48,6 @@
                         </div>
                     @endforeach
                 </div>
-
-
                 <div class="column" id="idFQ">
                     <div class="row">
                         <div class="text-center">Название</div>
@@ -79,8 +75,6 @@
                         </div>
                     @endforeach
                 </div>
-
-
                 <div class="column" id="idLQ">
                     <div class="row">
                         <div class="text-center">Название</div>
@@ -105,19 +99,16 @@
                                 </button>
                             </div>
                         </div>
-
                         <div class="column task" id="id{{$key}}">
                             <div class="row">
                                 <div class="text-center">Название</div>
                                 <div class="text-center">Описание</div>
                                 <div class="text-center">Очки</div>
                                 <div class="text-center">Выполнение</div>
-
                             </div>
                             @foreach($tasksLast as $kk => $task)
                                 @if($kk == $key)
                                     @foreach(json_decode($task) as $k => $t)
-
                                         <div class="row">
                                             <div class="text-center">{!! $t->name !!}</div>
                                             <div class="text-center">{!! $t->description !!}</div>
@@ -129,21 +120,15 @@
                                             @endif
                                         </div>
                                     @endforeach
-
                                 @endif
                             @endforeach
-
                         </div>
-
                     @endforeach
-
                 </div>
             </div>
         </div>
     </main>
-
     <footer></footer>
-
     <script type="text/javascript">
         function openbox(id) {
             if (id == 'idTQ') {
@@ -160,7 +145,6 @@
                 document.getElementById('idLQ').style.display = 'none';
             }
         }
-
         function openboxt(id) {
             display = document.getElementById(id).style.display;
             if (display == 'none') {
@@ -169,7 +153,5 @@
                 document.getElementById(id).style.display = 'none';
             }
         }
-
     </script>
-
 @stop
