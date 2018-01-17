@@ -1,9 +1,11 @@
 <?php $__env->startSection('style'); ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
     <title>MoreQuests</title>
     <?php echo e(HTML::style('css/User/userMoreQuests.css')); ?>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
@@ -32,7 +34,8 @@
                                 <li><h6>Автор Квеста:</h6> Сидоров Мойша</li>
                             </ul>
                             <a class="btn btn-inverse pull-left" href="<?php echo e(route('play', ['id'=>$q->id])); ?>">Играть</a>
-                            <a href="<?php echo e(route('user_view_quest')); ?>" class="pull-right"><i class="icon-arrow-left"></i>Back to Gallery</a>
+                            <a href="<?php echo e(route('user_view_quest')); ?>" class="pull-right"><i class="icon-arrow-left"></i>Back
+                                to Gallery</a>
                         </div>
                     </div>
                 </div><!-- End gallery-single-->
@@ -40,6 +43,38 @@
         </div> <!-- End Container -->
 
     </main>
-    <footer></footer>
+    <footer>
+         <div id="res"></div>
+        <label for="select"> Выбирайте вашу команду: </label>
+        <select id="msg">;
+            <?php $__currentLoopData = $team; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $value): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <option name="option" id="option" value="<?php echo $value->id; ?>">
+                    <?php echo $value->name; ?>
+
+                </option>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </select>
+        <script>
+            function getMessage() {
+
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'POST',
+                    url: '/public/users/selectTeam',
+                    data: {"team": $('#msg').val()},
+                    success: function (data) {
+                        $("#res").html(data.msg);
+                    }
+                });
+            }
+        </script>
+
+
+        <?php
+        echo Form::button('Выбрать', ['onClick' => 'getMessage()']);
+        ?>
+    </footer>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

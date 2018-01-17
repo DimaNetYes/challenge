@@ -147,5 +147,15 @@ Route::group(['prefix' => 'users', 'middleware' => ['web', 'auth']], function ()
     Route::post('/selectTeam', ['uses' => 'Users\UsersQuestController@selectTeam', 'as' => 'selectTeam']);
 });
 
+//Для создателя квеста
+
+Route::group(['prefix' => 'users', 'middleware' => ['web', 'auth', 'creator']], function() {
+    //пользователь владеющий правами создавать квест
+    Route::get('createQuest', ['uses' => 'Creator\CreateController@show', 'as' => 'showQuestCreator']);
+
+});
+    //Форма обратной связи для назначения создателя квеста
+Route::get('users/backwardForm', ['uses' => 'Creator\BackwardFormController@show','as' => 'backwardForm']);
+Route::post('users/backwardForm', ['uses' => 'Creator\BackwardFormController@send','as' => 'backwardForm']);
 
 
