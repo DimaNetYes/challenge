@@ -1,15 +1,30 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.dashboard')
+@section('style')
+    {{HTML::style('css/AdminGeneral/forms.css')}}
+@stop
+@section('content')
 
-Вы можете создать квест <br>
-<a href="{{route('start')}}">Backward</a>
-</body>
-</html>
+    <h2>Новый Квест!</h2>
+    <?php
+    echo "<br>";
+    echo Form::open(array('action' => 'Creator\CreateController@addQuest'));
+    echo Form::label('name', 'Название') . Form::text('name');
+    echo "<br>";
+    echo Form::label('description', 'Описание') . Form::text('description');
+    echo "<br>";
+    echo Form::label('fullDescription', 'Полное описание') . Form::text('fullDescription');
+    echo "<br>";
+    echo Form::label('date', 'Дата планируемого проведения проведения:') . Form::date('date');
+    echo "<br>";
+    ?>
+    {{Form::hidden('status', '-1')}}
+    {{Form::hidden('user_id', Auth::id())}}
+
+    <?php
+    echo "<br>";
+    echo Form::submit('Добавить');
+
+    echo  Form::close();
+    ?>
+
+@stop

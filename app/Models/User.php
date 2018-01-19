@@ -58,6 +58,11 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Task', 'executeTasks' , $idUserQuest, 'idTask')->wherePivot('idQuest', $idQuest);
     }
-
+        /*
+        Доверенный пользователь может создавать Квест
+        */
+    public function createQuest(){
+        return $this->hasMany("App\Models\Quest");
+    }
 
 }

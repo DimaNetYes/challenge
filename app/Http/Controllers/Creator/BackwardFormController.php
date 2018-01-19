@@ -31,11 +31,12 @@ class BackwardFormController extends Controller
         );
 
 
-        Mail::send('creator/contact', $data, function($message) use ($user) {
+        Mail::send('creator/contact', $data, function ($message) use ($user) {
             $message->to('realwindrunner@gmail.com')
                 ->replyTo($user['email'])
                 ->subject('С уважение Quest Team');
         });
+
 
         return Redirect::action('Creator\BackwardFormController@show')->with('success', 'Ваше сообщение отправлено!');
     }

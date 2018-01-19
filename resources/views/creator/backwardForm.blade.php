@@ -16,8 +16,8 @@
 @endif
 <h1>Если вы хотите создать квест напишите нам</h1>
     {!! Form::open() !!}
-Email{{ Form::email('email') }}   <br><br>
-Message{{ Form::textarea('message') }} <br><br>
+Email{{ Form::email('email','',array('required' => 'required')) }}   <br><br>
+Message{{ Form::textarea('message','',array('required' => 'required')) }} <br><br>
     {{ Form::submit('send') }}
     {{ Form::close() }}
 

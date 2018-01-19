@@ -8,7 +8,6 @@
 
     <?php
     echo "<br>";
-    dd($quest);
     echo Form::open(array('url' => route('edit', $quest), 'method' => 'post', 'role' => 'form', 'class' => 'form-vertical'));
 
     echo Form::label('name', 'Название') . Form::text('name', $quest->name);
