@@ -65,7 +65,7 @@
                             <div class="text-center"><?php echo $teamFuture[$key]; ?></div>
                             <div>
                                 <button class="btn btn-link"><a
-                                            href="<?php echo e(route('editTeam', ['id'=>json_decode($q)->id])); ?>"
+                                            href="<?php echo e(route('more', ['id'=>json_decode($q)->id])); ?>"
                                             class="glyphicon glyphicon-pencil"></a>
                                 </button>
                                 <button class="btn btn-link"><a

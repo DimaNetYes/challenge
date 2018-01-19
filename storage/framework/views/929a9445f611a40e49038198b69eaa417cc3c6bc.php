@@ -15,7 +15,12 @@
         <?php echo $__env->make('Admin.leftNav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>;
 
         <main>
-        <h1>Ура! Ты - админ!</h1>
+            <?php if($msg): ?>
+                <h1><?php echo e($msg); ?></h1>
+                <?php $msg = 0; ?>
+            <?php else: ?>
+                <h1>Ура! Ты - админ!</h1>
+            <?php endif; ?>
         </main>
 
     </div>
