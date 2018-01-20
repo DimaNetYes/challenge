@@ -71,7 +71,7 @@ class CreateController extends Controller
             }
         }
 
-//        return redirect("")->with('success', 'Задания будут добавлены после просмотра модератором');
+        return redirect("users/view")->with('success', 'Квест будет добавлен после просмотра модератором');
     }
 
 }

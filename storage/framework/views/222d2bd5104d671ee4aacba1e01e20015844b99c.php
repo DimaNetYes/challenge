@@ -11,7 +11,6 @@
     <div class="cont">
         <header>
             <nav>
-                <a href="<?php echo e(route('showQuestCreator')); ?>">Квест</a>
                 <a href="" class="active">Home</a>
                 <?php if(!(Auth::check())): ?>
                     <a href="/public/login">Login</a>

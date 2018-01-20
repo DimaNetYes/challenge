@@ -11,7 +11,6 @@
     <div class="cont">
         <header>
             <nav>
-                <a href="{{route('showQuestCreator')}}">Квест</a>
                 <a href="" class="active">Home</a>
                 @if (!(Auth::check()))
                     <a href="/public/login">Login</a>

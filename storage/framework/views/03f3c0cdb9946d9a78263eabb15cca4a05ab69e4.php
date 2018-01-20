@@ -4,17 +4,24 @@
     <title>Quests</title>
     <?php echo e(HTML::style('css/User/userViewQuests1.css')); ?>
 
-    <?php echo e(HTML::style('css/User/userViewQuests.css')); ?>
+    <?php echo e(HTML::style('css/UserGeneral/headerNav.css')); ?>
 
+    
     <?php echo e(HTML::script('js/uilang.js')); ?>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <header>
-    <?php echo $__env->make('Users.General.headerNav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+    <?php echo $__env->make('Users.General.headerQuestView', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 </header>
 
+<?php if(session()->has('success')): ?>
+    <div class="alert alert-success">
+        <?php echo e(session()->get('success')); ?>
+
+    </div>
+<?php endif; ?>
 <main>
     <div class="container-fluid">
         <ul class="gallery-post-grid holder">
@@ -26,7 +33,7 @@
                         <span class='gallery-hover-3col hidden-phone hidden-tablet'>
                             <span class='gallery-icons'>
                                 <a href='#' class='item-zoom-link lightbox' title='Просмотр' onclick='showDetails(this)' data-rel="<?php echo $q->name; ?>"></a>
-                                <a href='<?php echo e(route('more', ['id'=>$q->id])); ?>' class='item-details-link' title='Играть'></a>
+                                <a href='<?php echo e(route('more', ['id'=>$q->id])); ?>' class='item-details-link ' title='Играть'></a>
                             </span>
                         </span>
                         <span class='project-details'><a href='<?php echo e(route('more', ['id'=>$q->id])); ?>'><?php echo $q->name; ?></a><?php echo $q->description; ?><br><?php echo $q->date; ?>.</span>

@@ -18,6 +18,10 @@ class BackwardFormController extends Controller
         return view('creator.backwardForm');
     }
 
+    public function ss(){
+        return view('creator.backwardForm');
+    }
+
     public function send(Request $request){
         $id = Auth::id();
         $user = array(
@@ -38,6 +42,6 @@ class BackwardFormController extends Controller
         });
 
 
-        return Redirect::action('Creator\BackwardFormController@show')->with('success', 'Ваше сообщение отправлено!');
+        return redirect('users/view')->with('success', 'Ваше сообщение отправлено!');
     }
 }

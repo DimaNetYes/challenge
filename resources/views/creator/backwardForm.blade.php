@@ -9,11 +9,7 @@
 </head>
 <body>
 
-@if(session()->has('success'))
-    <div class="alert alert-success">
-        {{ session()->get('success') }}
-    </div>
-@endif
+
 <h1>Если вы хотите создать квест напишите нам</h1>
     {!! Form::open() !!}
 Email{{ Form::email('email','',array('required' => 'required')) }}   <br><br>
