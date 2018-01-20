@@ -122,7 +122,9 @@ class UsersQuestController extends Controller
                 $teamLast[] = Team::find($idTeam)->name;     // массив названий команд
 
                 $results = Result::ofWhereWhere('idQuest', $idQuest, 'idTeam', $idTeam);
-                $result[] = $results[0]->result;
+                if(count($results)) {
+                    $result[] = $results[0]->result;
+                }
 
                 $t = Quest::find($idQuest)->tasks; // задания для квеста прошедшего
                 if (count($t)) {

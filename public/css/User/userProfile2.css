@@ -8,8 +8,7 @@ html, body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     background: #f9f9f9 url(../../img/page-bg-1.jpg);
 }
-<<<<<<< HEAD
-=======
+
 header, main, footer{
     width: 100%;
     background: #f9f9f9 url(../../img/page-bg-1.jpg);
@@ -132,7 +131,6 @@ main button.link a{
 #map{
     height: 600px;
 }
->>>>>>> a55fc497f92b4ab750428f74196e9ee930fbe8af
 
 .wrapper {
     margin: 20px auto;
@@ -287,7 +285,6 @@ main button.link a{
     background: #fff;
     padding: 20px;
     box-shadow: 1px 1px 1px 1px rgba(5, 5, 5, 0.1);
-<<<<<<< HEAD
 }
 
 /*HEADER STYLE*/
@@ -334,6 +331,3 @@ main button.link a{
 
 }
 
-=======
-}
->>>>>>> a55fc497f92b4ab750428f74196e9ee930fbe8af
