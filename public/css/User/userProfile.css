@@ -93,6 +93,9 @@ main aside div{
     background-size: cover;
     background-position: center center;
 }
+#map{
+    min-height: 600px;
+}
 .row {
     height: 50px;
     width: 100%;
