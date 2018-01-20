@@ -16,7 +16,7 @@
          }
     ?>
     {{Form::hidden('user_id', $user_id)}}
-
+    {{Form::hidden('QR')}}
     <?php
     echo "<br>";
     echo Form::submit('Добавить');

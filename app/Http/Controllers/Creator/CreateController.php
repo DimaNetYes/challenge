@@ -14,6 +14,16 @@ use Illuminate\Support\Facades\DB;
 
 class CreateController extends Controller
 {
+    protected function generateCode($length = 8)
+    {
+        $chars = 'abdefhiknrstyzABDEFGHKNQRSTYZ23456789';
+        $numChars = strlen($chars);
+        $string = '';
+        for ($i = 0; $i < $length; $i++) {
+            $string .= substr($chars, rand(1, $numChars) - 1, 1);
+        }
+        return $string;
+    }
 
     public function show()
     {
@@ -49,8 +59,8 @@ class CreateController extends Controller
     //сохранение задач
     public function saveTasks(Request $request){
         $Quest = Quest::get();
-
         $data = $request->all();
+
         $idQuest = $Quest->where('user_id', '=', $data['user_id'])->last()->id;
         $data['idQuest'] = $idQuest;
 
@@ -65,7 +75,7 @@ class CreateController extends Controller
             if($k == 'description'.$b){
                 $data['description'] = $data[$k];
                 $b++;
-
+                $data['QR'] = $this->generateCode(8);
                $task = Task::create($data);    //создание задачи в бд
                $task->save();
             }
