@@ -1,7 +1,7 @@
 
 
 .splash {
-    background: url("http://quest/public/img/start1.jpg") center center;
+    background: url(/public/img/start1.jpg) center center;
     background-size: cover;
     background-attachment: fixed;
     position: fixed;
@@ -142,7 +142,7 @@ main{
     min-height: 600px;
     width: 100%;
     height: 600px;
-    background-image: url('http://quest/public/img/main.jpg');
+    background-image: url(/public/img/main.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -169,7 +169,6 @@ main{
 
 .start-button:hover{
     background: white;
-    border-color: lightgrey!important;
     color: grey!important;
     border-color: black!important;
 }
