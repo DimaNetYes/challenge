@@ -1,5 +1,5 @@
 div.table{
-    width: 100%;
+    width: 95%;
     height: 400px;
     max-height: 400px;
     overflow-x: auto;
@@ -12,7 +12,7 @@ table {
     background: white;
     box-shadow: inset 0 1px 0 #fff;
     min-width: 500px;
- }
+}
 
 td {
     background: #f5f5f5;
@@ -30,6 +30,7 @@ td, th {
     text-align: center;
     max-height: 50px;
     max-width: 100px;
+    min-width: 60px;
     overflow-x: auto;
     overflow-y: auto;
 }
@@ -38,7 +39,7 @@ td div {
     width: 100%;
     margin: 0;
     padding: 0;
-   }
+}
 
 
 table tr td:last-child {
@@ -48,4 +49,4 @@ table tr td:last-child {
     display: flex;
     flex-wrap: nowrap;
     background: white;
-   }
+}

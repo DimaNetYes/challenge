@@ -28,10 +28,11 @@ CREATE TABLE `executeTasks` (
   `idUserQuest` int(11) NOT NULL,
   `coordX` double DEFAULT NULL,
   `coordY` double DEFAULT NULL,
-  `timestamp` datetime DEFAULT NULL,
+  `date` date DEFAULT NULL,
   `status` int(11) NOT NULL DEFAULT '0',
+  `time` time DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +41,7 @@ CREATE TABLE `executeTasks` (
 
 LOCK TABLES `executeTasks` WRITE;
 /*!40000 ALTER TABLE `executeTasks` DISABLE KEYS */;
-INSERT INTO `executeTasks` VALUES (1,3,1,30,30,'2018-01-09 17:44:24',1),(2,4,1,30,30,'2018-01-09 17:46:17',1),(3,1,1,NULL,NULL,NULL,0),(4,1,9,NULL,NULL,NULL,1);
+INSERT INTO `executeTasks` VALUES (1,3,1,49.9876,36.2330605,'2018-01-09',1,'16:00:00'),(2,4,1,49.9976,36.243,'2018-01-09',1,'14:00:00'),(3,1,1,NULL,NULL,NULL,0,NULL),(4,1,9,NULL,NULL,NULL,1,NULL),(5,5,1,49.989,36.24,'2018-01-09',1,'18:00:00'),(6,6,1,49.99,36.25,'2018-01-09',1,'20:00:00'),(7,7,1,50,36.24,'2018-01-09',1,'21:00:00'),(8,8,1,49.98,36.264,'2018-01-09',1,'07:00:00');
 /*!40000 ALTER TABLE `executeTasks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,9 +59,12 @@ CREATE TABLE `quests` (
   `date` date DEFAULT NULL,
   `time` time DEFAULT NULL,
   `fullDescription` text,
-  `status` int(11) DEFAULT '0',
+  `status` int(11) DEFAULT '2',
+  `hard` varchar(100) DEFAULT 'hard',
+  `author` varchar(100) DEFAULT 'anonim',
+  `avatar` varchar(100) DEFAULT 'http://quest/public/img/moreQuest/cowboy.jpg',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,7 +73,7 @@ CREATE TABLE `quests` (
 
 LOCK TABLES `quests` WRITE;
 /*!40000 ALTER TABLE `quests` DISABLE KEYS */;
-INSERT INTO `quests` VALUES (1,'Логический','Отвечать на вопросы','2017-12-12','12:00:00','fullDescription',0),(2,'Аркада','Бегать и выполнять задания','2017-12-31','23:59:00','full Бегать и выполнять задания',1),(3,'Детектив','Выполнять задания на дедукцию','2018-01-01','08:00:00','full Выполнять задания на дедукцию',2),(4,'Аркада2','Бегать и проходить задания','2017-12-11','06:00:00','ха-ха',0);
+INSERT INTO `quests` VALUES (1,'Логический','Отвечать на вопросы','2018-03-05','13:00:00','fullDescription',2,'hard','anonim','http://quest/public/img/moreQuest/cowboy.jpg'),(2,'Аркада','Бегать и выполнять задания','2018-01-18','23:59:00','full Бегать и выполнять задания',0,'hard','anonim','http://quest/public/img/moreQuest/cowboy.jpg'),(3,'Детектив','Выполнять задания на дедукцию','2018-01-19','16:00:00','full Выполнять задания на дедукцию',0,'hard','anonim','http://quest/public/img/moreQuest/cowboy.jpg'),(4,'Аркада2','Бегать и проходить задания','2018-03-05','06:00:00','ха-ха',0,'hard','anonim','http://quest/public/img/moreQuest/cowboy.jpg');
 /*!40000 ALTER TABLE `quests` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -194,7 +198,7 @@ CREATE TABLE `userQuests` (
   `idUser` int(11) DEFAULT NULL,
   `statusQuest` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -203,7 +207,7 @@ CREATE TABLE `userQuests` (
 
 LOCK TABLES `userQuests` WRITE;
 /*!40000 ALTER TABLE `userQuests` DISABLE KEYS */;
-INSERT INTO `userQuests` VALUES (1,2,2,5,0),(2,2,2,1,0),(9,1,1,5,1),(10,4,2,5,0),(11,3,2,5,0);
+INSERT INTO `userQuests` VALUES (1,2,2,1,1),(2,2,2,1,1),(9,1,1,5,1),(10,4,1,5,0),(11,3,2,5,0),(12,3,1,1,0),(13,5,5,5,0),(14,4,1,1,0);
 /*!40000 ALTER TABLE `userQuests` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,7 +230,7 @@ CREATE TABLE `users` (
   `social_id` varchar(100) DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `avatar` varchar(100) DEFAULT NULL,
+  `avatar` varchar(100) DEFAULT 'https://quest.challenge.php.a-level.com.ua/public/img/main.jpg',
   `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
@@ -238,7 +242,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Екатерина Волкова',NULL,NULL,'female','volkova5005@gmail.com',0,'wENvkVOAEFhg6a2LEhhELkiMFiNLQL1WvC6YbYM1UZWaI1rbMr0JP7824TT3','105259858962447148727','2017-11-16 19:59:22','2017-11-16 19:59:22','https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg',NULL),(5,'Kate','Kate',22,'f','Kate@gmail.com',1,'eYIOEX3z1lmJAexIzhi0vMm0u3branplBNW5ww6j6FeLOj02FGx49KAHUYm9',NULL,'2018-01-03 18:58:00','2017-11-19 20:42:42',NULL,'$2y$10$YZ7eeofGGJMcEoL6adveHuqQN/obsOSs3rZVYQ6mD0GyqDKKr8Boy');
+INSERT INTO `users` VALUES (1,'Екатерина Волкова',NULL,NULL,'female','volkova5005@gmail.com',1,'D6tQGKOXpGPzds5fe5foVHlOkf2FzGrz4Uky3DdAoWUUf4fTZNqPYc7V4Ncn','105259858962447148727','2018-01-18 09:47:36','2017-11-16 19:59:22','https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg',NULL),(5,'Kate','Kate',22,'f','Kate@gmail.com',1,'5wrRDHMTgXOL3sTrwSUWwhANdjOy203dbJYKstZDYoHtdUAPg2FVuUwRsGBQ',NULL,'2018-01-03 18:58:00','2017-11-19 20:42:42','https://quest.challenge.php.a-level.com.ua/public/img/user.png','$2y$10$YZ7eeofGGJMcEoL6adveHuqQN/obsOSs3rZVYQ6mD0GyqDKKr8Boy');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -251,4 +255,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-09 20:01:30
+-- Dump completed on 2018-01-20 18:13:56

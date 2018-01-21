@@ -24,8 +24,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-       return view('Start.home');
+       return view('Start\start');
 
+    }
+
+    public function info($idLink)
+    {
+        return view('Start\startManual')->with(['link'=>$idLink]);
     }
 
 }

@@ -2,38 +2,39 @@
 @section('style')
     {{HTML::style('css/User/userProfile.css')}}
     {{HTML::style('css/UserGeneral/headerNav.css')}}
+
 @stop
 @section('content')
-
     <header>
         @include('Users.General.headerNav')
     </header>
-
     <main>
-        <aside>
-            <div class="avatar"></div>
-            <p class="name">Имя: {{Auth::user()->name}}</p>
-            <p class="name">Возраст: {{Auth::user()->age}}</p>
-            <p class="name">Пол: {{Auth::user()->gender}}</p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <button class="btn btn-link link"><a href="" onclick="openbox('idTQ'); return false">Текущий
-                    квест</a>
-            </button>
-            <button class="btn btn-link link"><a href="" onclick="openbox('idFQ'); return false">Грядущие квесты</a>
-            </button>
-            <button class="btn btn-link link"><a href="" onclick="openbox('idLQ'); return false">Архив</a>
-            </button>
-        </aside>
-
-        <section class="section">
-
-            <div id="section_inner">
-
+        <div class="wrapper">
+            <div class="menu-container">
+                <div id="logo-container">
+                    <img src="{{Auth::user()->avatar}}" class="logo-container-pict">
+                </div>
+                <div class="menu-main-container">
+                    <ul class="menu">
+                        <li>
+                            <div class="about">
+                                <p>{{Auth::user()->name}}</p>
+                                <p>Возраст: {{Auth::user()->age}}</p>
+                                <p> Пол: {{Auth::user()->gender}}</p>
+                            </div>
+                        </li>
+                        <li><a href="#" onclick="openbox('idTQ'); return false">Текущий Квест
+                            </a></li>
+                        <li><a href="#" onclick="openbox('idFQ'); return false">Предстоящие квесты
+                            </a></li>
+                        <li><a href="#" onclick="openbox('idLQ'); return false">Архив
+                            </a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="container">
+                {{--<div id="main-header">Documentain</div>--}}
                 <div class="column" id="idTQ">
-
                     <div class="row">
                         <div class="text-center">Название</div>
                         <div class="text-center">Дата</div>
@@ -56,8 +57,6 @@
                         </div>
                     @endforeach
                 </div>
-
-
                 <div class="column" id="idFQ">
                     <div class="row">
                         <div class="text-center">Название</div>
@@ -74,7 +73,7 @@
                             <div class="text-center">{!! $teamFuture[$key] !!}</div>
                             <div>
                                 <button class="btn btn-link"><a
-                                            href="{{route('editTeam', ['id'=>json_decode($q)->id])}}"
+                                            href="{{route('more', ['id'=>json_decode($q)->id])}}"
                                             class="glyphicon glyphicon-pencil"></a>
                                 </button>
                                 <button class="btn btn-link"><a
@@ -85,8 +84,6 @@
                         </div>
                     @endforeach
                 </div>
-
-
                 <div class="column" id="idLQ">
                     <div class="row">
                         <div class="text-center">Название</div>
@@ -107,23 +104,21 @@
                                 <button class="btn btn-link"><a href="" class="glyphicon glyphicon-th-list"
                                                                 onclick="openboxt('id{{$key}}'); return false"></a>
                                 </button>
-                                <button class="btn btn-link"><a href="{{route('maps', ['id'=>json_decode($q)->id])}}" class="glyphicon glyphicon-map-marker"></a>
+                                <button class="btn btn-link"><a href="{{route('maps', ['id'=>json_decode($q)->id])}}"
+                                                                class="glyphicon glyphicon-map-marker"></a>
                                 </button>
                             </div>
                         </div>
-
                         <div class="column task" id="id{{$key}}">
                             <div class="row">
                                 <div class="text-center">Название</div>
                                 <div class="text-center">Описание</div>
                                 <div class="text-center">Очки</div>
                                 <div class="text-center">Выполнение</div>
-
                             </div>
                             @foreach($tasksLast as $kk => $task)
                                 @if($kk == $key)
                                     @foreach(json_decode($task) as $k => $t)
-
                                         <div class="row">
                                             <div class="text-center">{!! $t->name !!}</div>
                                             <div class="text-center">{!! $t->description !!}</div>
@@ -135,24 +130,15 @@
                                             @endif
                                         </div>
                                     @endforeach
-
                                 @endif
                             @endforeach
-
                         </div>
-
                     @endforeach
-
                 </div>
-
-
-            </div> <!-- div section inner-->
-        </section>
-
+            </div>
+        </div>
     </main>
-
     <footer></footer>
-
     <script type="text/javascript">
         function openbox(id) {
             if (id == 'idTQ') {
@@ -178,7 +164,5 @@
                 document.getElementById(id).style.display = 'none';
             }
         }
-
     </script>
-
 @stop

@@ -64,16 +64,6 @@ a.splash-arrow:hover {
     bottom: 50px;
 }
 
-
-/*@media all and (max-width: 690px) {
-    header nav { float: none; display: inline-block; margin: 0 auto; }
-    .splash-title {font-size: 2em;}
-}
-
-@media all and (max-width: 480px) {
-    .splash-title {font-size: 1.5em;}
-}*/
-
 div.cont{
     max-width: 1200px;
     width: 100%;
@@ -91,8 +81,6 @@ header {
     height: 70px;
     background: white;
     min-width: 300px;
-    max-width: 1200px;
-
 }
 
 /*.logo {
@@ -115,6 +103,8 @@ header {
 
 
 header nav {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 0;
     width: 100%;
     display: flex;
@@ -132,6 +122,8 @@ header nav {
     padding: 10px 20px;
     position: relative;
     color: black!important;
+    font-family: "Verdana", sans-serif;
+    font-size: 12px;
     border: none;
     background: none;
     font-weight: 600;
@@ -140,7 +132,7 @@ header nav {
 }
 
 .cont a:hover{
-
+    color: #9c9595!important;
     text-decoration: none!important;
 }
 
@@ -169,13 +161,17 @@ main{
 }
 
 .start-button{
+    background: white!important;
     border: 2px solid lightgrey!important;
+    font-size: 18px!important;
+    font-family: 'Georgia', sans-serif!important;
 }
 
 .start-button:hover{
     background: white;
     border-color: lightgrey!important;
     color: grey!important;
+    border-color: black!important;
 }
 
 .fade {
@@ -199,13 +195,12 @@ footer{
 .footer{
     position: relative;
     top: 70px;
-    margin-top: 20px;
+    margin: 20px 5px 5px 5px;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
-    margin: 5px;
 }
 
 .rows {
@@ -213,7 +208,7 @@ footer{
     height: 270px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -281,12 +276,14 @@ footer{
 .footer-link{
     margin: 5px!important;
     padding: 0!important;
+    font-size: 10px!important;;
 }
 
-.copyrite{
+.copyrite {
     position: relative;
     top: 100px;
     margin: 10px;
+    text-align: center;
 }
 
 @media screen and (max-width: 500px) {

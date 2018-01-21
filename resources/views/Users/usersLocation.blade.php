@@ -25,11 +25,9 @@
 
         <section class="section">
             <div id="section_inner">
-
-
                 <h1>Поздравляем, Вы выполнили задание!</h1>
                 <h1>Подтвердите Ваше местоположение:</h1><br>
-                <div><?php var_dump($idExecuteTask) ?></div>
+
                 <?php
                 echo Form::open(array('url' => route('savePosition', ['id' => $idExecuteTask]), 'method' => 'post', 'role' => 'form', 'class' => 'form-vertical'));
                 ?>

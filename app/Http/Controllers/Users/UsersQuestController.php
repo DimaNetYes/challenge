@@ -32,20 +32,34 @@ class UsersQuestController extends Controller
     protected function more($id)
     {
         $q = Quest::find($id);
-        return view('Users.moreQuest')->with(['q' => $q]);
+        $team = Team::all();
+        return view('Users.moreQuest')->with(['q' => $q, 'team' => $team]);
     }
 
-    protected function play($id)
-    {
-        $u = User::find(Auth::user()->id)->quest($id);
-        if (count($u) == 0) {
-            $team = Team::all();
-            return view('Users.usersTeamsQuest')->with(['idQuest' => $id, 'team' => $team]);
-
-        } else {
-            return redirect()->action('Users\UsersQuestController@view');
+    public function selectTeam(){
+        $data = Input::all();
+        $count = count(UserQuest::ofWhereWhere('idQuest', $data['quest'], 'idUser', Auth::user()->id));
+        $ok = UserQuest::updateOrCreate(['idUser' => Auth::user()->id, 'idQuest' => $data['quest']], ['idTeam' => $data['team']]);
+        $ok->save();
+        if($count){
+        return response()->json(array('msg'=> "Ваша команда успешно изменена!"), 200);
+        }else {
+            return response()->json(array('msg'=> "Вы зарегистрировались в квесте! Удачи!"), 200);
         }
     }
+
+//    protected function play($id)
+//    {
+//        $u = User::find(Auth::user()->id)->quest($id);
+//        if (count($u) == 0) {
+//            $team = Team::all();
+//            return view('Users.usersTeamsQuest')->with(['idQuest' => $id, 'team' => $team]);
+//
+//        } else {
+//            return redirect()->action('Users\UsersQuestController@view');
+//        }
+//    }
+
 
     protected function editTeam($id)
     {
@@ -61,13 +75,13 @@ class UsersQuestController extends Controller
         return redirect()->action('Users\UsersQuestController@userProfile');
     }
 
-    protected function ok($id)
-    {
-        $d = Input::all();
-        $ok = UserQuest::updateOrCreate(['idUser' => Auth::user()->id, 'idQuest' => $id], ['idTeam' => $d['input']]);
-        $ok->save();
-        return redirect()->action('Users\UsersQuestController@userProfile');
-    }
+//    protected function ok($id)
+//    {
+//        $d = Input::all();
+//        $ok = UserQuest::updateOrCreate(['idUser' => Auth::user()->id, 'idQuest' => $id], ['idTeam' => $d['input']]);
+//        $ok->save();
+//        return redirect()->action('Users\UsersQuestController@userProfile');
+//    }
 
 
     protected function userProfile()
@@ -108,7 +122,9 @@ class UsersQuestController extends Controller
                 $teamLast[] = Team::find($idTeam)->name;     // массив названий команд
 
                 $results = Result::ofWhereWhere('idQuest', $idQuest, 'idTeam', $idTeam);
-                $result[] = $results[0]->result;
+                if(count($results)) {
+                    $result[] = $results[0]->result;
+                }
 
                 $t = Quest::find($idQuest)->tasks; // задания для квеста прошедшего
                 if (count($t)) {
@@ -318,4 +334,6 @@ class UsersQuestController extends Controller
 
         return view('Users.markers')->with(['coord' => $coord, 'dateTime' => $datetime]);
     }
+
+
 }
