@@ -20,9 +20,6 @@
     </div>
 @endif
 <main>
-    <?php
-        $count_avatar = 0;
-    ?>
     <div class="container-fluid">
         <ul class="gallery-post-grid holder">
 
@@ -36,7 +33,7 @@
                             <img src={{$q->avatar}} class="thum" alt="image">
                             <span class='gallery-icons'>
                                 <a href='#' class='item-zoom-link lightbox' title='Просмотр' onclick='showDetails(this)'
-                                   data-rel="{!! $q->name !!}"></a>
+                                   data-rel="{!! $q->name !!}" data-ava="{!! $q->avatar !!}"></a>
                                 <a href='{{route('more', ['id'=>$q->id])}}' class='item-details-link '
                                    title='Играть'></a>
                             </span>
@@ -54,7 +51,7 @@
                             <span class='gallery-icons'>
                                                              <a href='#' class='item-zoom-link lightbox'
                                                                 title='Просмотр' onclick='showDetails(this)'
-                                                                data-rel="{!! $q->name !!}"></a>
+                                                                data-rel="{!! $q->name !!}" data-ava="{!! $q->avatar !!}"></a>
                                 <a href='{{route('more', ['id'=>$q->id])}}' class='item-details-link'
                                    title='Играть'></a>
                             </span>
@@ -68,9 +65,6 @@
                         <div class='col-xs-12 col-sm-6 col-md-4 dQ'>
                             <li class='quest' data-id='id-<?= $key ?>' data-type='illustration'>
                             <span class='gallery-hover-3col hidden-phone hidden-tablet'>
-                                <?php
-                                    $count_avatar +=1;
-                                ?>
                                 <img src={{$q->avatar}} class="thum" alt="image">
                             <a href='#' class='pp'>  </a>
                                 <span class='gallery-icons'>

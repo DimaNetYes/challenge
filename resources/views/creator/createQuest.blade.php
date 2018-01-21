@@ -1,6 +1,12 @@
 @extends('layouts.dashboard')
 @section('style')
     {{HTML::style('css/AdminGeneral/forms.css')}}
+
+    <style>
+        body{
+            background: #f9f9f9 url(../../../public/img/page-bg-1.jpg);
+        }
+    </style>
 @stop
 @section('content')
 
