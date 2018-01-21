@@ -30,7 +30,7 @@
     {{--{{Form::label('date', 'Дата планируемого проведения проведения:') . Form::date('date') }}--}}
 
                    {{Form::hidden('status', '-1')}}
-                   {{Form::hidden('this', Auth::id())}}
+                   {{Form::hidden('user_id', Auth::id())}}
                     <br>
                     {!!  Form::submit('Добавить', array('class' => 'btn btn-success', 'id' => 'Add_btn')) !!}
                      <a href="{{ route("view quest") }}">{{ Form::button('Назад', array('class' => 'btn btn-secondary', 'route' => 'view quest')) }} </a>

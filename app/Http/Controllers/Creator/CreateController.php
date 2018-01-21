@@ -40,7 +40,7 @@ class CreateController extends Controller
         $data = $request->all();
         $quest = Quest::create($data);
         $quest->save();
-        return redirect()->action("Creator\CreateController@createTasks", ["this" => $data['this']]);
+        return redirect()->action("Creator\CreateController@createTasks", ["this" => $data['user_id']]);
     }
 
     //количество тасков
