@@ -1,13 +1,7 @@
 <?php $__env->startSection('style'); ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
-    <title>MoreQuests</title>
-    <?php echo e(HTML::style('css/User/userMoreQuests.css')); ?>
+     <?php echo e(HTML::style('css/User/userMoreQuests.css')); ?>
 
     <?php echo e(HTML::style('css/UserGeneral/headerNav.css')); ?>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
