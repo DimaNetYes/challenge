@@ -40,13 +40,13 @@ class CreateController extends Controller
         $data = $request->all();
         $quest = Quest::create($data);
         $quest->save();
-        return redirect()->action("Creator\CreateController@createTasks", ["user_id" => $data['user_id']]);
+        return redirect()->action("Creator\CreateController@createTasks", ["this" => $data['this']]);
     }
 
     //количество тасков
     public function createTasks(Request $request){
         $data = $request->all();
-        return view("creator.createTasks", ["user_id" => $data]);
+        return view("creator.createTasks", ["user_id" => $data['this']]);
     }
     //добавление задач
     public function addTasks(Request $request){
