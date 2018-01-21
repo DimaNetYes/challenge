@@ -20,6 +20,9 @@
     </div>
 @endif
 <main>
+    <?php
+        $count_avatar = 0;
+    ?>
     <div class="container-fluid">
         <ul class="gallery-post-grid holder">
 
@@ -65,12 +68,17 @@
                         <div class='col-xs-12 col-sm-6 col-md-4 dQ'>
                             <li class='quest' data-id='id-<?= $key ?>' data-type='illustration'>
                             <span class='gallery-hover-3col hidden-phone hidden-tablet'>
+                                <?php
+                                    $count_avatar +=1;
+                                ?>
                                 <img src={{$q->avatar}} class="thum" alt="image">
                             <a href='#' class='pp'>  </a>
                                 <span class='gallery-icons'>
-                                                                      <a href='#' class='item-zoom-link lightbox'
-                                                                         title='Просмотр' onclick='showDetails(this)'
-                                                                         data-rel="{!! $q->name !!}"></a>
+
+                                  <a href='#' class='item-zoom-link lightbox'
+                                     title='Просмотр' onclick='showDetails(this)'
+                                     data-rel="{!! $q->name !!}" data-ava="{!! $q->avatar !!}"></a>
+
                                     <a href='{{route('more', ['id'=>$q->id])}}' class='item-details-link'
                                        title='Играть'></a>
                                 </span>
@@ -91,10 +99,8 @@
         <div class="position">
             <div class="picture_center ">
                 <div class="picture_center_center">
+                    <img alt="" class="active_img">
                     <a href="#" class="glyphicon glyphicon-fullscreen" id="top_right_screen"></a>
-                    <div>
-                        <img src="" alt="">
-                    </div>
                 </div>
                 <div class="bottom_desc">
                     <p class="questName"></p>
@@ -103,11 +109,14 @@
             </div>
         </div>
         <div class="bg"></div>
+
         <script>
             // работает с data type в <a>
             function showDetails(quest) {
                 var questType = quest.getAttribute("data-rel");
                 $('.questName').html(questType);
+                var avatar = quest.getAttribute("data-ava");
+                $('.active_img').css('content', 'url('+ avatar +')');
             }
         </script>
         <code>
