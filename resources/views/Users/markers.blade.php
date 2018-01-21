@@ -8,24 +8,27 @@
         @include('Users.General.headerNav')
     </header>
     <main>
-        <aside>
+        <div class="menu-container">
             <div id="logo-container">
                 <img src="{{Auth::user()->avatar}}" class="logo-container-pict">
             </div>
-            <div class="bg-white">
-                <p class="name">{{Auth::user()->name}}</p>
-                <p class="name">Возраст: {{Auth::user()->age}}</p>
-                <p class="name">Пол: {{Auth::user()->gender}}</p>
+            <div class="menu-main-container">
+                <ul class="menu">
+                    <li>
+                        <div class="about">
+                            <p>{{Auth::user()->name}}</p>
+                            <p>Возраст: {{Auth::user()->age}}</p>
+                            <p> Пол: {{Auth::user()->gender}}</p>
+                        </div>
+                    </li>
+                    <li><a href="{{route('userProfile')}}">Назад</a></li>
+                     </ul>
             </div>
-            <nav class="aside-menu"><a href="{{route('userProfile')}}">Назад</a></nav>
-        </aside>
+
+        </div>
+
         <section class="section">
             <div id="section_inner">
-<<<<<<< HEAD
-
-=======
-                {{--<p onclick="initMap($coord)">xxx</p>--}}
->>>>>>> Quest
                 <div id="floating-panel">
                     <button id="drop" onclick="drop()">Drop Markers</button>
                 </div>
