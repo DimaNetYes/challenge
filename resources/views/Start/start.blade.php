@@ -1,6 +1,7 @@
 @extends('layouts.dashboard')
 @section('style')
-    {{HTML::style('css/stylesStart.css')}}
+    <link media="all" type="text/css" rel="stylesheet" href="/public/css/stylesStart.css">
+    {{--{{HTML::style('css/stylesStart.css')}}--}}
 @stop
 @section('content')
 

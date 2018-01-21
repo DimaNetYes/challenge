@@ -1,6 +1,6 @@
 <?php $__env->startSection('style'); ?>
-    <?php echo e(HTML::style('css/stylesStart.css')); ?>
-
+    <link media="all" type="text/css" rel="stylesheet" href="/public/css/stylesStart.css">
+    
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
