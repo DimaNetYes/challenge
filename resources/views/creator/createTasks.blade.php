@@ -11,6 +11,10 @@
         #add_btn{
             margin-right: 10px;
         }
+        #modal{
+            padding: 20px;
+            background: #fcfcfc;
+        }
     </style>
 @stop
 @section('content')
@@ -31,6 +35,7 @@
 
         <div class="row">
             <div class="col-xs-9 col-md-6 col-md-offset-1">
+                <div class="modal-content" id="modal">
                 <div class="form-group">
                     <div class="form-group">
                         <label for="number"></label>
@@ -48,6 +53,7 @@
                 {{Form::submit('Выбрать', array('class' => 'btn btn-primary', 'id' => 'add_btn'))}}
                 <a href="{{ route("view quest") }}">{{ Form::button('Назад', array('class' => 'btn btn-secondary', 'route' => 'view quest')) }} </a>
                 {{Form::close()}}
+                </div>
             </div>
         </div>
     </div>

@@ -21,15 +21,20 @@
 </header>
 <div class="container">
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
+
+        <div class="col-xs-12  col-md-11 col-md-offset-1">
             <h2>Вы можете создать квест </h2><br>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12 col-md-6 col-md-offset-1">
+
+                <div class="form-group">
                  <a href="{{route('createQuestCreator')}}">{{ Form::button('Создать Квест', array('class' => 'btn btn-lg btn-primary'))}}</a><br><br>
 
                  <a href="{{route('start')}}">{{ Form::button('Назад', array('class' => 'btn btn-secondary'))}}</a>
+
+            </div>
         </div>
     </div>
 </div>
