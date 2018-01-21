@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('style')
-     {{HTML::style('css/User/userMoreQuests.css')}}
-    {{HTML::style('css/UserGeneral/headerNav.css')}}
+    <link media="all" type="text/css" rel="stylesheet" href="/public/css/User/userMoreQuests.css">
+    <link media="all" type="text/css" rel="stylesheet" href="/public/css/UserGeneral/headerNav.css">
 @stop
 @section('content')
     <header>

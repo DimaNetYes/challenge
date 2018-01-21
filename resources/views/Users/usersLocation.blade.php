@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 @section('style')
-    {{HTML::style('css/User/userProfile.css')}}
-    {{HTML::style('css/UserGeneral/headerNav.css')}}
+    <link media="all" type="text/css" rel="stylesheet" href="/public/css/User/userProfile.css">
+    <link media="all" type="text/css" rel="stylesheet" href="/public/css/UserGeneral/headerNav.css">
 @stop
 @section('content')
 
@@ -17,14 +17,15 @@
             <p class="name">Возраст: {{Auth::user()->age}}</p>
             <p class="name">Пол: {{Auth::user()->gender}}</p>
 
-            <button class="btn btn-link link"><a href="{{route('playQuest',['idQuest'=>$idQuest])}}">Продолжить</a></button>
+            <button class="btn btn-link link"><a href="{{route('playQuest',['idQuest'=>$idQuest])}}">Продолжить</a>
+            </button>
         </aside>
 
         <section class="section">
             <div id="section_inner">
                 <h2>Поздравляем, Вы выполнили задание!</h2>
                 <h2>Подтвердите Ваше местоположение:</h2><br>
-                 <input type="text" id="x" name="coordX">
+                <input type="text" id="x" name="coordX">
                 <input type="text" id="y" name="coordY">
                 <button onclick="geoFindMe()">Моё положение</button>
                 <div id="out"></div>
