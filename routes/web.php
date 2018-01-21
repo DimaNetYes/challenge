@@ -22,14 +22,14 @@ Route::get('google/callback', 'Auth\GoogleController@handleProviderCallback');
 
 Route::get('/redirect', ['uses' => 'Auth\SocialAuthFacebookController@redirect', 'as' => 'facebook']);
 Route::get('/callback', 'Auth\SocialAuthFacebookController@callback');
-Route::get('info/{idLink?}', ['uses'=>'HomeController@info', 'as' => 'info']);
+Route::get('/info/{idLink?}', ['uses'=>'HomeController@info', 'as' => 'info']);
 
 Auth::routes();
 
 
 
-Route::get('contact-form', 'Contacts\ContactsController@cf');
-Route::post('contact-form', 'Contacts\ContactsController@cfp')->name('contacts');
+Route::get('/contact-form', 'Contacts\ContactsController@cf')->name('contact-form');
+Route::post('/contact-form', 'Contacts\ContactsController@cfp')->name('contacts');
 
 
 
@@ -37,10 +37,8 @@ Route::post('contact-form', 'Contacts\ContactsController@cfp')->name('contacts')
 //Страницы без авторизации
 Route::group(['prefix' => 'users', 'middleware' => ['web']], function () {
     //страничка с квестами (надо сделать только с доступными квестами)
-    Route::get('/view', ['uses' => 'Users\UsersQuestController@view', 'as' => 'user_view_quest']);
-    //Подробная информация о квесте (после нажатия на кнопку more)
-    Route::get('/more/quest/{id?}', ['uses' => 'Users\UsersQuestController@more', 'as' => 'more'])->where('id', '[0-9]+');
-});
+    Route::get('/view', ['uses' => 'Users\UsersQuestController@view', 'as' => 'view quest']);
+    });
 
 
 //Админка
@@ -127,10 +125,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'auth', 'admin']], fu
 //для залогиненного пользователя
 
 Route::group(['prefix' => 'users', 'middleware' => ['web', 'auth']], function () {
+    //Подробная информация о квесте (после нажатия на кнопку more)
+    Route::get('/more/quest/{id?}', ['uses' => 'Users\UsersQuestController@more', 'as' => 'more'])->where('id', '[0-9]+');
+
     //планируемый маршрут при выборе user-ом квеста на выполнение(надо делать)
     Route::get('play/{id?}/', ['uses' => 'Users\UsersQuestController@play', 'as' => 'play']);
     //планируемый маршрут при выборе user-ом квеста на выполнение(надо делать)
-    Route::post('ok/{idQuest?}/{idTeam?}', ['uses' => 'Users\UsersQuestController@ok', 'as' => 'ok']);
+   // Route::post('ok/{idQuest?}/{idTeam?}', ['uses' => 'Users\UsersQuestController@ok', 'as' => 'ok']);
    /* Route::get('tasks/', ['uses' => 'Users\UsersQuestController@showTasksFromQuest', 'as' => 'showTasksForQuest']);*/
     Route::get('profile/', ['uses' => 'Users\UsersQuestController@userProfile', 'as' => 'userProfile']);
     Route::get('playQuest/{idQuest}', ['uses' => 'Users\UsersQuestController@playQuest', 'as' => 'playQuest']);
