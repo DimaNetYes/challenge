@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 @section('style')
-    {{HTML::style('css/User/userMoreQuests.css')}}
+     {{HTML::style('css/User/userMoreQuests.css')}}
     {{HTML::style('css/UserGeneral/headerNav.css')}}
 @stop
 @section('content')
