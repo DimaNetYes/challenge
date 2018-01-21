@@ -47,6 +47,7 @@ header, main, footer{
 {
     display: none;
 }
+
 .quest button a {
             border: none;
             width: 30px;
@@ -96,9 +97,10 @@ main aside div{
     height: 50px;
 }
 
+
 #id0, #id1, #id2
 {
-width: 90%;
+    width: 90%;
     margin: 0 auto;
     border: 1px solid #cfc9c9;
 }

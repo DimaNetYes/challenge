@@ -3,38 +3,40 @@
 
     <?php echo e(HTML::style('css/UserGeneral/headerNav.css')); ?>
 
+
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
-
     <header>
         <?php echo $__env->make('Users.General.headerNav', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     </header>
-
     <main>
-        <aside>
-            <div class="avatar"></div>
-            <p class="name">Имя: <?php echo e(Auth::user()->name); ?></p>
-            <p class="name">Возраст: <?php echo e(Auth::user()->age); ?></p>
-            <p class="name">Пол: <?php echo e(Auth::user()->gender); ?></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-            <button class="btn btn-link link"><a href="" onclick="openbox('idTQ'); return false">Текущий
-                    квест</a>
-            </button>
-            <button class="btn btn-link link"><a href="" onclick="openbox('idFQ'); return false">Грядущие квесты</a>
-            </button>
-            <button class="btn btn-link link"><a href="" onclick="openbox('idLQ'); return false">Архив</a>
-            </button>
-        </aside>
+        <div class="wrapper">
+            <div class="menu-container">
+                <div id="logo-container">
+                    <img src="<?php echo e(Auth::user()->avatar); ?>" class="logo-container-pict">
+                </div>
+                <div class="menu-main-container">
+                    <ul class="menu">
+                        <li>
+                            <div class="about">
+                                <p><?php echo e(Auth::user()->name); ?></p>
+                                <p>Возраст: <?php echo e(Auth::user()->age); ?></p>
+                                <p> Пол: <?php echo e(Auth::user()->gender); ?></p>
+                            </div>
+                        </li>
+                        <li><a href="#" onclick="openbox('idTQ'); return false">Текущий Квест
+                            </a></li>
+                        <li><a href="#" onclick="openbox('idFQ'); return false">Предстоящие квесты
+                            </a></li>
+                        <li><a href="#" onclick="openbox('idLQ'); return false">Архив
+                            </a></li>
+                    </ul>
+                </div>
 
-        <section class="section">
-
-            <div id="section_inner">
-
+            </div>
+            <div id="container">
+                
                 <div class="column" id="idTQ">
-
                     <div class="row">
                         <div class="text-center">Название</div>
                         <div class="text-center">Дата</div>
@@ -57,8 +59,6 @@
                         </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
-
-
                 <div class="column" id="idFQ">
                     <div class="row">
                         <div class="text-center">Название</div>
@@ -75,7 +75,7 @@
                             <div class="text-center"><?php echo $teamFuture[$key]; ?></div>
                             <div>
                                 <button class="btn btn-link"><a
-                                            href="<?php echo e(route('editTeam', ['id'=>json_decode($q)->id])); ?>"
+                                            href="<?php echo e(route('more', ['id'=>json_decode($q)->id])); ?>"
                                             class="glyphicon glyphicon-pencil"></a>
                                 </button>
                                 <button class="btn btn-link"><a
@@ -86,8 +86,6 @@
                         </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </div>
-
-
                 <div class="column" id="idLQ">
                     <div class="row">
                         <div class="text-center">Название</div>
@@ -108,23 +106,22 @@
                                 <button class="btn btn-link"><a href="" class="glyphicon glyphicon-th-list"
                                                                 onclick="openboxt('id<?php echo e($key); ?>'); return false"></a>
                                 </button>
+
                                 <button class="btn btn-link"><a href="<?php echo e(route('maps', ['id'=>json_decode($q)->id])); ?>" class="glyphicon glyphicon-map-marker"></a>
+
                                 </button>
                             </div>
                         </div>
-
                         <div class="column task" id="id<?php echo e($key); ?>">
                             <div class="row">
                                 <div class="text-center">Название</div>
                                 <div class="text-center">Описание</div>
                                 <div class="text-center">Очки</div>
                                 <div class="text-center">Выполнение</div>
-
                             </div>
                             <?php $__currentLoopData = $tasksLast; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $kk => $task): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <?php if($kk == $key): ?>
                                     <?php $__currentLoopData = json_decode($task); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $t): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-
                                         <div class="row">
                                             <div class="text-center"><?php echo $t->name; ?></div>
                                             <div class="text-center"><?php echo $t->description; ?></div>
@@ -136,24 +133,15 @@
                                             <?php endif; ?>
                                         </div>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
                                 <?php endif; ?>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
                         </div>
-
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
                 </div>
-
-
-            </div> <!-- div section inner-->
-        </section>
-
+            </div>
+        </div>
     </main>
-
     <footer></footer>
-
     <script type="text/javascript">
         function openbox(id) {
             if (id == 'idTQ') {
@@ -179,8 +167,7 @@
                 document.getElementById(id).style.display = 'none';
             }
         }
-
     </script>
-
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.dashboard', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

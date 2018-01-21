@@ -1,5 +1,5 @@
 <?php $__env->startSection('style'); ?>
-      <?php echo HTML::style('css/AdminGeneral/forms.css'); ?>
+    <?php echo e(HTML::style('css/AdminGeneral/forms.css')); ?>
 
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
@@ -30,7 +30,7 @@
 
     ?>
 
-    <?php $__env->stopSection(); ?>
+<?php $__env->stopSection(); ?>
 
 
 
