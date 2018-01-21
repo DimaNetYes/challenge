@@ -8,13 +8,13 @@
     <?php
     echo "<br>";
     echo Form::open(array('action' => 'Creator\CreateController@addQuest'));
-    echo Form::label('name', 'Название') . Form::text('name');
+    echo Form::label('name', 'Название') . Form::text('name', "", array('required' => 'require'));
     echo "<br>";
-    echo Form::label('description', 'Описание') . Form::text('description');
+    echo Form::label('description', 'Описание') . Form::text('description', "", array('required' => 'require'));
     echo "<br>";
-    echo Form::label('fullDescription', 'Полное описание') . Form::text('fullDescription');
+    echo Form::label('fullDescription', 'Полное описание') . Form::text('fullDescription', "", array('required' => 'require'));
     echo "<br>";
-    echo Form::label('date', 'Дата планируемого проведения проведения:') . Form::date('date');
+//    echo Form::label('date', 'Дата планируемого проведения проведения:') . Form::date('date');
     echo "<br>";
     ?>
     {{Form::hidden('status', '-1')}}

@@ -23,7 +23,7 @@
                 <h2>Количество заданий в квесте</h2>
             </div>
         </div>
-    
+
         <div class="row">
             <div class="col-xs-12 col-md-6 col-md-offset-1">
                 <div class="form-group">
