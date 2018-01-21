@@ -1,12 +1,11 @@
 <?php $__env->startSection('style'); ?>
     <link media="all" type="text/css" rel="stylesheet" href="/public/css/stylesStart.css">
-    
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
     <div class="splash fade-in">
-        <a href="#" class="splash-arrow fade-in"><img src="img/down-arrow.png" alt=""/></a>
-    </div> <!-- END .splash -->
+        <a href="#" class="splash-arrow fade-in"><img src="/public/img/down-arrow.png" alt=""/></a>
+    </div>
 
     <div class="cont">
         <header>
