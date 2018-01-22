@@ -53,10 +53,10 @@
         var labelIndex = 0;
         var markers = [];
         function initMap($coord, $dateTime) {
-            var a = "<php echo $coord ?>";
+            var a = "<?php echo $coord ?>";
             console.log(a);
             console.log(a);
-            var dt = "<php echo $dateTime ?>";
+            var dt = "<?php echo $dateTime ?>";
             arr = dt.split(',');
             b = JSON.parse(a);
             map = new google.maps.Map(document.getElementById("map"), {
@@ -66,8 +66,8 @@
             });
         }
         function drop($coord, $dateTime) {
-            var a = "<php echo $coord ?>";
-            var dt = "<php echo $dateTime ?>";
+            var a = "<?php echo $coord ?>";
+            var dt = "<?php echo $dateTime ?>";
             arr = dt.split(',');
             console.log(a);
             b = JSON.parse(a);
