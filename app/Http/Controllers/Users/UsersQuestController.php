@@ -185,10 +185,10 @@ class UsersQuestController extends Controller
                 $idUserQuestOne = $v->id;
             }
 
-               $idUQ = UserQuest::ofWhereWhere('idQuest', $idQuest, 'idTeam', $idTeam);
-                foreach ($idUQ as $v) {
-                    $idUserQuest[] .= $v->id; // массив idUserQuest для всех участников команды
-                }
+            $idUQ = UserQuest::ofWhereWhere('idQuest', $idQuest, 'idTeam', $idTeam);
+            foreach ($idUQ as $v) {
+                $idUserQuest[] .= $v->id; // массив idUserQuest для всех участников команды
+            }
 
             if ($statusQuest == 0) {               // если квест активен для команды таблица userQuests
                 // $tasksQuest = Quest::find($idQuest)->tasks()->orderBy('orderBy', 'Asc')->get();
@@ -234,14 +234,14 @@ class UsersQuestController extends Controller
                         }
                     }
 
-                        if (count($res) == 0) {
-                            $exTask = new ExecuteTask();// делаем новую запись в табл. executeTasks
-                            $exTask->idTask = $v->id;
-                            $exTask->idUserQuest = $idUserQuestOne;
-                            $exTask->status = 0;
-                            $exTask->save();
-                            return view('Users.usersQuestPlay')->with(['task' => $v]); //выводим
-                        }
+                    if (count($res) == 0) {
+                        $exTask = new ExecuteTask();// делаем новую запись в табл. executeTasks
+                        $exTask->idTask = $v->id;
+                        $exTask->idUserQuest = $idUserQuestOne;
+                        $exTask->status = 0;
+                        $exTask->save();
+                        return view('Users.usersQuestPlay')->with(['task' => $v]); //выводим
+                    }
 
                 }
 
