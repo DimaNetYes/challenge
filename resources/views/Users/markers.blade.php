@@ -54,6 +54,8 @@
         var markers = [];
         function initMap($coord, $dateTime) {
             var a = "<? echo $coord ?>";
+            console.log(a);
+            console.log(a);
             var dt = "<? echo $dateTime ?>";
             arr = dt.split(',');
             b = JSON.parse(a);
