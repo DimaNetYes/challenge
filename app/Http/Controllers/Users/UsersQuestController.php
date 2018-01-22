@@ -287,9 +287,13 @@ class UsersQuestController extends Controller
             }
         }
 
-        return view('Users.usersLocation')->with(['idExecuteTask' => $idTask, 'idQuest' => $idQuest]);
+        return redirect()->route('usersLocation',['idExecuteTask' => $idTask, 'idQuest' => $idQuest]);
     }
 
+
+    public function usersLocation($idTask, $idQuest){
+        return view('Users.usersLocation')->with(['idExecuteTask' => $idTask, 'idQuest' => $idQuest]);
+    }
 
     public
     function savePosition()

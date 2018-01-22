@@ -24,7 +24,7 @@
                             <p> Пол: {{Auth::user()->gender}}</p>
                         </div>
                     </li>
-                    <li><a href="{{route('playQuest')}}">Продолжить</a></li>
+                    <li><a href="{{route('playQuest',['idQuest' => $idQuest])}}">Продолжить</a></li>
                 </ul>
             </div>
 

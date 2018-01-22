@@ -40,28 +40,28 @@ class CreateController extends Controller
         $data = $request->all();
         $quest = Quest::create($data);
         $quest->save();
-        return redirect()->action("Creator\CreateController@createTasks", ["this" => $data['author_id']]);
+        return redirect()->action("Creator\CreateController@createTasks", ["this" => $data['user_id']]);
     }
 
     //количество тасков
     public function createTasks(Request $request){
         $data = $request->all();
-        return view("creator.createTasks", ["author_id" => $data['this']]);
+        return view("creator.createTasks", ["user_id" => $data['this']]);
     }
     //добавление задач
     public function addTasks(Request $request){
         $number = $request->number;  //количество задач
-        $author_id = $request->user_id;
-        $author_id*=1;
+        $user_id = $request->user_id;
+        $user_id*=1;
         $number++;
-        return view("creator.addTasks", ["number" => $number, "author_id" => $author_id]);
+        return view("creator.addTasks", ["number" => $number, "user_id" => $user_id]);
     }
     //сохранение задач
     public function saveTasks(Request $request){
         $Quest = Quest::get();
         $data = $request->all();
 
-        $idQuest = $Quest->where('author_id', '=', $data['author_id'])->last()->id;
+        $idQuest = $Quest->where('user_id', '=', $data['user_id'])->last()->id;
         $data['idQuest'] = $idQuest;
 
         $i = 1;
