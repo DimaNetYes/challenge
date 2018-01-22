@@ -314,28 +314,28 @@ class UsersQuestController extends Controller
         $idUserQ = array();                                 // участники каждой команды
         $exTasks = array();
 
-     /*   $questTeams = Quest::find($idQuest)->teams->unique();
-
-        foreach ($questTeams as $k) {
-            $idTeams[] .= $k->id;
-        }
-
-        foreach ($idTeams as $team) {                         // для каждой команды:
-
-            $userTeams = UserQuest::ofWhereWhere('idQuest', $idQuest, 'idTeam', $team);
-            foreach ($userTeams as $u) {
-                $idUserQ[] .= $u->id;
-            }
-
-            foreach ($idUserQ as $v) {                          // выполненные!!! задания для команды
-                $exTask = ExecuteTask::ofWhereWhere('idUserQuest', $v, 'status', 1);
-                foreach ($exTask as $e) {
-                    $exTasks[] .= $e;
-                    $coord[] = [$e->coordX, $e->coordY];
-                }
-            }
-        }
-        dd($idUserQ);*/
+//      $questTeams = Quest::find($idQuest)->teams->unique();
+//
+//        foreach ($questTeams as $k) {
+//            $idTeams[] .= $k->id;
+//        }
+//
+//        foreach ($idTeams as $team) {                         // для каждой команды:
+//
+//            $userTeams = UserQuest::ofWhereWhere('idQuest', $idQuest, 'idTeam', $team);
+//            foreach ($userTeams as $u) {
+//                $idUserQ[] .= $u->id;
+//            }
+//
+//            foreach ($idUserQ as $v) {                          // выполненные!!! задания для команды
+//                $exTask = ExecuteTask::ofWhereWhere('idUserQuest', $v, 'status', 1);
+//                foreach ($exTask as $e) {
+//                    $exTasks[] .= $e;
+//                    $coord[] = [$e->coordX, $e->coordY];
+//                }
+//            }
+//        }
+//        dd($idUserQ);
         $idUser = Auth::user()->id;
         $team = User::find($idUser)->teams($idQuest)->get();
         $idTeam = $team[0]->id;
