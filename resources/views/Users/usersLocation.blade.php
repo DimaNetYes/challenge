@@ -76,8 +76,8 @@
                 var longitude = position.coords.longitude;
 
                 //   output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
-                coordX.value = longitude;
-                coordY.value = latitude;
+                coordX.value = latitude;
+                coordY.value = longitude;
                 posit(idExTask);
 
                 var img = new Image();
