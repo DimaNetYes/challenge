@@ -38,9 +38,9 @@
     </main>
     <footer></footer>
     <script type="text/javascript">
-        window.onload = function () {
-            initMap();
-        };
+//        window.onload = function () {
+//            initMap();
+//        };
         var map;
         var t = 0;
         var startDestination;

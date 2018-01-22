@@ -358,6 +358,4 @@ class UsersQuestController extends Controller
         $coord = json_encode($coord);
         return view('Users.markers')->with(['coord' => $coord, 'dateTime' => $datetime]);
     }
-
-
 }
