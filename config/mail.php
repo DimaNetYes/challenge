@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', '777quest777@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'QuestTeam'),
     ],
 
     /*
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME'),
+    'username' => 'postmaster@sandbox0ca4176db98e4d3a8d811a51f3c71b02.mailgun.org',
 
-    'password' => env('MAIL_PASSWORD'),
+    'password' => '2b7a01a75d77744542bfea8d2adae2a6',
 
     /*
     |--------------------------------------------------------------------------
