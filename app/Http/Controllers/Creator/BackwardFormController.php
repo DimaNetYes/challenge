@@ -34,7 +34,7 @@ class BackwardFormController extends Controller
             'userId' => $id
         );
 
-
+        
         Mail::send('creator/contact', $data, function ($message) use ($user) {
             $message->to('777quest777@gmail.com')
                 ->replyTo($user['email'])
