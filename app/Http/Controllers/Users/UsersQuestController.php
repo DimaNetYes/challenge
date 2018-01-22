@@ -309,8 +309,34 @@ class UsersQuestController extends Controller
     {
         $coord = array();
         $exTask = array();
+        $idTeams = array();
         $coord = array();
-        $idUser = Auth::user()->id;
+        $idUserQ = array();                                 // участники каждой команды
+        $exTasks = array();
+
+        $questTeams = Quest::find($idQuest)->teams->unique();
+
+        foreach ($questTeams as $k) {
+            $idTeams[] .= $k->id;
+        }
+
+        foreach ($idTeams as $team) {                         // для каждой команды:
+
+            $userTeams = UserQuest::ofWhereWhere('idQuest', $idQuest, 'idTeam', $team);
+            foreach ($userTeams as $u) {
+                $idUserQ[] .= $u->id;
+            }
+
+            foreach ($idUserQ as $v) {                          // выполненные!!! задания для команды
+                $exTask = ExecuteTask::ofWhereWhere('idUserQuest', $v, 'status', 1);
+                foreach ($exTask as $e) {
+                    $exTasks[] .= $e;
+                    $coord[] = [$e->coordX, $e->coordY];
+                }
+            }
+        }
+        dd($idUserQ);
+        /*$idUser = Auth::user()->id;
         $team = User::find($idUser)->teams($idQuest)->get();
         $idTeam = $team[0]->id;
         $userQuests = UserQuest::ofWhereWhere('idQuest', $idQuest, 'idTeam', $idTeam);
@@ -329,7 +355,7 @@ class UsersQuestController extends Controller
             $datetime[$key] = "[Дата: " . strval($value->date) . "  Время: " . strval($value->time) . "]";
         }
         $datetime = implode(',', $datetime);
-        $coord = json_encode($coord);
+        $coord = json_encode($coord);*/
         return view('Users.markers')->with(['coord' => $coord, 'dateTime' => $datetime]);
     }
 
