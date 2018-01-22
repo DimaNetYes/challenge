@@ -47,7 +47,7 @@
                             <option value="4">5</option>
                         </select>
                     </div>
-                    {{Form::hidden('author_id', $author_id)}}
+                    {{Form::hidden('user_id', $user_id)}}
                 </div>
 
                 {{Form::submit('Выбрать', array('class' => 'btn btn-primary', 'id' => 'add_btn'))}}

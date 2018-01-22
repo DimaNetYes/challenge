@@ -27,7 +27,7 @@ class ContactsController extends Controller
 
         Mail::send('contacts.contact',$data, function($message) use ($user)
         {
-            $message->to('777quest777@gmail.com')->subject('Welcome!');
+            $message->to('volkova5005@gmail.com')->subject('Welcome!');
         });
 
         return redirect()->route('start');
