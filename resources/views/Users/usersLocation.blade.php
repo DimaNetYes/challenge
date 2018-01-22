@@ -78,11 +78,11 @@
 
             function error() {
                 output.innerHTML = "Unable to retrieve your location";
-                coordX = document.getElementById("x");
+              /*  coordX = document.getElementById("x");
                 coordY = document.getElementById("y");
                 coordX.value = 49.987670699999995;
                 coordY.value = 36.2330605;
-                posit(idExTask);
+                posit(idExTask);*/
             }
 
             output.innerHTML = "<p>Locating…</p>";

@@ -314,7 +314,7 @@ class UsersQuestController extends Controller
         $idUserQ = array();                                 // участники каждой команды
         $exTasks = array();
 
-        $questTeams = Quest::find($idQuest)->teams->unique();
+     /*   $questTeams = Quest::find($idQuest)->teams->unique();
 
         foreach ($questTeams as $k) {
             $idTeams[] .= $k->id;
@@ -335,8 +335,8 @@ class UsersQuestController extends Controller
                 }
             }
         }
-        dd($idUserQ);
-        /*$idUser = Auth::user()->id;
+        dd($idUserQ);*/
+        $idUser = Auth::user()->id;
         $team = User::find($idUser)->teams($idQuest)->get();
         $idTeam = $team[0]->id;
         $userQuests = UserQuest::ofWhereWhere('idQuest', $idQuest, 'idTeam', $idTeam);
@@ -355,7 +355,7 @@ class UsersQuestController extends Controller
             $datetime[$key] = "[Дата: " . strval($value->date) . "  Время: " . strval($value->time) . "]";
         }
         $datetime = implode(',', $datetime);
-        $coord = json_encode($coord);*/
+        $coord = json_encode($coord);
         return view('Users.markers')->with(['coord' => $coord, 'dateTime' => $datetime]);
     }
 
