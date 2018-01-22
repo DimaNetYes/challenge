@@ -67,6 +67,7 @@
             var a = "<? echo $coord ?>";
             var dt = "<? echo $dateTime ?>";
             arr = dt.split(',');
+            console.log(a);
             b = JSON.parse(a);
             map = new google.maps.Map(document.getElementById("map"), {
                 center: {lat: b[0][0], lng: b[0][1]},
