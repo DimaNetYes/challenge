@@ -32,24 +32,14 @@ class GoogleController extends Controller
     {
         $SocialUser = Socialite::driver('google')->stateless()->user();
 
-        if ($SocialUser->user['gender']) {
-            $data = [
-                'social_id' => $SocialUser->id,
-                'name' => $SocialUser->name,
-                'email' => $SocialUser->email,
-                'avatar' => $SocialUser->avatar_original,
-                'nickname' => $SocialUser->nickname,
-                'gender' => $SocialUser->user['gender']
-            ];
-        } else {
-            $data = [
-                'social_id' => $SocialUser->id,
-                'name' => $SocialUser->name,
-                'email' => $SocialUser->email,
-                'avatar' => $SocialUser->avatar_original,
-                'nickname' => $SocialUser->nickname,
-                ];
-        }
+        $data = [
+            'social_id' => $SocialUser->id,
+            'name' => $SocialUser->name,
+            'email' => $SocialUser->email,
+            'avatar' => $SocialUser->avatar_original,
+            'nickname' => $SocialUser->nickname,
+//                'gender' => $SocialUser->user['gender']
+        ];
 
         $user = User::where('email', $data['email'])->first();
         if (is_null($user)) {
