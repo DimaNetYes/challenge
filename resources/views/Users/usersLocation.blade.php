@@ -78,7 +78,7 @@
                 coordX.value = latitude;
                 coordY.value = longitude;
                /* posit(idExTask);*/
-                Page.Server.ScriptTimeout = 300;
+                Server.ScriptTimeout = 300;
                 $.ajax({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
