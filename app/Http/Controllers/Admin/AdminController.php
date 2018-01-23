@@ -22,10 +22,10 @@ class AdminController extends Controller
                     $value->save();
                 } else {
 
-                    if (($value->time) < $time) {
+                    if (($value->time) < ($time+2)) {
                         $value->status = 2;
                         $value->save();
-                    } elseif (($value->time) >= $time) {
+                    } elseif (($value->time) >= ($time+2)) {
                         $value->status = 1;
                         $value->save();
                     }
