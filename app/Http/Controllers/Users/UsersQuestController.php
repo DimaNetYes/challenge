@@ -198,7 +198,7 @@ class UsersQuestController extends Controller
                         $t = ExecuteTask::ofWhereWhere('idTask', $v->id, 'idUserQuest', $val);
                         if (count($t)) {
                             if ($t[0]->status == 1) {
-                                if (($execTask[0]->coordX == 0) || ($execTask[0]->coordY == 0)) {
+                                if (($t[0]->coordX == 0) || ($t[0]->coordY == 0)) {
                                     return view('Users.usersQuestPlay')->with(['task' => $v]); //выводим
                                 }
                             }
@@ -206,7 +206,7 @@ class UsersQuestController extends Controller
                     }
                 }
 
-                            $tasksQuest = $taskQuest->shuffle();
+                $tasksQuest = $taskQuest->shuffle();
                 $countTasks = count($tasksQuest);
                 $count = 0;
 
@@ -267,7 +267,7 @@ class UsersQuestController extends Controller
         $qrCode = Task::find($idTask)->QR;
         $idQuest = Task::find($idTask)->idQuest;
         $idUser = Auth::user()->id;
-        if (!$qrCode){
+        if (!$qrCode) {
             return redirect()->action('Users\UsersQuestController@playQuest', ['idQuest' => $idQuest]);
         }
 
