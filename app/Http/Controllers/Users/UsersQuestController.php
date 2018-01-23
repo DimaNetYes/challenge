@@ -312,8 +312,7 @@ class UsersQuestController extends Controller
         return view('Users.usersLocation')->with(['idExecuteTask' => $idTask, 'idQuest' => $idQuest]);
     }
 
-    public
-    function savePosition()
+    public function savePosition()
     {
         $data = Input::all();
         $execTask = ExecuteTask::find($data['idExTask']);
