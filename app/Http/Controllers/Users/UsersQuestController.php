@@ -230,8 +230,7 @@ class UsersQuestController extends Controller
                     foreach ($uQ as $val) {
                         $val->statusQuest = 1;
                         $val->save();
-                       return  view('Users.usersQuestPlay')->with(['msg' => 'Вы успешно прошли квест! Поздравляем!']);
-                        //return redirect()->route('userProfile');
+                       return redirect()->route('userQuestFinish');
                     }
                 }
 
@@ -260,6 +259,10 @@ class UsersQuestController extends Controller
         }
 
         return redirect()->route('userProfile');
+    }
+
+    protected  function questFinish(){
+        return view('Users.questFinish');
     }
 
     protected function qrInput($qr, $idTask)

@@ -132,6 +132,7 @@ Route::group(['prefix' => 'users', 'middleware' => ['web', 'auth']], function ()
     Route::get('play/{id?}/', ['uses' => 'Users\UsersQuestController@play', 'as' => 'play']);
     //планируемый маршрут при выборе user-ом квеста на выполнение(надо делать)
     Route::get('profile/', ['uses' => 'Users\UsersQuestController@userProfile', 'as' => 'userProfile']);
+    Route::get('quest/finish', ['uses' => 'Users\UsersQuestController@questFinish', 'as' => 'userQuestFinish']);
     Route::get('playQuest/{idQuest}', ['uses' => 'Users\UsersQuestController@playQuest', 'as' => 'playQuest']);
     Route::get('editTeam/{id?}', ['uses' => 'Users\UsersQuestController@editTeam', 'as' => 'editTeam']);
     Route::get('outQuest/{id?}', ['uses' => 'Users\UsersQuestController@outQuest', 'as' => 'outQuest']);
