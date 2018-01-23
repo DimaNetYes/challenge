@@ -230,7 +230,8 @@ class UsersQuestController extends Controller
                     foreach ($uQ as $val) {
                         $val->statusQuest = 1;
                         $val->save();
-                        return redirect()->route('userProfile');
+                       return  view('Users.usersQuestPlay')->with(['msg' => 'Вы успешно прошли квест! Поздравляем!']);
+                        //return redirect()->route('userProfile');
                     }
                 }
 

@@ -32,23 +32,25 @@
         <section class="section">
             <div id="section_inner">
 
-
-                <h1>Задание на выполнение</h1>
-                <div class="column">
-                    <div class="row">
-                        <div class="text-center">Название</div>
-                        <div class="text-center">Описание</div>
-                        <div class="text-center">Длительность</div>
-                        <div class="text-center">Вес</div>
+                @if($msg)
+                    <h2>{{$msg}}</h2>
+                @else
+                    <h1>Задание на выполнение</h1>
+                    <div class="column">
+                        <div class="row">
+                            <div class="text-center">Название</div>
+                            <div class="text-center">Описание</div>
+                            <div class="text-center">Длительность</div>
+                            <div class="text-center">Вес</div>
+                        </div>
+                        <div class="row">
+                            <div class="text-center">{!! $task->name !!}</div>
+                            <div class="text-center">{!! $task->description !!}</div>
+                            <div class="text-center">{!! $task->duration !!}</div>
+                            <div class="text-center">{!! $task->weight !!}</div>
+                        </div>
                     </div>
-                    <div class="row">
-                        <div class="text-center">{!! $task->name !!}</div>
-                        <div class="text-center">{!! $task->description !!}</div>
-                        <div class="text-center">{!! $task->duration !!}</div>
-                        <div class="text-center">{!! $task->weight !!}</div>
-                    </div>
-                </div>
-
+                @endif
 
             </div> <!-- div section inner-->
         </section>
