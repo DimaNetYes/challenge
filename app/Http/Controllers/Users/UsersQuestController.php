@@ -296,7 +296,7 @@ class UsersQuestController extends Controller
                         } else {
                             return redirect()->action('Users\UsersQuestController@playQuest', ['idQuest' => $idQuest]);
                         }
-                    }   
+                    }
                 } else {
                     return redirect()->action('Users\UsersQuestController@playQuest', ['idQuest' => $idQuest]);
                 }

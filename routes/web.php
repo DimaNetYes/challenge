@@ -137,7 +137,7 @@ Route::group(['prefix' => 'users', 'middleware' => ['web', 'auth']], function ()
     Route::get('outQuest/{id?}', ['uses' => 'Users\UsersQuestController@outQuest', 'as' => 'outQuest']);
     // обработка QR
     Route::get('qr/{qr?}/{idTask?}', ['uses' => 'Users\UsersQuestController@qrInput', 'as' => 'inputQR']);
-    Route::post('/location', ['uses' => 'Users\UsersQuestController@savePosition', 'as' => 'savePosition']);
+    Route::get('/location', ['uses' => 'Users\UsersQuestController@savePosition', 'as' => 'savePosition']);
     Route::get('/locations/{idTask?}/{idQuest?}', ['uses' => 'Users\UsersQuestController@usersLocation', 'as' => 'usersLocation']);
     Route::get('maps/{idQuest?}', ['uses' => 'Users\UsersQuestController@maps', 'as' => 'maps']);
     Route::post('/selectTeam', ['uses' => 'Users\UsersQuestController@selectTeam', 'as' => 'selectTeam']);
