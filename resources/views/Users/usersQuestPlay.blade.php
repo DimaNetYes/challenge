@@ -29,7 +29,7 @@
 
         </div>
 
-        <section class="section">
+        <section class="section">u7
             <div id="section_inner">
 
                 @if($msg)
