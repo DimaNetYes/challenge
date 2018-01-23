@@ -5,7 +5,7 @@
         <div class="text-center" id='print'>
             {!! QrCode::size(300)->generate( $qr ); !!}
         </div>
-        <input type="button" onclick="CallPrint('print');" value="Print"/>
+        <center>><input type="button" onclick="CallPrint('print');" value="Print"/></center>
 
     </main>
     <script> function CallPrint(strid) {
