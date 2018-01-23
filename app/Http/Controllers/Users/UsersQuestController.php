@@ -285,13 +285,14 @@ class UsersQuestController extends Controller
             foreach ($idUserQuest as $v) {
                 $execTask = ExecuteTask::ofWhereWhere('idTask', $idTask, 'idUserQuest', $v);
                 if (count($execTask)) {
+                    $idExTask = $execTask[0]->id;
                     if ($execTask[0]->status == 0) {
                         $execTask[0]->status = 1;
                         $execTask[0]->save();
-                        return redirect()->route('usersLocation', ['idExecuteTask' => $idTask, 'idQuest' => $idQuest]);
+                        return redirect()->route('usersLocation', ['idExecuteTask' => $idExTask, 'idQuest' => $idQuest]);
                     } elseif ($execTask[0]->status == 1) {
                         if (($execTask[0]->coordX == 0) || ($execTask[0]->coordY == 0)) {
-                            return redirect()->route('usersLocation', ['idExecuteTask' => $idTask, 'idQuest' => $idQuest]);
+                            return redirect()->route('usersLocation', ['idExecuteTask' => $idExTask, 'idQuest' => $idQuest]);
                         } else {
                             return redirect()->action('Users\UsersQuestController@playQuest', ['idQuest' => $idQuest]);
                         }
