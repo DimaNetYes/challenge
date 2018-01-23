@@ -77,7 +77,21 @@
                 var longitude = position.coords.longitude;
                 coordX.value = latitude;
                 coordY.value = longitude;
-                posit(idExTask);
+               /* posit(idExTask);*/
+                $.ajax({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    type: 'POST',
+                    url: '/public/users/location',
+                    data: {"coordX": $('#x').val(), "coordY": $('#y').val(), "idExTask": idExTask},
+                    success: function (data) {
+                        $("#res").html(data.msg);
+                    },
+                    error: function (data) {
+                        $("#res").html('OOPS');
+                    }
+                });
 
             }
 
@@ -90,7 +104,7 @@
             navigator.geolocation.getCurrentPosition(success, error);
 
 
-            function posit(idExTask) {
+        /*    function posit(idExTask) {
 
                 $.ajax({
                     headers: {
@@ -101,9 +115,12 @@
                     data: {"coordX": $('#x').val(), "coordY": $('#y').val(), "idExTask": idExTask},
                     success: function (data) {
                         $("#res").html(data.msg);
+                    },
+                    error: function (data) {
+                        $("#res").html('OOPS');
                     }
                 });
-            }
+            }*/
         }
     </script>
 
