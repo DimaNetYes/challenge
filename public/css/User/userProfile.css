@@ -98,6 +98,7 @@ main section{
     justify-content:space-between;
     align-items: center;
     margin: 0;
+    background-color: white;
 }
 .column {
     width: 100%;
@@ -110,7 +111,7 @@ main section{
 }
 
 .column > .row:first-child{
-    background-color: #edf4f1;
+    background-color: #edf4f1!important;
 
 }
 .row div {

@@ -187,13 +187,26 @@ class UsersQuestController extends Controller
 
             $idUQ = UserQuest::ofWhereWhere('idQuest', $idQuest, 'idTeam', $idTeam);
             foreach ($idUQ as $v) {
-                $idUserQuest[] .= $v->id; // массив idUserQuest для всех участников команды
+                $idUserQuest[] .= $v->id; // массив id всех участников команды
             }
 
             if ($statusQuest == 0) {               // если квест активен для команды таблица userQuests
-                // $tasksQuest = Quest::find($idQuest)->tasks()->orderBy('orderBy', 'Asc')->get();
                 $taskQuest = Quest::find($idQuest)->tasks()->get();
-                $tasksQuest = $taskQuest->shuffle();
+
+                foreach ($taskQuest as $key => $v) {
+                    foreach ($idUserQuest as $val) {
+                        $t = ExecuteTask::ofWhereWhere('idTask', $v->id, 'idUserQuest', $val);
+                        if (count($t)) {
+                            if ($t[0]->status == 1) {
+                                if (($execTask[0]->coordX == 0) || ($execTask[0]->coordY == 0)) {
+                                    return view('Users.usersQuestPlay')->with(['task' => $v]); //выводим
+                                }
+                            }
+                        }
+                    }
+                }
+
+                            $tasksQuest = $taskQuest->shuffle();
                 $countTasks = count($tasksQuest);
                 $count = 0;
 
