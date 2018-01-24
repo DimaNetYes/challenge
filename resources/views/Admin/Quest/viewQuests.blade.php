@@ -11,7 +11,9 @@
         <?php
         echo "<div class='table'>";
         echo "<table>";
-        echo "<tr><th>id</th><th>name</th><th>description</th><th>fullDescription</th><th>hard</th><th>author</th><th>date</th><th>time</th><th>sts</th></tr>";
+        echo 
+"<tr><th>id</th><th>name</th><th>description</th><th>fullDescription</th><th>hard</th><th>author</th><th>date</th><th>time</th><th>sts</th><th>author_id</th> 
+</tr>";
         foreach ($quests as $key => $value) {
         echo "<tr>";
         echo "<td> <div>" . $value->id . "</div> </td>";
@@ -23,6 +25,7 @@
         echo "<td class='date'> <div>" . $value->date . "</div> </td>";
         echo "<td> <div>" . $value->time . "</div> </td>";
         echo "<td> <div >" . $value->status . "</div> </td>";
+        echo "<td> <div >" . $value->author_id . "</div> </td>";
         echo "<td> ";
         ?>
         <submit class="btn btn-default btn-sm"><a href="{{route('editQuest', $value->id)}}"
