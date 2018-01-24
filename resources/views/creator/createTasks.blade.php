@@ -48,8 +48,8 @@
                 <div class="modal-content" id="modal">
                 <div class="form-group">
                     <div class="form-group">
-                        <label for="number"> (от 1 до 5): </label>
-                        <input type="number" name="number" min="1" max="5" class="form-control" id="exampleFormControlSelect2" value = 1><br>
+                        <label for="number"> (от 1 до 10): </label>
+                        <input type="number" name="number" min="1" max="10" class="form-control" id="exampleFormControlSelect2" value = 1><br>
                         {{--<select class="form-control" id="exampleFormControlSelect2" name="number">--}}
                             {{--<option value="0" selected>1</option>--}}
                             {{--<option value="1">2</option>--}}
