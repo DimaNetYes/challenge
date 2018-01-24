@@ -48,7 +48,7 @@
                             <div class="text-center">{!! $task->weight !!}</div>
                         </div>
                     </div>
-               
+
             </div> <!-- div section inner-->
         </section>
 
