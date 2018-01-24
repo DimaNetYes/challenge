@@ -73,7 +73,7 @@
             b = JSON.parse(a);
             map = new google.maps.Map(document.getElementById("map"), {
                 center: {lat: b[0][0], lng: b[0][1]},
-                zoom: 13,
+                zoom: 15,
                 mapTypeId: google.maps.MapTypeId.RoadMap
             });
             clearMarkers();
@@ -110,7 +110,7 @@
         }
         function moveMarker(map, marker, latlng) {
             marker.setPosition(latlng);
-//            map.panTo(latlng);
+            map.panTo(latlng);
         }
         function autoRefresh(map, pathCoords) {
             var i, route, marker;
@@ -144,7 +144,7 @@
             var end = path[curIndex + 1];
             var dist = google.maps.geometry.spherical.computeDistanceBetween(start, end);
             if (dist > step) {
-                var intCoord = google.maps.geometry.spherical.interpolate(start, end, .5);
+                var intCoord = google.maps.geometry.spherical.interpolate(start, end, .10);
                 path.splice(curIndex + 1, 0, intCoord);
                 interpolatePathBetween(path, step, curIndex);
             }

@@ -240,6 +240,7 @@ main button.link a{
     }
     .menu-main-container{
         position: absolute;
+        z-index: 1;
         background-color: white;
         left: -220px;
         top: 20%;
@@ -263,6 +264,7 @@ main button.link a{
 
     #container{
         position: absolute;
+        z-index: 0;
         top: 20%;
         left: 5%;
         width: 90%;
@@ -273,3 +275,5 @@ main button.link a{
 
     }
 }
+
+

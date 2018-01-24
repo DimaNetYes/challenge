@@ -39,12 +39,17 @@ class UsersQuestController extends Controller
     public function selectTeam()
     {
         $data = Input::all();
-        $count = count(UserQuest::ofWhereWhere('idQuest', $data['quest'], 'idUser', Auth::user()->id));
-        $team = UserQuest::updateOrCreate(['idUser' => Auth::user()->id, 'idQuest' => $data['quest']], ['idTeam' => $data['team']]);
-        $team->save();
+        $uQ = UserQuest::ofWhereWhere('idQuest', $data['quest'], 'idUser', Auth::user()->id);
+        $count = count($uQ);
         if ($count) {
+            if (($uQ[0]->statusQuest) == 0) {
+                $team = UserQuest::updateOrCreate(['idUser' => Auth::user()->id, 'idQuest' => $data['quest']], ['idTeam' => $data['team']]);
+                $team->save();
+            }
             return response()->json(array('msg' => "Ваша команда успешно изменена!"), 200);
         } else {
+            $team = UserQuest::updateOrCreate(['idUser' => Auth::user()->id, 'idQuest' => $data['quest']], ['idTeam' => $data['team']]);
+            $team->save();
             return response()->json(array('msg' => "Вы зарегистрировались в квесте! Удачи!"), 200);
         }
     }
@@ -271,12 +276,13 @@ class UsersQuestController extends Controller
         $qrCode = Task::find($idTask)->QR;
         $idQuest = Task::find($idTask)->idQuest;
         $idUser = Auth::user()->id;
-        if (!$qrCode) {
-            return redirect()->action('Users\UsersQuestController@playQuest', ['idQuest' => $idQuest]);
-        }
+//        if (!$qrCode) {
+//            return redirect()->action('Users\UsersQuestController@playQuest', ['idQuest' => $idQuest]);
+//        }
 
         $idUserQuest = array();
         $execTask = "";
+
 
         $userQuest = UserQuest::ofWhereWhere('idQuest', $idQuest, 'idUser', $idUser);
         $idTeam = $userQuest[0]->idTeam;
@@ -286,9 +292,10 @@ class UsersQuestController extends Controller
         }
 
         if ($qr == $qrCode) {
-            foreach ($idUserQuest as $v) {
+              foreach ($idUserQuest as $v) {
                 $execTask = ExecuteTask::ofWhereWhere('idTask', $idTask, 'idUserQuest', $v);
-                if (count($execTask)) {
+                  if (count($execTask)) {
+
                     $idExTask = $execTask[0]->id;
                     if ($execTask[0]->status == 0) {
                         $execTask[0]->status = 1;

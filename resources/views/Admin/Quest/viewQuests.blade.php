@@ -11,7 +11,11 @@
         <?php
         echo "<div class='table'>";
         echo "<table>";
-        echo "<tr><th>id</th><th>name</th><th>description</th><th>fullDescription</th><th>hard</th><th>author</th><th>date</th><th>time</th><th>sts</th><th>author_id</th></tr>";
+
+        echo 
+"<tr><th>id</th><th>name</th><th>description</th><th>fullDescription</th><th>hard</th><th>author</th><th>date</th><th>time</th><th>sts</th><th>author_id</th> 
+</tr>";
+
         foreach ($quests as $key => $value) {
         echo "<tr>";
         echo "<td> <div>" . $value->id . "</div> </td>";
